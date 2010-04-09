@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>
+            XbmcWeb
+        </title>
+
+        <!-- START include style sheets -->
+        <link rel="stylesheet" type="text/css" href="style/application/default.css" />
+        <link rel="stylesheet" type="text/css" href="style/jquery-ui/dark-hive/jquery-ui-1.8.custom.css" />
+        <!-- END include style sheets -->
+
+        <!-- START include jquery library -->
+        <script type="text/javascript" src="library/jquery/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="library/jquery/jquery-ui-1.8.custom.min.js"></script>
+        <!-- END include jquery library -->
+
+        <!-- START include jquery plugins -->
+        <!-- END include jquery plugins -->
+
+        <!-- START include XBMC library -->
+        <script type="text/javascript" src="library/xbmc/config.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/status.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/controls.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/keyboard.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/library.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/videos.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/music.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/pictures.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/xbmc.class.js"></script>
+        <!-- END include XBMC library -->
+
+        <!-- START include Application library -->
+        <script type="text/javascript" src="library/application/application.class.js"></script>
+        <!-- END include Application library -->
+
+        <script type="text/javascript">
+			var Xbmc = null;
+        
+			$(document).ready(function(){
+				Xbmc = new Xbmc();
+			});
+        </script>
+    </head>
+<body>
+test
+</body>
+</html>
