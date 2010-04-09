@@ -30,15 +30,17 @@
         <!-- END include XBMC library -->
 
         <!-- START include Application library -->
+        <script type="text/javascript" src="config.jsconfig['xbmc']['path']"></script>
         <script type="text/javascript" src="library/application/application.class.js"></script>
         <!-- END include Application library -->
 
         <script type="text/javascript">
-			var Xbmc = null;
-        
-			$(document).ready(function(){
-				Xbmc = new Xbmc();
-			});
+            var Xbmc = null;
+
+            $(document).ready(function()
+            {
+                    Xbmc = new Xbmc(config['xbmc']['path']);
+            });
         </script>
     </head>
 <body>
