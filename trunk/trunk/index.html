@@ -15,6 +15,7 @@
         <!-- END include jquery library -->
 
         <!-- START include jquery plugins -->
+        <script type="text/javascript" src="library/jquery/plugins/jquery.jsonrpc.2.0.js"></script>
         <!-- END include jquery plugins -->
 
         <!-- START include XBMC library -->
@@ -30,16 +31,16 @@
         <!-- END include XBMC library -->
 
         <!-- START include Application library -->
-        <script type="text/javascript" src="config.jsconfig['xbmc']['path']"></script>
+        <script type="text/javascript" src="config.js"></script>
         <script type="text/javascript" src="library/application/application.class.js"></script>
         <!-- END include Application library -->
 
         <script type="text/javascript">
-            var Xbmc = null;
+            var xbmc = null;
 
             $(document).ready(function()
             {
-                    Xbmc = new Xbmc(config['xbmc']['path']);
+                xbmc = new Xbmc(config['xbmc']);
             });
         </script>
     </head>
