@@ -8,5 +8,6 @@ config['xbmc']['password']  = "xbmc";
 
 
 
-//Do not edit below this line
+//Do not edit below this line\\
+
 config['xbmc']['path'] = "http://" +config['xbmc']['address']+ ":" +config['xbmc']['port']+ "/jsonrpc";
