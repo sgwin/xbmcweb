@@ -5,14 +5,9 @@ config['xbmc']['address']   = "localhost";
 config['xbmc']['port']      = "8080";
 config['xbmc']['username']  = "xbmc";
 config['xbmc']['password']  = "xbmc";
+config['xbmc']['debug']     = false;
 
 
 
 //Do not edit below this line\\
-jQuery.noConflict();
-var xbmc = null;
-
-jQuery(document).ready(function ()
-{
-    xbmc = new Xbmc(config['xbmc']);
-});
+var xbmc = new Xbmc(config['xbmc']);
