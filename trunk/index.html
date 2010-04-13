@@ -19,30 +19,23 @@
         <!-- END include jquery plugins -->
 
         <!-- START include XBMC library -->
-        <script type="text/javascript" src="library/xbmc/config.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/status.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/jsonrpc.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/system.class.js"></script>
         <script type="text/javascript" src="library/xbmc/controls.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/keyboard.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/library.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/videos.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/music.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/pictures.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/player.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/playlist.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/files.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/videolibrary.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/videoplayer.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/musiclibrary.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/musicplayer.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/slideshow.class.js"></script>
         <script type="text/javascript" src="library/xbmc/xbmc.class.js"></script>
         <!-- END include XBMC library -->
 
         <!-- START include Application library -->
         <script type="text/javascript" src="config.js"></script>
-        <script type="text/javascript" src="library/application/application.class.js"></script>
         <!-- END include Application library -->
-
-        <script type="text/javascript">
-            var xbmc = null;
-
-            $(document).ready(function()
-            {
-                xbmc = new Xbmc(config['xbmc']);
-            });
-        </script>
     </head>
 <body>
 test

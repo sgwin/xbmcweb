@@ -1,4 +1,4 @@
-function Controls (Xbmc)
+function Slideshow (Xbmc)
 {
     var o_parent = Xbmc;
 }

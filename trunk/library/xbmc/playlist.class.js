@@ -1,4 +1,4 @@
-function Controls (Xbmc)
+function Playlist (Xbmc)
 {
     var o_parent = Xbmc;
 }

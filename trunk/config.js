@@ -9,5 +9,10 @@ config['xbmc']['password']  = "xbmc";
 
 
 //Do not edit below this line\\
+jQuery.noConflict();
+var xbmc = null;
 
-config['xbmc']['path'] = "http://" +config['xbmc']['address']+ ":" +config['xbmc']['port']+ "/jsonrpc";
+jQuery(document).ready(function ()
+{
+    xbmc = new Xbmc(config['xbmc']);
+});

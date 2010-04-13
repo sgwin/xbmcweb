@@ -1,4 +1,4 @@
-function Controls (Xbmc)
+function System (Xbmc)
 {
     var o_parent = Xbmc;
 }
