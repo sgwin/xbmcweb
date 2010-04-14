@@ -10,10 +10,11 @@ function Xbmc (config)
     this.Helper         = new Helper();
     this.JsonRpc 	= new JsonRpc(this);
     this.System		= new System(this);
-    this.Controls       = new Controls(this);
-    this.Player         = new Player(this);
-    this.Playlist	= new Playlist(this);
     this.Files          = new Files(this);
+    this.Player         = new Player(this);
+    this.VideoPlayer    = new VideoPlayer(this);
+    this.PicturePlayer  = new PicturePlayer(this);
+    this.Playlist	= new Playlist(this);
     this.VideoLibrary   = new VideoLibrary(this);
     this.VideoPlaylist	= new VideoPlaylist(this);
     this.MusicLibrary	= new MusicLibrary(this);
