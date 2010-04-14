@@ -1,0 +1,104 @@
+<h2>
+    Playlist
+</h2>
+<ul>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.play(), $(this).html())">
+            Play
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.skipPrevious(), $(this).html())">
+            Skip previous
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.skipNext(), $(this).html())">
+            Skip next
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.getCurrentPlaylist('video'), $(this).html())">
+            Get current video playlist
+        </b>
+        <ul>
+            <li>
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.getItems('video'), $(this).html())">
+                    Get items
+                </b>
+            </li>
+            <li>
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.getCurrentItem('video'), $(this).html())">
+                    Get current item
+                </b>
+            </li>
+            <li>
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.getItemCount('video'), $(this).html())">
+                    Get item count
+                </b>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.getCurrentPlaylist('audio'), $(this).html())">
+            Get current audio playlist
+        </b>
+        <ul>
+            <li>
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.getItems('audio'), $(this).html())">
+                    Get items
+                </b>
+            </li>
+            <li>
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.getCurrentItem('audio'), $(this).html())">
+                    Get current item
+                </b>
+            </li>
+            <li>
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.getItemCount('audio'), $(this).html())">
+                    Get item count
+                </b>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.add('video', '/an/existing/filepath.avi'), $(this).html())">
+            Add video file
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.add('audio', '/an/existing/filepath.mp3'), $(this).html())">
+            Add audio file
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.clear('video'), $(this).html())">
+            Clear video playlist
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.clear('audio'), $(this).html())">
+            Clear audio playslist
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.shuffle('video'), $(this).html())">
+            Enable video playlist shuffle
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.shuffle('audio'), $(this).html())">
+            Enable audio playlist shuffle
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.unShuffle('video'), $(this).html())">
+            Disable video playlist shuffle
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.unShuffle('audio'), $(this).html())">
+            Disable audio playlist shuffle
+        </b>
+    </li>
+</ul>

@@ -28,11 +28,11 @@ function Controls (Application)
 
     this.zoomPicture = function ()
     {
-        var i_userValue = prompt("Enter a zoom level...");
+        var i_userValue = prompt("Enter a zoom level between 1 and 9...");
 
-        if (i_userValue && o_parent.Xbmc.Helper.is_int(i_userValue))
+        if (i_userValue && o_parent.Xbmc.Helper.is_int(i_userValue) && i_userValue > 0 && i_userValue < 10)
         {
-            if (o_parent.Xbmc.Player.zoom(i_userValue))
+            if (o_parent.Xbmc.PicturePlayer.zoom(i_userValue))
                 o_parent.MessageBox.show("Zoom level successfully set to " +i_userValue);
             else
                 o_parent.MessageBox.show("Zoom level could not be set");
