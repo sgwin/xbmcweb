@@ -1,0 +1,32 @@
+html, body, table
+{
+    font-family:        arial;
+    font-size:          11px;
+}
+
+td
+{
+    vertical-align:     top;
+    width:              200px;
+    border:             1px solid #DDD;
+    padding:            10px;
+}
+
+h2
+{
+    text-align:         center;
+    background-color:   #DDD;
+}
+
+#demo b
+{
+    cursor:             pointer;
+    text-decoration:    underline;
+    font-weight:        normal;
+}
+
+#title
+{
+    text-align:         center;
+    border-bottom:      1px solid #555;
+}

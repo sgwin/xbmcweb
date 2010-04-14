@@ -1,0 +1,80 @@
+<h2>
+    AudioPlayer
+</h2>
+<ul>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.playPause('audio'), $(this).html())">
+            Play / Pause
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.stop('audio'), $(this).html())">
+            Stop
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.skipPrevious('audio'), $(this).html())">
+            Previous
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.skipNext('audio'), $(this).html())">
+            Next
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipForward('audio'), $(this).html())">
+            Big skip forward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipBackward('audio'), $(this).html())">
+            Big skip backward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipForward('audio'), $(this).html())">
+            Small skip foward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipBackward('audio'), $(this).html())">
+            Small skip backward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.rewind('audio'), $(this).html())">
+            Rewind
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.forward('audio'), $(this).html())">
+            Forward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getTime('audio'), $(this).html())">
+            Get Time (seconds)
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getTimeMs('audio'), $(this).html())">
+            Get Time (miliseconds)
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getPercentage('audio'), $(this).html())">
+            Get Percentage of playing time
+        </b>
+    </li>
+    <li>
+        <b onclick="setSeekTime('audio')">
+            Set seek time
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.recordAudio(), $(this).html())">
+            Record Audio
+        </b>
+    </li>
+</ul>

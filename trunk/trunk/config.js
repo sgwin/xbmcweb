@@ -10,4 +10,16 @@ config['xbmc']['debug']     = false;
 
 
 //Do not edit below this line\\
-var xbmc = new Xbmc(config['xbmc']);
+var Xbmc        = new Xbmc(config['xbmc']);
+var Application = new Application(Xbmc);
+
+$(document).ready(function ()
+{
+    var s_connectionMessage = (!Xbmc.JsonRpc.ping())? "Could not connect to XBMC.\nMake sure the webservice is enabled." : "Successfully connected to XBMC" ;
+    Application.MessageBox.show(s_connectionMessage);
+    $('#jsonrpc').load('view/jsonrpc.html');
+    $('#player').load('view/player.html');
+    $('#audioplayer').load('view/audioplayer.html');
+    $('#videoplayer').load('view/videoplayer.html');
+    $('#pictureplayer').load('view/pictureplayer.html');
+});
