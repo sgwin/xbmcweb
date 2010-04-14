@@ -1,0 +1,30 @@
+<h2>
+    JSONRPC
+</h2>
+<ul>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.introspect(), $(this).html())">
+            Introspect
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.version(), $(this).html())">
+            Version
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.permission(), $(this).html())">
+            Permission
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.ping(), $(this).html())">
+            Ping
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.announce('XbmcWeb', 'Test message'), $(this).html())">
+            Announce
+        </b>
+    </li>
+</ul>

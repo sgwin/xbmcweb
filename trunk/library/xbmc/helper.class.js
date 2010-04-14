@@ -15,9 +15,33 @@ function Helper ()
         return s_json;
     }
 
-    this.isInt = function (i_value)
+    this.is_int = function (i_value)
     {
         return (i_value.toString().search(/^-?[0-9]+$/) == 0);
+    }
+
+    this.in_array = function (needle, haystack, argStrict)
+    {
+        var key = '', strict = !!argStrict;
+
+        if (strict)
+        {
+            for (key in haystack)
+            {
+                if (haystack[key] === needle)
+                    return true;
+            }
+        }
+        else
+        {
+            for (key in haystack)
+            {
+                if (haystack[key] == needle)
+                    return true;
+            }
+        }
+        
+        return false;
     }
 
 }

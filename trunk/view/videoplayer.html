@@ -1,0 +1,75 @@
+<h2>
+    VideoPlayer
+</h2>
+<ul>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.playPause('video'), $(this).html())">
+            Play / Pause
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.stop('video'), $(this).html())">
+            Stop
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.skipPrevious('video'), $(this).html())">
+            Previous
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.skipNext('video'), $(this).html())">
+            Next
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipForward('video'), $(this).html())">
+            Big skip forward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipBackward('video'), $(this).html())">
+            Big skip backward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipForward('video'), $(this).html())">
+            Small skip foward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipBackward('video'), $(this).html())">
+            Small skip backward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.rewind('video'), $(this).html())">
+            Rewind
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.forward('video'), $(this).html())">
+            Forward
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getTime('video'), $(this).html())">
+            Get Time (seconds)
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getTimeMs('video'), $(this).html())">
+            Get Time (miliseconds)
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getPercentage('video'), $(this).html())">
+            Get Percentage of playing time
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.Controls.setSeekTime('video')">
+            Set seek time
+        </b>
+    </li>
+</ul>
