@@ -5,6 +5,7 @@ function Xbmc (config)
     this.s_password     = "";
     this.b_debug        = false;
     this.o_httpRequest  = new XMLHttpRequest();
+    var s_namespace     = 'XBMC';
 
     //Initialize objects
     this.Helper         = new Helper();
@@ -13,6 +14,7 @@ function Xbmc (config)
     this.Files          = new Files(this);
     this.Player         = new Player(this);
     this.VideoPlayer    = new VideoPlayer(this);
+    this.AudioPlayer    = new AudioPlayer(this);
     this.PicturePlayer  = new PicturePlayer(this);
     this.Playlist	= new Playlist(this);
     this.VideoLibrary   = new VideoLibrary(this);
@@ -31,7 +33,7 @@ function Xbmc (config)
 
     this.getApiPath = function ()
     {
-        return this.apiPath;
+        return this.s_apiPath;
     }
 
     this.debuggingEnabled = function ()
@@ -39,35 +41,33 @@ function Xbmc (config)
         return this.b_debug;
     }
 
+    this.log = function (s_message, s_level)
+    {
+        if (s_message == undefined || s_level == undefined)
+            return false;
+        else
+        {
+            var o_parameters        = new Object();
+            o_parameters.message    = s_message;
+            o_parameters.level      = s_level;
+
+            var o_result = Xbmc.post(s_namespace, 'Log', o_parameters);
+            return (o_result && o_result == "OK")? true : false ;
+        }
+    }
+
     this.post = function (s_namespace, s_method, a_parameters, i_id)
     {
-        this.o_httpRequest.open("POST", this.s_apiPath, false);
-        this.o_httpRequest.send(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
-        var o_response  = JSON.parse(this.o_httpRequest.responseText);
-        var s_message   = "";
-
-        if (o_response == undefined)
-        {
-            if (this.debuggingEnabled())
-            {
-                s_message = 'ERROR\n\nThe requested method could not be executed.\nConnection to XBMC lost.';
-                alert(s_message);
-            }
-
+        if (s_namespace == undefined || s_method == undefined)
             return false;
-        }
-        else if (o_response.error)
+        else
         {
-            if (this.debuggingEnabled())
-            {
-                s_message = 'ERROR\n\n code: ' +o_response.error.code+ '\n message: ' +o_response.error.message;
-                alert(s_message);
-            }
+            this.o_httpRequest.open("POST", this.s_apiPath, false);
+            this.o_httpRequest.send(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
+            var o_response  = JSON.parse(this.o_httpRequest.responseText);
 
-            return false;
+            return (o_response == undefined || o_response.error)? false : o_response.result ;
         }
-        
-        return o_response.result;
     }
 
     this.init(config);

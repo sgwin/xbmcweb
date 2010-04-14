@@ -12,13 +12,16 @@ config['xbmc']['debug']     = false;
 //Do not edit below this line\\
 var Xbmc            = new Xbmc(config['xbmc']);
 var Application     = new Application(Xbmc);
-var a_modules    = new Array();
-a_modules[0]     = 'jsonrpc';
-a_modules[1]     = 'player';
-a_modules[2]     = 'audioplayer';
-a_modules[3]     = 'videoplayer';
-a_modules[4]     = 'pictureplayer';
-a_modules[5]     = 'playlist';
+var a_modules       = new Array();
+a_modules[0]        = 'jsonrpc';
+a_modules[1]        = 'player';
+a_modules[2]        = 'audioplayer';
+a_modules[3]        = 'videoplayer';
+a_modules[4]        = 'pictureplayer';
+a_modules[5]        = 'playlist';
+a_modules[6]        = 'system';
+a_modules[7]        = 'files';
+a_modules[8]        = 'xbmc';
 
 $(document).ready(function ()
 {

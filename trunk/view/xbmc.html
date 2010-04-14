@@ -1,0 +1,20 @@
+<h2>
+    XBMC
+</h2>
+<ul>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.getApiPath(), $(this).html())">
+            Api path
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.debuggingEnabled(), $(this).html())">
+            Debugging enabled
+        </b>
+    </li>
+    <li>
+        <b onclick="Application.MessageBox.show(Xbmc.log('XbmcWeb: Test log message', 'info'), $(this).html())">
+            Log
+        </b>
+    </li>
+</ul>
