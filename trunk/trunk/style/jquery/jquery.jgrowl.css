@@ -82,7 +82,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
         -ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
         filter: 			progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
 	zoom: 				1;
-	width: 				500px;
+	width: 				350px;
 	padding: 			10px;
 	margin-top: 			5px;
 	margin-bottom: 			5px;
@@ -122,6 +122,8 @@ div.jGrowl div.jGrowl-closer {
 
 div.jGrowl div.message {
         height:     95%;
+        padding:    10px;
+        overflow:   auto;
 }
 
 /** Hide jGrowl when printing **/

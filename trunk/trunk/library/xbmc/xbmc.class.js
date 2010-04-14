@@ -15,10 +15,8 @@ function Xbmc (config)
     this.Playlist	= new Playlist(this);
     this.Files          = new Files(this);
     this.VideoLibrary   = new VideoLibrary(this);
-    this.VideoPlayer    = new VideoPlayer(this);
     this.VideoPlaylist	= new VideoPlaylist(this);
     this.MusicLibrary	= new MusicLibrary(this);
-    this.AudioPlayer	= new AudioPlayer(this);
     this.AudioPlaylist	= new AudioPlaylist(this);
     this.PicturePlayer	= new PicturePlayer(this);
 
