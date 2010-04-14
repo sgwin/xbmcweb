@@ -27,10 +27,8 @@
         <script type="text/javascript" src="library/xbmc/playlist.class.js"></script>
         <script type="text/javascript" src="library/xbmc/files.class.js"></script>
         <script type="text/javascript" src="library/xbmc/videolibrary.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/videoplayer.class.js"></script>
         <script type="text/javascript" src="library/xbmc/videoplaylist.class.js"></script>
         <script type="text/javascript" src="library/xbmc/musiclibrary.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/audioplayer.class.js"></script>
         <script type="text/javascript" src="library/xbmc/audioplaylist.class.js"></script>
         <script type="text/javascript" src="library/xbmc/pictureplayer.class.js"></script>
         <script type="text/javascript" src="library/xbmc/xbmc.class.js"></script>
@@ -48,6 +46,43 @@
                 else
                     $.jGrowl("Successfully connected to XBMC");
             });
+
+            function showMessage (o_message, s_title)
+            {
+                $.jGrowl(JSON.stringify(o_message), {header: s_title});
+            }
+
+            function setSeekTime (s_playerType)
+            {
+                var s_timeMs = xbmc.Player.getTimeMs(s_playerType);
+
+                if (s_timeMs.total == 0)
+                    $.jGrowl("No media is playing!")
+                else
+                {
+                    var i_userValue = prompt("Enter a value between 0 and " +s_timeMs.total);
+
+                    if (!xbmc.Helper.isInt(i_userValue))
+                        i_userValue = prompt("Please enter a numeric value between 0 and " +s_timeMs.total);
+
+                    if (s_timeMs.total > 0 && i_userValue <= s_timeMs.total)
+                    {
+                        var b_seekTimeSet = xbmc.Player.seekTime(i_userValue, s_playerType);
+
+                        if (b_seekTimeSet)
+                        {
+                            s_timeMs = xbmc.Player.getTimeMs(s_playerType);
+
+                            if (s_timeMs)
+                                $.jGrowl("Seek time successfully set to " +s_timeMs.time+ "ms");
+                        }
+                        else
+                            $.jGrowl("Seek time could not be set to " +i_userValue);
+                    }
+                    else
+                        $.jGrowl("The value enterd is to high...");
+                }
+            }
         </script>
 
         <style type="text/css">
@@ -103,27 +138,27 @@
                 </h2>
                 <ul>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.JsonRpc.introspect()), {position: 'center', header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.JsonRpc.introspect(), $(this).html())">
                             Introspect
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(xbmc.JsonRpc.version(), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.JsonRpc.version(), $(this).html())">
                             Version
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.JsonRpc.permission()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.JsonRpc.permission(), $(this).html())">
                             Permission
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.JsonRpc.ping()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.JsonRpc.ping(), $(this).html())">
                             Ping
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.JsonRpc.announce('XbmcWeb', 'Test message')), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.JsonRpc.announce('XbmcWeb', 'Test message'), $(this).html())">
                             Announce
                         </b>
                     </li>
@@ -137,8 +172,83 @@
                 </h2>
                 <ul>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.Player.getActivePlayers()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.getActivePlayers(), $(this).html())">
                             Get active players
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.playPause(), $(this).html())">
+                            Play / Pause
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.stop(), $(this).html())">
+                            Stop
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.skipPrevious(), $(this).html())">
+                            Previous
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.skipNext(), $(this).html())">
+                            Next
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.bigSkipForward(), $(this).html())">
+                            Big skip forward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.bigSkipBackward(), $(this).html())">
+                            Big skip backward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.smallSkipForward(), $(this).html())">
+                            Small skip foward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.smallSkipBackward(), $(this).html())">
+                            Small skip backward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.rewind(), $(this).html())">
+                            Rewind
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.forward(), $(this).html())">
+                            Forward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.getTime(), $(this).html())">
+                            Get Time (seconds)
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.getTimeMs(), $(this).html())">
+                            Get Time (miliseconds)
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.getPercentage(), $(this).html())">
+                            Get Percentage of playing time
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="setSeekTime()">
+                            Set seek time
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.record(), $(this).html())">
+                            Record
                         </b>
                     </li>
                 </ul>
@@ -151,116 +261,168 @@
                 </h2>
                 <ul>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.togglePause()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.playPause('audio'), $(this).html())">
                             Play / Pause
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.stop()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.stop('audio'), $(this).html())">
                             Stop
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.skipPrevious()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.skipPrevious('audio'), $(this).html())">
                             Previous
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.skipNext()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.skipNext('audio'), $(this).html())">
                             Next
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.bigSkipForward()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.bigSkipForward('audio'), $(this).html())">
                             Big skip forward
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.bigSkipBackward()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.bigSkipBackward('audio'), $(this).html())">
                             Big skip backward
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.smallSkipForward()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.smallSkipForward('audio'), $(this).html())">
                             Small skip foward
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.smallSkipBackward()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.smallSkipBackward('audio'), $(this).html())">
                             Small skip backward
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.rewind()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.rewind('audio'), $(this).html())">
                             Rewind
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.forward()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.forward('audio'), $(this).html())">
                             Forward
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.getTime()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.getTime('audio'), $(this).html())">
                             Get Time (seconds)
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.getTimeMs()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.getTimeMs('audio'), $(this).html())">
                             Get Time (miliseconds)
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.getPercentage()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.getPercentage('audio'), $(this).html())">
                             Get Percentage of playing time
                         </b>
                     </li>
                     <li>
-                        <script type="text/javascript">
-                            function setSeekTime ()
-                            {
-                                var s_timeMs = xbmc.AudioPlayer.getTimeMs();
-
-                                if (s_timeMs.total == 0)
-                                    $.jGrowl("No music is playing!")
-                                else
-                                {
-                                    var i_userValue = prompt("Enter a value between 0 and " +s_timeMs.total);
-
-                                    if (!xbmc.Helper.isInt(i_userValue))
-                                        i_userValue = prompt("Please enter a numeric value between 0 and " +s_timeMs.total);
-
-                                    if (s_timeMs.total > 0 && i_userValue <= s_timeMs.total)
-                                    {
-                                        var b_seekTimeSet = xbmc.AudioPlayer.seekTime(i_userValue);
-
-                                        if (b_seekTimeSet)
-                                        {
-                                            s_timeMs = xbmc.AudioPlayer.getTimeMs();
-
-                                            if (s_timeMs)
-                                                $.jGrowl("Seek time successfully set to " +s_timeMs.time+ "ms");
-                                        }
-                                        else
-                                            $.jGrowl("Seek time could not be set to " +i_userValue);
-                                    }
-                                    else
-                                        $.jGrowl("The value enterd is to high...");
-                                }
-                            }
-                        </script>
-                        <b onclick="setSeekTime()">
+                        <b onclick="setSeekTime('audio')">
                             Set seek time
                         </b>
                     </li>
                     <li>
-                        <b onclick="$.jGrowl(JSON.stringify(xbmc.AudioPlayer.record()), {header: $(this).html()})">
+                        <b onclick="showMessage(xbmc.Player.record(), $(this).html())">
                             Record
                         </b>
                     </li>
                 </ul>
 
             </td>
+        </tr>
+        <tr>
+
+            <td>
+
+                <h2>
+                    VideoPlayer
+                </h2>
+                <ul>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.playPause('video'), $(this).html())">
+                            Play / Pause
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.stop('video'), $(this).html())">
+                            Stop
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.skipPrevious('video'), $(this).html())">
+                            Previous
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.skipNext('video'), $(this).html())">
+                            Next
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.bigSkipForward('video'), $(this).html())">
+                            Big skip forward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.bigSkipBackward('video'), $(this).html())">
+                            Big skip backward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.smallSkipForward('video'), $(this).html())">
+                            Small skip foward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.smallSkipBackward('video'), $(this).html())">
+                            Small skip backward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.rewind('video'), $(this).html())">
+                            Rewind
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.forward('video'), $(this).html())">
+                            Forward
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.getTime('video'), $(this).html())">
+                            Get Time (seconds)
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.getTimeMs('video'), $(this).html())">
+                            Get Time (miliseconds)
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="showMessage(xbmc.Player.getPercentage('video'), $(this).html())">
+                            Get Percentage of playing time
+                        </b>
+                    </li>
+                    <li>
+                        <b onclick="setSeekTime('video')">
+                            Set seek time
+                        </b>
+                    </li>
+                </ul>
+
+            </td>
+            <td></td>
+            <td></td>
+
         </tr>
     </table>
 
