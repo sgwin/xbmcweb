@@ -17,6 +17,18 @@ function Player (Xbmc)
         return (!o_activePlayers)? false : o_activePlayers[0] ;
     }
 
+    this.isMediaPlaying = function ()
+    {
+        var a_activePlayers = this.getActivePlayers();
+
+        if (!a_activePlayers)
+            return false;
+        else if (a_activePlayers[0] == 'audio' || a_activePlayers[0] == 'video')
+            return true;
+        else
+            return false;
+    }
+
     this.isAudioPlaying = function ()
     {
         var a_activePlayers = this.getActivePlayers();

@@ -23,13 +23,24 @@ a_modules[6]        = 'system';
 a_modules[7]        = 'files';
 a_modules[8]        = 'xbmc';
 a_modules[9]        = 'audioplaylist';
-a_modules[10]        = 'videoplaylist';
+a_modules[10]       = 'videoplaylist';
 
 $(document).ready(function ()
 {
     var s_connectionMessage = (!Xbmc.JsonRpc.ping())? "Could not connect to XBMC.\nMake sure the webservice is enabled." : "Successfully connected to XBMC" ;
     Application.MessageBox.show(s_connectionMessage);
 
-    for (var x=0; x<a_modules.length; x++)
-        $('#'+a_modules[x]).load('view/'+a_modules[x]+'.html');
+    var x;
+
+    for (x=0; x<a_modules.length; x++)
+    {
+        $('#'+a_modules[x]).load
+        (
+            'view/'+a_modules[x]+'.html',
+            function ()
+            {
+                Application.Tooltip.init();
+            }
+        );
+    }
 });
