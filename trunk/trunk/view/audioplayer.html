@@ -1,78 +1,80 @@
+<script type="text/javascript" src="qtip.config.js"></script>
+
 <h2>
     AudioPlayer
 </h2>
 <ul>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.playPause()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.playPause(), $(this).html())">
             Play / Pause
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.stop()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.stop(), $(this).html())">
             Stop
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.skipPrevious()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.skipPrevious(), $(this).html())">
             Previous
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.skipNext()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.skipNext(), $(this).html())">
             Next
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.bigSkipForward()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.bigSkipForward(), $(this).html())">
             Big skip forward
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.bigSkipBackward()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.bigSkipBackward(), $(this).html())">
             Big skip backward
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.smallSkipForward()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.smallSkipForward(), $(this).html())">
             Small skip foward
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.smallSkipBackward()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.smallSkipBackward(), $(this).html())">
             Small skip backward
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.rewind()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.rewind(), $(this).html())">
             Rewind
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.forward()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.forward(), $(this).html())">
             Forward
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.getTime()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.getTime(), $(this).html())">
             Get Time (seconds)
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.getTimeMs()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.getTimeMs(), $(this).html())">
             Get Time (miliseconds)
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.getPercentage()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.getPercentage(), $(this).html())">
             Get Percentage of playing time
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.setSeekTime(int)">
         <b onclick="Application.Controls.setSeekTime('audio')">
             Set seek time
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.AudioPlayer.record()">
         <b onclick="Application.MessageBox.show(Xbmc.AudioPlayer.record(), $(this).html())">
             Record
         </b>

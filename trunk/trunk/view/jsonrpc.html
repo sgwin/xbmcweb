@@ -1,29 +1,31 @@
+<script type="text/javascript" src="qtip.config.js"></script>
+
 <h2>
     JSONRPC
 </h2>
 <ul>
-    <li>
+    <li tooltip="Xbmc.JsonRpc.introspect()">
         <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.introspect(), $(this).html())">
             Introspect
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.JsonRpc.version()">
         <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.version(), $(this).html())">
             Version
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.JsonRpc.permission()">
         <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.permission(), $(this).html())">
             Permission
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.JsonRpc.ping()">
         <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.ping(), $(this).html())">
             Ping
         </b>
     </li>
-    <li>
-        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.announce('XbmcWeb', 'Test message'), $(this).html())">
+    <li tooltip="Xbmc.JsonRpc.announce('ApplicationTitle', 'Announcement')">
+        <b onclick="Application.MessageBox.show(Xbmc.JsonRpc.announce('ApplicationTitle', 'Announcement'), $(this).html())">
             Announce
         </b>
     </li>

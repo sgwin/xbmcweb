@@ -4,6 +4,7 @@ div.jGrowl {
 	z-index: 			9999;
 	color: 				#fff;
 	font-size: 			12px;
+        color:                          #FFCC00;
 }
 
 /** Special IE6 Style Positioning **/
@@ -51,7 +52,7 @@ body > div.jGrowl.top-left {
 
 body > div.jGrowl.top-right {
 	right: 				20px;
-	top: 				40px;
+	bottom:                         10px;
 }
 
 body > div.jGrowl.bottom-left {
@@ -123,7 +124,7 @@ div.jGrowl div.jGrowl-closer {
 div.jGrowl div.message {
         height:     95%;
         padding:    10px;
-        overflow:   auto;
+        overflow:   hidden;
 }
 
 /** Hide jGrowl when printing **/
