@@ -1,19 +1,31 @@
-html, body, table
+html, body
 {
     font-family:            arial;
     font-size:              11px;
     padding:                0px;
     margin:                 0px;
+    background:             url(../images/background.jpg) repeat-x fixed;
+}
+
+table
+{
+    font-size:              11px;
 }
 
 td
 {
     vertical-align:         top;
     width:                  200px;
-    border:                 1px solid #DDD;
+    border:                 3px double #DDD;
     padding:                10px;
     -moz-border-radius:     10px;
     -webkit-border-radius:  10px;
+    background-color:       #FFF;
+}
+
+td:hover
+{
+    border:                 3px solid #FFCC00;
 }
 
 h2
@@ -23,6 +35,15 @@ h2
     -moz-border-radius:     10px;
     -webkit-border-radius:  10px;
     padding:                2px;
+}
+
+#demo
+{
+    position:               absolute;
+    top:                    50px;
+    left:                   50%;
+    width:                  880px;
+    margin-left:            -440px;
 }
 
 #demo b
@@ -39,20 +60,44 @@ h2
 
 #title
 {
+    position:               fixed;
+    top:                    0px;
+    left:                   0px;
+    width:                  100%;
+    z-index:                100;
+    padding:                0px;
+    margin:                 0px;
+    height:                 auto;
+    opacity:                .80;
+    -ms-filter:             "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter:                 progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+
+#title h1
+{
     text-align:             center;
-    border-bottom:          1px solid #FFCC00;
+    border-bottom:          6px solid #FFCC00;
     color:                  #FFCC00;
     background-color:       #000;
-    padding:                4px;
+    padding:                6px;
+    margin:                 0px;
 }
 
 ul
 {
     padding-left:           20px;
-    padding-bottom:         10px;
+    padding-bottom:         5px;
 }
 
 li
 {
     line-height:            15px;
+    -moz-border-radius:     5px;
+    -webkit-border-radius:  5px;
+    padding-left:           6px;
+}
+
+li:hover
+{
+    background-color:       #F6F6F6;
 }

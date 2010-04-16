@@ -1,28 +1,30 @@
+<script type="text/javascript" src="qtip.config.js"></script>
+
 <h2>
     System
 </h2>
 <ul>
-    <li>
+    <li tooltip="Xbmc.System.shutdown()">
         <b onclick="Application.MessageBox.show(Xbmc.System.shutdown(), $(this).html())">
             Shutdown
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.System.suspend()">
         <b onclick="Application.MessageBox.show(Xbmc.System.suspend(), $(this).html())">
             Suspend
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.System.hibernate()">
         <b onclick="Application.MessageBox.show(Xbmc.System.hibernate(), $(this).html())">
             Hibernate
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.System.reboot()">
         <b onclick="Application.MessageBox.show(Xbmc.System.reboot(), $(this).html())">
             Reboot
         </b>
     </li>
-    <li>
+    <li tooltip="Xbmc.System.getInfo()">
         <b onclick="Application.MessageBox.show(Xbmc.System.getInfo(), $(this).html())">
             Get info
         </b>
