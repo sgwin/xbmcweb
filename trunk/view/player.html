@@ -1,80 +1,103 @@
-<script type="text/javascript" src="qtip.config.js"></script>
-
 <h2>
     Player
 </h2>
 <ul>
-    <li tooltip="Xbmc.Player.getActivePlayers()">
+    <li tooltip="(Array) Xbmc.Player.getActivePlayers()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayers(), $(this).html())">
             Get active players
         </b>
     </li>
-    <li tooltip="Xbmc.Player.playPause()">
+    <li tooltip="(String) Xbmc.Player.getActivePlayer()">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayer(), $(this).html())">
+            Get active player
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.isMediaPlaying()">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.isMediaPlaying(), $(this).html())">
+            Is music or video playing
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.isPictureShowing()">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.isPictureShowing(), $(this).html())">
+            Is a picture showing
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.isAudioPlaying()">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.isAudioPlaying(), $(this).html())">
+            Is audio playing
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.isVideoPlaying()">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.isVideoPlaying(), $(this).html())">
+            Is video playing
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.playPause()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.playPause(), $(this).html())">
             Play / Pause
         </b>
     </li>
-    <li tooltip="Xbmc.Player.stop()">
+    <li tooltip="(Bool) Xbmc.Player.stop()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.stop(), $(this).html())">
             Stop
         </b>
     </li>
-    <li tooltip="Xbmc.Player.skipPrevious()">
+    <li tooltip="(Bool) Xbmc.Player.skipPrevious()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.skipPrevious(), $(this).html())">
             Previous
         </b>
     </li>
-    <li tooltip="Xbmc.Player.skipNext()">
+    <li tooltip="(Bool) Xbmc.Player.skipNext()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.skipNext(), $(this).html())">
             Next
         </b>
     </li>
-    <li tooltip="Xbmc.Player.bigSkipForward()">
+    <li tooltip="(Bool) Xbmc.Player.bigSkipForward()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipForward(), $(this).html())">
             Big skip forward
         </b>
     </li>
-    <li tooltip="Xbmc.Player.bigSkipBackward()">
+    <li tooltip="(Bool) Xbmc.Player.bigSkipBackward()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipBackward(), $(this).html())">
             Big skip backward
         </b>
     </li>
-    <li tooltip="Xbmc.Player.smallSkipForward()">
+    <li tooltip="(Bool) Xbmc.Player.smallSkipForward()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipForward(), $(this).html())">
             Small skip foward
         </b>
     </li>
-    <li tooltip="Xbmc.Player.smallSkipBackward()">
+    <li tooltip="(Bool) Xbmc.Player.smallSkipBackward()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipBackward(), $(this).html())">
             Small skip backward
         </b>
     </li>
-    <li tooltip="Xbmc.Player.rewind()">
+    <li tooltip="(Bool) Xbmc.Player.rewind()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.rewind(), $(this).html())">
             Rewind
         </b>
     </li>
-    <li tooltip="Xbmc.Player.forward()">
+    <li tooltip="(Bool) Xbmc.Player.forward()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.forward(), $(this).html())">
             Forward
         </b>
     </li>
-    <li tooltip="Xbmc.Player.getTime()">
+    <li tooltip="(Object) Xbmc.Player.getTime()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getTime(), $(this).html())">
             Get Time (seconds)
         </b>
     </li>
-    <li tooltip="Xbmc.Player.getTimeMs()">
+    <li tooltip="(Object) Xbmc.Player.getTimeMs()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getTimeMs(), $(this).html())">
             Get Time (miliseconds)
         </b>
     </li>
-    <li tooltip="Xbmc.Player.getPercentage()">
+    <li tooltip="(Float) Xbmc.Player.getPercentage()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getPercentage(), $(this).html())">
             Get Percentage of playing time
         </b>
     </li>
-    <li tooltip="Xbmc.Player.setSeekTime(int)">
+    <li tooltip="(Bool) Xbmc.Player.setSeekTime(int)">
         <b onclick="Application.Controls.setSeekTime()">
             Set seek time
         </b>

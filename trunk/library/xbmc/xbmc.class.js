@@ -64,7 +64,7 @@ function Xbmc (config)
         {
             this.o_httpRequest.open("POST", this.s_apiPath, false);
             this.o_httpRequest.send(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
-            var o_response  = JSON.parse(this.o_httpRequest.responseText);
+            var o_response = JSON.parse(this.o_httpRequest.responseText);
 
             return (o_response == undefined || o_response.error)? false : o_response.result ;
         }

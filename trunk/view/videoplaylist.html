@@ -1,3 +1,62 @@
 <h2>
     VideoPlaylist
 </h2>
+<ul>
+    <li tooltip="Xbmc.VideoPlaylist.play()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.play(), $(this).html())">
+            Play
+        </b>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.skipPrevious()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.skipPrevious(), $(this).html())">
+            Skip previous
+        </b>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.skipNext()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.skipNext(), $(this).html())">
+            Skip next
+        </b>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.getCurrentPlaylist()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.getCurrentPlaylist(), $(this).html())">
+            Get current playlist
+        </b>
+        <ul>
+            <li subTooltip="Xbmc.VideoPlaylist.Xbmc.VideoPlaylist.getItems()">
+                <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.getItems(), $(this).html())">
+                    Get items
+                </b>
+            </li>
+            <li subTooltip="Xbmc.VideoPlaylist.getCurrentItem()">
+                <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.getCurrentItem(), $(this).html())">
+                    Get current item
+                </b>
+            </li>
+            <li subTooltip="Xbmc.VideoPlaylist.getItemCount()">
+                <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.getItemCount(), $(this).html())">
+                    Get item count
+                </b>
+            </li>
+        </ul>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.add('/an/existing/filepath')">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.add('/an/existing/filepath'), $(this).html())">
+            Add file
+        </b>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.clear()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.clear(), $(this).html())">
+            Clear
+        </b>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.shuffle()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.shuffle(), $(this).html())">
+            Enable shuffle
+        </b>
+    </li>
+    <li tooltip="Xbmc.VideoPlaylist.unShuffle()">
+        <b onclick="Application.MessageBox.show(Xbmc.VideoPlaylist.unShuffle(), $(this).html())">
+            Disable shuffle
+        </b>
+    </li>
+</ul>

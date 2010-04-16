@@ -1,26 +1,26 @@
 function PicturePlayer (Xbmc)
 {
-    var s_picture   = 'picture';
+    var s_media     = 'picture';
     var s_namespace = 'PicturePlayer';
 
     this.playPause = function ()
     {
-        return Xbmc.Player.playPause(s_picture);
+        return Xbmc.Player.playPause(s_media);
     }
 
     this.stop = function ()
     {
-        return Xbmc.Player.stop(s_picture);
+        return Xbmc.Player.stop(s_media);
     }
 
     this.skipPrevious = function ()
     {
-        return Xbmc.Player.skipPrevious(s_picture);
+        return Xbmc.Player.skipPrevious(s_media);
     }
 
     this.skipNext = function ()
     {
-        return Xbmc.Player.skipNext(s_picture);
+        return Xbmc.Player.skipNext(s_media);
     }
 
     this.moveLeft = function ()

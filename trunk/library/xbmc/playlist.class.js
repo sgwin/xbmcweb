@@ -3,62 +3,48 @@ function Playlist (Xbmc)
     var a_namespace         = new Array();
     a_namespace['video']    = 'VideoPlaylist';
     a_namespace['audio']    = 'AudioPlaylist';
+    var a_type              = new Array();
+    a_type[0]               = 'audio';
+    a_type[1]               = 'video';
 
-    //returns true if paused
-    this.play = function (s_type)
+    this.isAllowedType = function (s_type)
     {
-        if (!Xbmc.Player.isAudioPlaying() && !Xbmc.Player.isVideoPlaying())
+        return Xbmc.Helper.in_array(a_type, s_type);
+    }
+
+    this.getBoolResponse = function (s_type, s_method, o_params)
+    {
+        s_type = (s_type == undefined)? Xbmc.Player.getActivePlayer() : s_type ;
+
+        if (!this.isAllowedType(s_type) || s_method == undefined || !Xbmc.Player.isMediaPlaying())
             return false;
         else
         {
-            var s_activePlayer = Xbmc.Player.getActivePlayer();
-
-            if (!s_activePlayer)
-                return false;
-
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'Play');
+            var o_result = Xbmc.post(a_namespace[s_type], s_method, o_params);
             return (o_result && o_result == "OK")? true : false ;
         }
+    }
+
+    this.play = function (s_type)
+    {
+        return this.getBoolResponse(s_type, 'Play');
     }
 
     this.skipPrevious = function (s_type)
     {
-        if (!Xbmc.Player.isAudioPlaying() && !Xbmc.Player.isVideoPlaying())
-            return false;
-        else
-        {
-            var s_activePlayer = Xbmc.Player.getActivePlayer();
-
-            if (!s_activePlayer)
-                return false;
-
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'SkipPrevious');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getBoolResponse(s_type, 'SkipPrevious');
     }
 
     this.skipNext = function (s_type)
     {
-        if (!Xbmc.Player.isAudioPlaying() && !Xbmc.Player.isVideoPlaying())
-            return false;
-        else
-        {
-            var s_activePlayer = Xbmc.Player.getActivePlayer();
-
-            if (!s_activePlayer)
-                return false;
-
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'SkipNext');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getBoolResponse(s_type, 'SkipNext');
     }
 
     this.getCurrentPlaylist = function (s_type)
     {
-        if (s_type == undefined || (s_type != 'video' && s_type != 'audio'))
+        s_type = (s_type == undefined)? Xbmc.Player.getActivePlayer() : s_type ;
+
+        if (!this.isAllowedType(s_type))
             return false;
         else
         {
@@ -87,45 +73,28 @@ function Playlist (Xbmc)
 
     this.add = function (s_type, s_filePath)
     {
-        if (s_type == undefined || (s_type != 'video' && s_type != 'audio') || s_filePath == undefined)
-            return false;
-        else
-        {
-            var o_result = Xbmc.post(a_namespace[s_type], 'Add', s_filePath);
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getBoolResponse(s_type, 'Add', s_filePath);
     }
 
     this.clear = function (s_type)
     {
-        if (s_type == undefined || (s_type != 'video' && s_type != 'audio'))
-            return false;
-        else
-        {
-            var o_result = Xbmc.post(a_namespace[s_type], 'Clear');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getBoolResponse(s_type, 'Clear', s_filePath);
     }
 
     this.shuffle = function (s_type)
     {
-        if (s_type == undefined || (s_type != 'video' && s_type != 'audio'))
-            return false;
-        else
-        {
-            var o_result = Xbmc.post(a_namespace[s_type], 'Shuffle');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getBoolResponse(s_type, 'Shuffle');
     }
 
     this.unShuffle = function (s_type)
     {
-        if (s_type == undefined || (s_type != 'video' && s_type != 'audio'))
-            return false;
-        else
-        {
-            var o_result = Xbmc.post(a_namespace[s_type], 'UnShuffle');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getBoolResponse(s_type, 'UnShuffle');
+    }
+
+    this.create = function (s_type, s_file)
+    {
+
+        s_type = (s_type == undefined)? Xbmc.Player.getActivePlayer() : s_type ;
+        
     }
 }

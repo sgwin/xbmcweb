@@ -1,20 +1,18 @@
-<script type="text/javascript" src="qtip.config.js"></script>
-
 <h2>
     Files
 </h2>
 <ul>
-    <li tooltip="Xbmc.Files.getSources()">
+    <li tooltip="(Object) Xbmc.Files.getSources()">
         <b onclick="Application.MessageBox.show(Xbmc.Files.getSources(), $(this).html())">
             Get sources
         </b>
     </li>
-    <li tooltip="Xbmc.Files.download('http://www.google.com')">
+    <li tooltip="(String) Xbmc.Files.download('http://www.google.com')">
         <b onclick="Application.MessageBox.show(Xbmc.Files.download('http://www.google.com'), $(this).html())">
             Download
         </b>
     </li>
-    <li tooltip="Application.MessageBox.show(Xbmc.Files.getDirectory('')">
+    <li tooltip="(Object) Xbmc.Files.getDirectory('')">
         <b onclick="Application.MessageBox.show(Xbmc.Files.getDirectory(''), $(this).html())">
             Get directory
         </b>
