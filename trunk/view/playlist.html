@@ -1,60 +1,60 @@
 <h2>
-    Playlist
+    Xbmc.Playlist
 </h2>
 <ul>
-    <li tooltip="Xbmc.Playlist.play()">
+    <li tooltip="(Bool) Xbmc.Playlist.play()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.play(), $(this).html())">
             Play
         </b>
     </li>
-    <li tooltip="Xbmc.Playlist.skipPrevious()">
+    <li tooltip="(Bool) Xbmc.Playlist.skipPrevious()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.skipPrevious(), $(this).html())">
             Skip previous
         </b>
     </li>
-    <li tooltip="Xbmc.Playlist.skipNext()">
+    <li tooltip="(Bool) Xbmc.Playlist.skipNext()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.skipNext(), $(this).html())">
             Skip next
         </b>
     </li>
-    <li tooltip="Xbmc.Playlist.getCurrentPlaylist()">
+    <li tooltip="(Object) Xbmc.Playlist.getCurrentPlaylist()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.getCurrentPlaylist(), $(this).html())">
-            Get current details
+            Get current playlist
         </b>
         <ul>
-            <li subTooltip="Xbmc.Playlist.Xbmc.Playlist.getItems()">
+            <li tooltip="(Array[]->Object) Xbmc.Playlist.Xbmc.Playlist.getItems()">
                 <b onclick="Application.MessageBox.show(Xbmc.Playlist.getItems(), $(this).html())">
                     Get items
                 </b>
             </li>
-            <li subTooltip="Xbmc.Playlist.getCurrentItem()">
+            <li tooltip="(Int) Xbmc.Playlist.getCurrentItem()">
                 <b onclick="Application.MessageBox.show(Xbmc.Playlist.getCurrentItem(), $(this).html())">
                     Get current item
                 </b>
             </li>
-            <li subTooltip="Xbmc.Playlist.getItemCount()">
+            <li tooltip="(Int) Xbmc.Playlist.getItemCount()">
                 <b onclick="Application.MessageBox.show(Xbmc.Playlist.getItemCount(), $(this).html())">
                     Get item count
                 </b>
             </li>
         </ul>
     </li>
-    <li tooltip="Xbmc.Playlist.add('/an/existing/filepath')">
+    <li tooltip="(Bool) Xbmc.Playlist.add('/an/existing/filepath')">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.add('/an/existing/filepath'), $(this).html())">
             Add file
         </b>
     </li>
-    <li tooltip="Xbmc.Playlist.clear()">
+    <li tooltip="(Bool) Xbmc.Playlist.clear()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.clear(), $(this).html())">
             Clear
         </b>
     </li>
-    <li tooltip="Xbmc.Playlist.shuffle()">
+    <li tooltip="(Bool) Xbmc.Playlist.shuffle()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.shuffle(), $(this).html())">
             Enable shuffle
         </b>
     </li>
-    <li tooltip="Xbmc.Playlist.unShuffle()">
+    <li tooltip="(Bool) Xbmc.Playlist.unShuffle()">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.unShuffle(), $(this).html())">
             Disable shuffle
         </b>

@@ -24,7 +24,7 @@ function Tooltip (Application)
                 {
                     $('#elmDetails').filter(":visible").slideUp('fast');
                 },
-                500);
+                2000);
             });
         });
     }

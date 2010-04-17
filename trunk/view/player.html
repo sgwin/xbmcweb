@@ -1,36 +1,38 @@
 <h2>
-    Player
+    Xbmc.Player
 </h2>
 <ul>
     <li tooltip="(Array) Xbmc.Player.getActivePlayers()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayers(), $(this).html())">
             Get active players
         </b>
-    </li>
-    <li tooltip="(String) Xbmc.Player.getActivePlayer()">
-        <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayer(), $(this).html())">
-            Get active player
-        </b>
-    </li>
-    <li tooltip="(Bool) Xbmc.Player.isMediaPlaying()">
-        <b onclick="Application.MessageBox.show(Xbmc.Player.isMediaPlaying(), $(this).html())">
-            Is music or video playing
-        </b>
-    </li>
-    <li tooltip="(Bool) Xbmc.Player.isPictureShowing()">
-        <b onclick="Application.MessageBox.show(Xbmc.Player.isPictureShowing(), $(this).html())">
-            Is a picture showing
-        </b>
-    </li>
-    <li tooltip="(Bool) Xbmc.Player.isAudioPlaying()">
-        <b onclick="Application.MessageBox.show(Xbmc.Player.isAudioPlaying(), $(this).html())">
-            Is audio playing
-        </b>
-    </li>
-    <li tooltip="(Bool) Xbmc.Player.isVideoPlaying()">
-        <b onclick="Application.MessageBox.show(Xbmc.Player.isVideoPlaying(), $(this).html())">
-            Is video playing
-        </b>
+        <ul>
+            <li tooltip="(String) Xbmc.Player.getActivePlayer()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayer(), $(this).html())">
+                    Get active player
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isMediaPlaying()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isMediaPlaying(), $(this).html())">
+                    Is music or video playing
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isPictureShowing()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isPictureShowing(), $(this).html())">
+                    Is a picture showing
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isAudioPlaying()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isAudioPlaying(), $(this).html())">
+                    Is audio playing
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isVideoPlaying()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isVideoPlaying(), $(this).html())">
+                    Is video playing
+                </b>
+            </li>
+        </ul>
     </li>
     <li tooltip="(Bool) Xbmc.Player.playPause()">
         <b onclick="Application.MessageBox.show(Xbmc.Player.playPause(), $(this).html())">
