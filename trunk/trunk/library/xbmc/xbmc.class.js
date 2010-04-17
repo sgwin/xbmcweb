@@ -13,15 +13,8 @@ function Xbmc (config)
     this.System		= new System(this);
     this.Files          = new Files(this);
     this.Player         = new Player(this);
-    this.VideoPlayer    = new VideoPlayer(this);
-    this.AudioPlayer    = new AudioPlayer(this);
-    this.PicturePlayer  = new PicturePlayer(this);
     this.Playlist	= new Playlist(this);
-    this.VideoLibrary   = new VideoLibrary(this);
-    this.VideoPlaylist	= new VideoPlaylist(this);
     this.MusicLibrary	= new MusicLibrary(this);
-    this.AudioPlaylist	= new AudioPlaylist(this);
-    this.PicturePlayer	= new PicturePlayer(this);
 
     this.init = function (a_config)
     {
@@ -45,15 +38,13 @@ function Xbmc (config)
     {
         if (s_message == undefined || s_level == undefined)
             return false;
-        else
-        {
-            var o_parameters        = new Object();
-            o_parameters.message    = s_message;
-            o_parameters.level      = s_level;
 
-            var o_result = Xbmc.post(s_namespace, 'Log', o_parameters);
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        var o_parameters        = new Object();
+        o_parameters.message    = s_message;
+        o_parameters.level      = s_level;
+
+        var o_result = this.post(s_namespace, 'Log', o_parameters);
+        return (o_result == "OK");
     }
 
     this.post = function (s_namespace, s_method, a_parameters, i_id)

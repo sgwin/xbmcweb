@@ -1,10 +1,10 @@
 <h2>
-    Files
+    Xbmc.Files
 </h2>
 <ul>
     <li tooltip="(Object) Xbmc.Files.getSources()">
         <b onclick="Application.MessageBox.show(Xbmc.Files.getSources(), $(this).html())">
-            Get sources
+            Get available shares
         </b>
     </li>
     <li tooltip="(String) Xbmc.Files.download('http://www.google.com')">
@@ -12,9 +12,9 @@
             Download
         </b>
     </li>
-    <li tooltip="(Object) Xbmc.Files.getDirectory('')">
-        <b onclick="Application.MessageBox.show(Xbmc.Files.getDirectory(''), $(this).html())">
-            Get directory
+    <li tooltip="(Object) Xbmc.Files.getDirectory('/valid/directory/path/')">
+        <b onclick="Application.MessageBox.show(Xbmc.Files.getDirectory('/valid/directory/path/'), $(this).html())">
+            Get directory content
         </b>
     </li>
 </ul>

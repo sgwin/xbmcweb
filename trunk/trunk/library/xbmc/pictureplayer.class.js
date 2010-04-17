@@ -1,113 +1,132 @@
-function PicturePlayer (Xbmc)
+function PicturePlayer (Player)
 {
+    //Namespace configuration
     var s_media     = 'picture';
-    var s_namespace = 'PicturePlayer';
+    var i_minZoom   = 1;
+    var i_maxZoom   = 9;
 
+    //XBMC method implementations
     this.playPause = function ()
     {
-        return Xbmc.Player.playPause(s_media);
+        return Player.playPause(s_media);
     }
 
     this.stop = function ()
     {
-        return Xbmc.Player.stop(s_media);
+        return Player.stop(s_media);
     }
 
     this.skipPrevious = function ()
     {
-        return Xbmc.Player.skipPrevious(s_media);
+        return Player.skipPrevious(s_media);
     }
 
     this.skipNext = function ()
     {
-        return Xbmc.Player.skipNext(s_media);
+        return Player.skipNext(s_media);
     }
 
     this.moveLeft = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'MoveLeft');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'MoveLeft';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.moveRight = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'MoveRight');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'MoveRight';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.moveDown = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'MoveDown');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'MoveDown';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.moveUp = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'MoveUp');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'MoveUp';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.zoomOut = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'ZoomOut');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'ZoomOut';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.zoomIn = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'ZoomIn');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'ZoomIn';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.zoom = function (i_level)
     {
-        if (i_level != undefined && Xbmc.Helper.is_int(i_level) && i_level > 0 && i_level < 10 && Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'Zoom', i_level);
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!i_level || !Xbmc.Helper.is_int(i_level) || i_level < i_minZoom || i_level > i_maxZoom || !Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'Zoom';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 
     this.rotate = function ()
     {
-        if (Xbmc.Player.isPictureShowing())
-        {
-            var o_result = Xbmc.post(s_namespace, 'Rotate');
-            return (o_result && o_result == "OK")? true : false ;
-        }
-        else
+        if (!Player.isPictureShowing())
             return false;
+
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'Rotate';
+        o_post.boolResponse     = true;
+
+        return Player.getResponse(o_post);
     }
 }

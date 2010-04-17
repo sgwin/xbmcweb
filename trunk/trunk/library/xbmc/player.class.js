@@ -1,14 +1,56 @@
 function Player (Xbmc)
 {
+    //Initiate child namespaces
+    this.Video              = new VideoPlayer(this);
+    this.Audio              = new AudioPlayer(this);
+    this.Picture            = new PicturePlayer(this);
+
+    //Namespace configuration
     var a_namespace         = new Array();
+    a_namespace['player']   = 'Player';
     a_namespace['video']    = 'VideoPlayer';
     a_namespace['audio']    = 'AudioPlayer';
     a_namespace['picture']  = 'PicturePlayer';
+    
+    var a_type              = new Array();
+    a_type[0]               = 'audio';
+    a_type[1]               = 'video';
+    a_type[2]               = 'picture';
+    a_type[3]               = 'player';
 
+    //Supporting methods
+    this.isAllowedType = function (s_type)
+    {
+        return Xbmc.Helper.in_array(s_type, a_type);
+    }
+
+    this.getResponse = function (o_post)
+    {
+        o_post.media = (!o_post.media)? Xbmc.Player.getActivePlayer() : o_post.media ;
+
+        if (!this.isAllowedType(o_post.media) || !o_post.method)
+            return false;
+        else
+        {
+            var o_result = Xbmc.post(a_namespace[o_post.media], o_post.method, o_post.parameter);
+
+            if (o_post.boolResponse)
+                return (o_result == "OK");
+            else
+                return (o_result)? o_result : false ;
+        }
+    }
+
+    //XBMC method implementations
     this.getActivePlayers = function ()
     {
-        var o_result = Xbmc.post('Player', 'GetActivePlayers');
-        return (o_result && o_result.length > 0)? o_result : false ;
+        var o_post              = new Object();
+        o_post.media            = 'player';
+        o_post.method           = 'GetActivePlayers';
+        o_post.boolResponse     = false;
+        var o_response          = this.getResponse(o_post);
+
+        return (o_response.length && o_response.length > 0)? o_response : false ;
     }
 
     this.getActivePlayer = function ()
@@ -20,256 +62,179 @@ function Player (Xbmc)
     this.isMediaPlaying = function ()
     {
         var a_activePlayers = this.getActivePlayers();
-
-        if (!a_activePlayers)
-            return false;
-        else if (a_activePlayers[0] == 'audio' || a_activePlayers[0] == 'video')
-            return true;
-        else
-            return false;
+        return (a_activePlayers[0] == 'audio' || a_activePlayers[0] == 'video');
     }
 
     this.isAudioPlaying = function ()
     {
         var a_activePlayers = this.getActivePlayers();
-
-        if (!a_activePlayers)
-            return false;
-        else if (a_activePlayers[0] == 'audio')
-            return true;
-        else
-            return false;
+        return (a_activePlayers && a_activePlayers[0] == 'audio');
     }
 
     this.isVideoPlaying = function ()
     {
         var a_activePlayers = this.getActivePlayers();
-
-        if (!a_activePlayers)
-            return false;
-        else if (a_activePlayers[0] == 'video')
-            return true;
-        else
-            return false;
+        return (a_activePlayers && a_activePlayers[0] == 'video');
     }
 
     this.isPictureShowing = function ()
     {
         var a_activePlayers = this.getActivePlayers();
-
-        if (!a_activePlayers)
-            return false;
-        else if (Xbmc.Helper.in_array('picture', a_activePlayers))
-            return true;
-        else
-            return false;
+        return Xbmc.Helper.in_array('picture', a_activePlayers);
     }
 
-    //returns true if paused
+    //returns true if playing
     this.playPause = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'PlayPause';
+        o_post.boolResponse     = false;
+        var o_response          = this.getResponse(o_post);
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'PlayPause');
-            return (o_result && o_result.paused == true)? true : false ;
-        }
+        return (o_response.paused)? false : true ;
     }
 
     this.stop = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'Stop';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'Stop');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.skipPrevious = function (s_type)
     {
-        var s_activePlayer  = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'SkipPrevious';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'SkipPrevious');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.skipNext = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'SkipNext';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'SkipNext');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.bigSkipBackward = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'BigSkipBackward';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'BigSkipBackward');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.bigSkipForward = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'BigSkipForward';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'BigSkipForward');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.smallSkipBackward = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'SmallSkipBackward';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'SmallSkipBackward');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.smallSkipForward = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'SmallSkipForward';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'SmallSkipForward');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.rewind = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'Rewind';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'Rewind');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.forward = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'Forward';
+        o_post.boolResponse     = true;
 
-        if (!s_activePlayer)
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'Forward');
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 
     this.getTime = function (s_type)
     {
-        var s_activePlayer     = this.getActivePlayer();
-        var o_result            = new Object();
-        o_result.time           = 0;
-        o_result.total          = 0;
+        var o_default           = new Object();
+        o_default.time          = 0;
+        o_default.total         = 0;
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'GetTime';
+        o_post.boolResponse     = false;
+        var o_response          = this.getResponse(o_post);
 
-        if (s_activePlayer != false)
-        {
-            var s_namespace     = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_response      = Xbmc.post(s_namespace, 'GetTime');
-            o_result            = (o_response)? o_response : o_result ;
-        }
-
-        return o_result;
+        return (o_response)? o_response : o_default ;
     }
 
     this.getTimeMs = function (s_type)
     {
-        var s_activePlayer     = this.getActivePlayer();
-        var o_result            = new Object();
-        o_result.time           = 0;
-        o_result.total          = 0;
+        var o_default           = new Object();
+        o_default.time          = 0;
+        o_default.total         = 0;
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'GetTimeMS';
+        o_post.boolResponse     = false;
+        var o_response          = this.getResponse(o_post);
 
-        if (s_activePlayer != false)
-        {
-            var s_namespace     = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_response      = Xbmc.post(s_namespace, 'GetTimeMS');
-            o_result            = (o_response)? o_response : o_result ;
-        }
-
-        return o_result;
+        return (o_response)? o_response : o_default ;
     }
 
     this.getPercentage = function (s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
-        var f_nullValue     = 0.0;
+        var f_default           = 0.0;
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'GetPercentage';
+        o_post.boolResponse     = false;
+        var f_response          = this.getResponse(o_post);
 
-        if (!s_activePlayer)
-            return f_nullValue;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            var o_result    = Xbmc.post(s_namespace, 'GetPercentage');
-            return (o_result)? o_result : f_nullValue ;
-        }
+        return (f_response)? f_response : f_default ;
     }
 
+    //switch parameters??
     this.seekTime = function (i_timeMs, s_type)
     {
-        var s_activePlayer = this.getActivePlayer();
+        var o_post              = new Object();
+        o_post.media            = s_type;
+        o_post.method           = 'SeekTime';
+        o_post.boolResponse     = true;
+        o_post.parameter        = i_timeMs;
 
-        if (!s_activePlayer || !Xbmc.Helper.is_int(i_timeMs))
-            return false;
-        else
-        {
-            var s_namespace = (s_type != undefined)? a_namespace[s_type] : a_namespace[s_activePlayer] ;
-            if (i_timeMs == undefined || i_timeMs > this.getTimeMs())
-                return false;
-
-            var o_result = Xbmc.post(s_namespace, 'SeekTime', i_timeMs);
-            return (o_result && o_result == "OK")? true : false ;
-        }
+        return this.getResponse(o_post);
     }
 }
 
