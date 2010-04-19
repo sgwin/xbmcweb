@@ -19,20 +19,21 @@
 
         <!-- START include XBMC library -->
         <script type="text/javascript" src="library/json.js"></script>
-        <script type="text/javascript" src="library/xbmc/helper.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/jsonrpc.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/system.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/files.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/player.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/videoplayer.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/audioplayer.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/pictureplayer.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/playlist.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/videolibrary.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/videoplaylist.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/musiclibrary.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/audioplaylist.class.js"></script>
-        <script type="text/javascript" src="library/xbmc/xbmc.class.js"></script>
+        <script type="text/javascript" src="library/xbmc/helper.js"></script>
+        <script type="text/javascript" src="library/xbmc/jsonrpc.js"></script>
+        <script type="text/javascript" src="library/xbmc/system.js"></script>
+        <script type="text/javascript" src="library/xbmc/files.js"></script>
+        <script type="text/javascript" src="library/xbmc/player.js"></script>
+        <script type="text/javascript" src="library/xbmc/player.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/player.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/player.picture.js"></script>
+        <script type="text/javascript" src="library/xbmc/playlist.js"></script>
+        <script type="text/javascript" src="library/xbmc/playlist.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/playlist.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/library.js"></script>
+        <script type="text/javascript" src="library/xbmc/library.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/library.music.js"></script>
+        <script type="text/javascript" src="library/xbmc/xbmc.js"></script>
         <!-- END include XBMC library -->
 
         <!-- START include Application library -->
@@ -62,7 +63,7 @@
     <div id="elmDetails"></div>
 
     <div id="demo">
-        <table cellspacing="8">
+        <table cellspacing="8" width="100%">
             <tr>
                 <td id="xbmc"></td>
                 <td id="jsonrpc"></td>
@@ -79,6 +80,12 @@
                 <td id="playlist"></td>
                 <td id="audioplaylist"></td>
                 <td id="videoplaylist"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="library"></td>
+                <td id="musiclibrary"></td>
+                <td id="videolibrary"></td>
                 <td></td>
             </tr>
         </table>

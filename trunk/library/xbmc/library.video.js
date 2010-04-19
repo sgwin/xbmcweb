@@ -1,0 +1,4 @@
+function VideoLibrary (Library)
+{
+
+}
