@@ -18,7 +18,7 @@
         <!-- END include jquery plugins -->
 
         <!-- START include XBMC library -->
-        <script type="text/javascript" src="library/json.js"></script>
+        <script type="text/javascript" src="library/xbmc/json.js"></script>
         <script type="text/javascript" src="library/xbmc/helper.js"></script>
         <script type="text/javascript" src="library/xbmc/jsonrpc.js"></script>
         <script type="text/javascript" src="library/xbmc/system.js"></script>
@@ -32,7 +32,7 @@
         <script type="text/javascript" src="library/xbmc/playlist.audio.js"></script>
         <script type="text/javascript" src="library/xbmc/library.js"></script>
         <script type="text/javascript" src="library/xbmc/library.video.js"></script>
-        <script type="text/javascript" src="library/xbmc/library.music.js"></script>
+        <script type="text/javascript" src="library/xbmc/library.audio.js"></script>
         <script type="text/javascript" src="library/xbmc/xbmc.js"></script>
         <!-- END include XBMC library -->
 
@@ -72,21 +72,30 @@
             </tr>
             <tr>
                 <td id="player"></td>
-                <td id="audioplayer"></td>
-                <td id="videoplayer"></td>
-                <td id="pictureplayer"></td>
+                <td id="player_audio"></td>
+                <td id="player_video"></td>
+                <td id="player_picture"></td>
             </tr>
             <tr>
                 <td id="playlist"></td>
-                <td id="audioplaylist"></td>
-                <td id="videoplaylist"></td>
+                <td id="playlist_audio"></td>
+                <td id="playlist_video"></td>
                 <td></td>
             </tr>
             <tr>
                 <td id="library"></td>
-                <td id="musiclibrary"></td>
-                <td id="videolibrary"></td>
+                <td id="library_audio"></td>
+                <td id="library_video"></td>
                 <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="border:0px; text-align: center;">
+                    <br />
+                    A JSON RPC JS Library for XBMC by <a href="mailto:bramvano@gmail.com">Bram van Oploo</a> &copy; 2010
+                    <br />
+                    <br />
+                    <br />
+                </td>
             </tr>
         </table>
     </div>

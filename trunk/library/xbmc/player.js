@@ -12,16 +12,16 @@ function Player (Xbmc)
     a_namespace['audio']    = 'AudioPlayer';
     a_namespace['picture']  = 'PicturePlayer';
     
-    var a_type              = new Array();
-    a_type[0]               = 'audio';
-    a_type[1]               = 'video';
-    a_type[2]               = 'picture';
-    a_type[3]               = 'player';
+    var a_media              = new Array();
+    a_media[0]               = 'audio';
+    a_media[1]               = 'video';
+    a_media[2]               = 'picture';
+    a_media[3]               = 'player';
 
     //Supporting methods
-    this.isAllowedType = function (s_type)
+    this.isAllowedType = function (s_media)
     {
-        return Xbmc.Helper.in_array(s_type, a_type);
+        return Xbmc.Helper.in_array(s_media, a_media);
     }
 
     this.getResponse = function (o_post)
@@ -84,10 +84,10 @@ function Player (Xbmc)
     }
 
     //returns true if playing
-    this.playPause = function (s_type)
+    this.playPause = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'PlayPause';
         o_post.boolResponse     = false;
         var o_response          = this.getResponse(o_post);
@@ -95,103 +95,103 @@ function Player (Xbmc)
         return (o_response.paused)? false : true ;
     }
 
-    this.stop = function (s_type)
+    this.stop = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'Stop';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.skipPrevious = function (s_type)
+    this.skipPrevious = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'SkipPrevious';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.skipNext = function (s_type)
+    this.skipNext = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'SkipNext';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.bigSkipBackward = function (s_type)
+    this.bigSkipBackward = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'BigSkipBackward';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.bigSkipForward = function (s_type)
+    this.bigSkipForward = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'BigSkipForward';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.smallSkipBackward = function (s_type)
+    this.smallSkipBackward = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'SmallSkipBackward';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.smallSkipForward = function (s_type)
+    this.smallSkipForward = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'SmallSkipForward';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.rewind = function (s_type)
+    this.rewind = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'Rewind';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.forward = function (s_type)
+    this.forward = function (s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'Forward';
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
     }
 
-    this.getTime = function (s_type)
+    this.getTime = function (s_media)
     {
         var o_default           = new Object();
         o_default.time          = 0;
         o_default.total         = 0;
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'GetTime';
         o_post.boolResponse     = false;
         var o_response          = this.getResponse(o_post);
@@ -199,13 +199,13 @@ function Player (Xbmc)
         return (o_response)? o_response : o_default ;
     }
 
-    this.getTimeMs = function (s_type)
+    this.getTimeMs = function (s_media)
     {
         var o_default           = new Object();
         o_default.time          = 0;
         o_default.total         = 0;
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'GetTimeMS';
         o_post.boolResponse     = false;
         var o_response          = this.getResponse(o_post);
@@ -213,11 +213,11 @@ function Player (Xbmc)
         return (o_response)? o_response : o_default ;
     }
 
-    this.getPercentage = function (s_type)
+    this.getPercentage = function (s_media)
     {
         var f_default           = 0.0;
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'GetPercentage';
         o_post.boolResponse     = false;
         var f_response          = this.getResponse(o_post);
@@ -225,11 +225,10 @@ function Player (Xbmc)
         return (f_response)? f_response : f_default ;
     }
 
-    //switch parameters??
-    this.seekTime = function (i_timeMs, s_type)
+    this.seekTime = function (i_timeMs, s_media)
     {
         var o_post              = new Object();
-        o_post.media            = s_type;
+        o_post.media            = s_media;
         o_post.method           = 'SeekTime';
         o_post.boolResponse     = true;
         o_post.parameter        = i_timeMs;

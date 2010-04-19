@@ -7,11 +7,6 @@
             Get active players
         </b>
         <ul>
-            <li tooltip="(String) Xbmc.Player.getActivePlayer()">
-                <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayer(), $(this).html())">
-                    Get active player
-                </b>
-            </li>
             <li tooltip="(Bool) Xbmc.Player.isMediaPlaying()">
                 <b onclick="Application.MessageBox.show(Xbmc.Player.isMediaPlaying(), $(this).html())">
                     Is music or video playing
@@ -34,72 +29,72 @@
             </li>
         </ul>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.playPause()">
+    <li tooltip="(Bool) Xbmc.Player.playPause(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.playPause(), $(this).html())">
             Play / Pause
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.stop()">
+    <li tooltip="(Bool) Xbmc.Player.stop(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.stop(), $(this).html())">
             Stop
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.skipPrevious()">
+    <li tooltip="(Bool) Xbmc.Player.skipPrevious(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.skipPrevious(), $(this).html())">
             Previous
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.skipNext()">
+    <li tooltip="(Bool) Xbmc.Player.skipNext(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.skipNext(), $(this).html())">
             Next
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.bigSkipForward()">
+    <li tooltip="(Bool) Xbmc.Player.bigSkipForward(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipForward(), $(this).html())">
             Big skip forward
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.bigSkipBackward()">
+    <li tooltip="(Bool) Xbmc.Player.bigSkipBackward(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipBackward(), $(this).html())">
             Big skip backward
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.smallSkipForward()">
+    <li tooltip="(Bool) Xbmc.Player.smallSkipForward(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipForward(), $(this).html())">
             Small skip foward
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.smallSkipBackward()">
+    <li tooltip="(Bool) Xbmc.Player.smallSkipBackward(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipBackward(), $(this).html())">
             Small skip backward
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.rewind()">
+    <li tooltip="(Bool) Xbmc.Player.rewind(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.rewind(), $(this).html())">
             Rewind
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.forward()">
+    <li tooltip="(Bool) Xbmc.Player.forward(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.forward(), $(this).html())">
             Forward
         </b>
     </li>
-    <li tooltip="(Object) Xbmc.Player.getTime()">
+    <li tooltip="(Int) Xbmc.Player.getTime(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getTime(), $(this).html())">
             Get Time (seconds)
         </b>
     </li>
-    <li tooltip="(Object) Xbmc.Player.getTimeMs()">
+    <li tooltip="(Int) Xbmc.Player.getTimeMs(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getTimeMs(), $(this).html())">
             Get Time (miliseconds)
         </b>
     </li>
-    <li tooltip="(Float) Xbmc.Player.getPercentage()">
+    <li tooltip="(Float) Xbmc.Player.getPercentage(s_media)">
         <b onclick="Application.MessageBox.show(Xbmc.Player.getPercentage(), $(this).html())">
             Get Percentage of playing time
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Player.setSeekTime(int)">
+    <li tooltip="(Bool) Xbmc.Player.setSeekTime(i_seconds, s_media)">
         <b onclick="Application.Controls.setSeekTime()">
             Set seek time
         </b>

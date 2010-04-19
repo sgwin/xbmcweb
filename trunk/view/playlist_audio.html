@@ -22,7 +22,7 @@
             Get current playlist
         </b>
         <ul>
-            <li tooltip="(Array->Object) Xbmc.Playlist.Audio.Xbmc.Playlist.Audio.getItems()">
+            <li tooltip="(Array.Object) Xbmc.Playlist.Audio.getItems()">
                 <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.getItems(), $(this).html())">
                     Get items
                 </b>
@@ -49,7 +49,7 @@
             Disable shuffle
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Audio.add('/an/existing/filepath')">
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.add(s_filePath)">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.add('/an/existing/filepath'), $(this).html())">
             Add file
         </b>
@@ -59,22 +59,22 @@
             Clear
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Audio.create('/path/to/playlist.file')">
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.create(s_playlistPath)">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.create('/path/to/playlist.file'), $(this).html())">
             Create
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Audio.destroy('?')">
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.destroy(?)">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.destroy('?'), $(this).html())">
             Destroy
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Audio.remove(itemIndex)">
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.remove(i_itemIndex)">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.remove(1), $(this).html())">
             Remove item
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Audio.remove(itemIndex1, itemIndex2)">
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.remove(i_itemIndex_1, i_itemIndex_2)">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.swap(1, 5), $(this).html())">
             Swap items
         </b>
