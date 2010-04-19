@@ -39,6 +39,16 @@
             </li>
         </ul>
     </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Video.shuffle()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.shuffle(), $(this).html())">
+            Enable shuffle
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Video.unShuffle()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.unShuffle(), $(this).html())">
+            Disable shuffle
+        </b>
+    </li>
     <li tooltip="(Bool) Xbmc.Playlist.Video.add('/an/existing/filepath')">
         <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.add('/an/existing/filepath'), $(this).html())">
             Add file
@@ -49,14 +59,24 @@
             Clear
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Video.shuffle()">
-        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.shuffle(), $(this).html())">
-            Enable shuffle
+    <li tooltip="(Bool) Xbmc.Playlist.Video.create('/path/to/playlist.file')">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.create('/path/to/playlist.file'), $(this).html())">
+            Create
         </b>
     </li>
-    <li tooltip="(Bool) Xbmc.Playlist.Video.unShuffle()">
-        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.unShuffle(), $(this).html())">
-            Disable shuffle
+    <li tooltip="(Bool) Xbmc.Playlist.Video.destroy('?')">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.destroy('?'), $(this).html())">
+            Destroy
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Video.remove(itemIndex)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.remove(1), $(this).html())">
+            Remove item
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Video.remove(itemIndex1, itemIndex2)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Video.swap(1, 5), $(this).html())">
+            Swap items
         </b>
     </li>
 </ul>

@@ -14,7 +14,7 @@ function Xbmc (config)
     this.Files          = new Files(this);
     this.Player         = new Player(this);
     this.Playlist	= new Playlist(this);
-    this.MusicLibrary	= new MusicLibrary(this);
+    this.Library	= new Library(this);
 
     this.init = function (a_config)
     {
