@@ -13,20 +13,20 @@ config['xbmc']['debug']     = false;
 var Xbmc            = new Xbmc(config['xbmc']);
 var Application     = new Application(Xbmc);
 var a_modules       = new Array();
-a_modules[0]        = 'jsonrpc';
-a_modules[1]        = 'player';
-a_modules[2]        = 'audioplayer';
-a_modules[3]        = 'videoplayer';
-a_modules[4]        = 'pictureplayer';
-a_modules[5]        = 'playlist';
-a_modules[6]        = 'system';
-a_modules[7]        = 'files';
-a_modules[8]        = 'xbmc';
-a_modules[9]        = 'audioplaylist';
-a_modules[10]       = 'videoplaylist';
+a_modules[0]       = 'xbmc';
+a_modules[1]        = 'jsonrpc';
+a_modules[2]        = 'system';
+a_modules[3]        = 'files';
+a_modules[4]        = 'player';
+a_modules[5]        = 'player_audio';
+a_modules[6]        = 'player_video';
+a_modules[7]        = 'player_picture';
+a_modules[8]        = 'playlist';
+a_modules[9]        = 'playlist_audio';
+a_modules[10]        = 'playlist_video';
 a_modules[11]       = 'library';
-a_modules[12]       = 'videolibrary';
-a_modules[13]       = 'musiclibrary';
+a_modules[12]       = 'library_video';
+a_modules[13]       = 'library_audio';
 
 $(document).ready(function ()
 {

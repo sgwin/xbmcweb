@@ -32,6 +32,17 @@ function Library (Xbmc)
         else
             return (o_result)? o_result : false ;
     }
+
+    //XBMC method implementations
+    this.scanForContent = function (s_media)
+    {
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'ScanForContent';
+        o_post.boolResponse     = true;
+
+        return this.getResponse(o_post);
+    }
 }
 
 
