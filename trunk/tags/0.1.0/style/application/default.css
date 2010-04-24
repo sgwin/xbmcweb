@@ -1,0 +1,132 @@
+html, body
+{
+    font-family:            arial;
+    font-size:              11px;
+    padding:                0px;
+    margin:                 0px;
+    background:             url(../images/background.jpg) repeat-x fixed;
+}
+
+table
+{
+    font-size:              11px;
+}
+
+td
+{
+    vertical-align:         top;
+    width:                  200px;
+    border:                 3px double #DDD;
+    padding:                10px;
+    -moz-border-radius:     10px;
+    -webkit-border-radius:  10px;
+    border-radius:          10px;
+    background-color:       #FFF;
+}
+
+td:hover
+{
+    border:                 3px solid #FFCC00;
+}
+
+h2
+{
+    text-align:             center;
+    background-color:       #FFCC00;
+    -moz-border-radius:     10px;
+    -webkit-border-radius:  10px;
+    border-radius:          10px;
+    padding:                2px;
+}
+
+#elmDetails
+{
+    background-color:       #000;
+    color:                  #FFF;
+    font-size:              14px;
+    font-weight:            bold;
+    text-align:             center;
+    vertical-align:         middle;
+    position:               fixed;
+    bottom:                 0px;
+    left:                   50%;
+    margin-left:            -350px;
+    width:                  700px;
+    min-height:             20px;
+    -moz-border-radius-topLeft:      20px;
+    -webkit-border-top-left-radius:  20px;
+    border-top-left-radius:          20px;
+    -moz-border-radius-topRight:     20px;
+    -webkit-border-top-right-radius: 20px;
+    border-top-right-radius:         20px;
+    opacity:                .90;
+    -ms-filter:             "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter:                 progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+    z-index:                99;
+    padding:                10px;
+    display:                none;
+    border:                 2px solid #FFCC00;
+    border-bottom:          0px;
+}
+
+#demo
+{
+    position:               absolute;
+    top:                    50px;
+    left:                   50%;
+    width:                  1000px;
+    margin-left:            -500px;
+}
+
+#demo b
+{
+    cursor:                 pointer;
+    text-decoration:        none;
+    font-weight:            normal;
+}
+
+#demo b:hover
+{
+    text-decoration:        underline;
+}
+
+#title
+{
+    position:               fixed;
+    top:                    0px;
+    left:                   0px;
+    width:                  100%;
+    z-index:                100;
+    padding:                0px;
+    margin:                 0px;
+    height:                 auto;
+}
+
+#title h1
+{
+    text-align:             center;
+    border-bottom:          4px solid #FFCC00;
+    color:                  #FFCC00;
+    background-color:       #000;
+    padding:                6px;
+    margin:                 0px;
+}
+
+ul
+{
+    padding-left:           20px;
+    padding-bottom:         5px;
+}
+
+li
+{
+    line-height:            15px;
+    -moz-border-radius:     5px;
+    -webkit-border-radius:  5px;
+    padding-left:           6px;
+}
+
+li:hover
+{
+    background-color:       #F6F6F6;
+}
