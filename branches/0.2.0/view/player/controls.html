@@ -1,0 +1,208 @@
+<script type="text/javascript">
+var o_updateControlsInterval    = null;
+var b_progressSliderGrab        = false;
+var b_volumeSliderGrab          = false;
+
+function updateControls ()
+{
+    var b_mediaPlaying      = Xbmc.Player.isMediaPlaying();
+    var b_audioPlaying      = Xbmc.Player.isAudioPlaying();
+    var b_pictureShowing    = Xbmc.Player.isPictureShowing();
+
+    //Set play button image
+    if (b_mediaPlaying)
+        $('#control_play').attr('src', 'style/application/player/images/icons/play.png');
+    else
+        $('#control_play').attr('src', 'style/application/player/images/icons/play.png');
+
+    //Hide or show record button
+    if (b_audioPlaying)
+        $('#control_record').show();
+    else
+        $('#control_record').hide();
+
+    //Hide or show stop button
+    if (!b_mediaPlaying && !b_pictureShowing)
+        $('#control_stop').hide();
+    else
+        $('#control_stop').show();
+
+    //Bind play button event
+    if (!b_mediaPlaying)
+    {
+        $('#control_play').unbind('click');
+        $('#control_play').bind
+        (
+            'click',
+            function ()
+            {
+                if (!Xbmc.Playlist.Audio.play())
+                    Xbmc.Playlist.Video.play();
+            }
+        );
+    }
+    else
+    {
+        $('#control_play').unbind('click');
+        $('#control_play').bind
+        (
+            'click',
+            function ()
+            {
+                Xbmc.Player.playPause();
+            }
+        );
+    }
+
+    //Update progress slider
+    if (b_mediaPlaying && !b_progressSliderGrab)
+        $("#control_progess_slider").slider({value: Math.round(Xbmc.Player.getPercentage())});
+
+    //Update volume slider
+    if (!b_volumeSliderGrab)
+        $("#control_volume_slider").slider({value: Xbmc.getVolume()});
+}
+
+$(document).ready(function()
+{
+    $('#control_skip_backward').bind
+    (
+        'click',
+        function ()
+        {
+            if (Xbmc.Player.isMediaPlaying() || Xbmc.Player.isPictureShowing())
+                Xbmc.Player.skipPrevious();
+        }
+    );
+
+    $('#control_rewind').bind
+    (
+        'click',
+        function ()
+        {
+            if (Xbmc.Player.isMediaPlaying())
+                Xbmc.Player.rewind();
+        }
+    );
+
+    $('#control_play').bind
+    (
+        'click',
+        function ()
+        {
+            Xbmc.Player.playPause();
+        }
+    );
+
+    $('#control_stop').bind
+    (
+        'click',
+        function ()
+        {
+            if (Xbmc.Player.isMediaPlaying() || Xbmc.Player.isPictureShowing())
+                Xbmc.Player.stop();
+        }
+    );
+
+    $('#control_record').bind
+    (
+        'click',
+        function ()
+        {
+            if (Xbmc.Player.isAudioPlaying())
+            {
+                if (!Xbmc.Player.Audio.record())
+                    alert('Could not start recording!');
+            }
+        }
+    );
+
+    $('#control_fast_forward').bind
+    (
+        'click',
+        function ()
+        {
+            if (Xbmc.Player.isMediaPlaying())
+                Xbmc.Player.forward();
+        }
+    );
+
+    $('#control_skip_forward').bind
+    (
+        'click',
+        function ()
+        {
+            if (Xbmc.Player.isMediaPlaying() || Xbmc.Player.isPictureShowing())
+                Xbmc.Player.skipNext();
+        }
+    );
+
+    var i_currentPrecentage = Xbmc.Player.getPercentage();
+
+    $("#control_progess_slider").slider(
+    {
+        range:      "min",
+        value:      i_currentPrecentage,
+        min:        0,
+        max:        100,
+        animate:    true,
+        stop:       function(event, ui)
+        {
+            var o_currentTime = Xbmc.Player.getTime();
+
+            if (o_currentTime && o_currentTime.total != undefined)
+            {
+                var i_partTime  = Math.round(o_currentTime.total/100);
+                var i_setTime   = (i_partTime*ui.value);
+
+                Xbmc.Player.seekTime(i_setTime);
+            }
+        }
+    });
+
+    $("#control_progess_slider").bind('mousedown', function(){b_progressSliderGrab = true;});
+    $("#control_progess_slider").bind('mouseup', function(){b_progressSliderGrab = false;});
+
+    var i_currentVolume = Xbmc.getVolume();
+
+    $("#control_volume_slider").slider(
+    {
+        range:      "min",
+        value:      i_currentVolume,
+        min:        0,
+        max:        100,
+        animate:    true,
+        stop:       function(event, ui)
+        {
+            Xbmc.setVolume(ui.value);
+        }
+    });
+
+    $("#control_volume_slider").bind('mousedown', function(){b_volumeSliderGrab = true;});
+    $("#control_volume_slider").bind('mouseup', function(){b_volumeSliderGrab = false;});
+    
+
+    updateControls();
+    o_updateControlsInterval = setInterval("updateControls()", 3000);
+});
+</script>
+
+<table cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td id="buttons_container">
+            <img src="style/application/player/images/icons/skip_backward.png" id="control_skip_backward" />
+            <img src="style/application/player/images/icons/rewind.png" id="control_rewind" />
+            <img src="style/application/player/images/icons/play.png" id="control_play" />
+            <img src="style/application/player/images/icons/record.png" id="control_record" />
+            <img src="style/application/player/images/icons/stop.png" id="control_stop" />
+            <img src="style/application/player/images/icons/fast_forward.png" id="control_fast_forward" />
+            <img src="style/application/player/images/icons/skip_forward.png" id="control_skip_forward" />
+        </td>
+        <td id="progress_slider_container">
+            <div id="control_progess_slider"></div>
+        </td>
+        <td id="volume_slider_container">
+            <div id="control_volume_slider"></div>
+        </td>
+    </tr>
+</table>

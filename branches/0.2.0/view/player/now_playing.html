@@ -1,0 +1,19 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var s_activePlayer  = 'view/player/now_playing/';
+
+    if (Xbmc.Player.isPictureShowing())
+        s_activePlayer += 'picture';
+    else if (Xbmc.Player.isAudioPlaying())
+        s_activePlayer += 'audio';
+    else if (Xbmc.Player.isVideoPlaying())
+        s_activePlayer += 'video';
+    else
+        s_activePlayer += 'nothing';
+
+    s_activePlayer += '.html';
+
+    $('#now_playing_container').load(s_activePlayer);
+});
+</script>
