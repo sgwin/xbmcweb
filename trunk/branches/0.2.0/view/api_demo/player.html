@@ -1,0 +1,102 @@
+<h2>
+    Xbmc.Player
+</h2>
+<ul>
+    <li tooltip="(Array) Xbmc.Player.getActivePlayers()">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getActivePlayers(), $(this).html())">
+            Get active players
+        </b>
+        <ul>
+            <li tooltip="(Bool) Xbmc.Player.isMediaPlaying()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isMediaPlaying(), $(this).html())">
+                    Is music or video playing
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isPictureShowing()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isPictureShowing(), $(this).html())">
+                    Is a picture showing
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isAudioPlaying()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isAudioPlaying(), $(this).html())">
+                    Is audio playing
+                </b>
+            </li>
+            <li tooltip="(Bool) Xbmc.Player.isVideoPlaying()">
+                <b onclick="Application.MessageBox.show(Xbmc.Player.isVideoPlaying(), $(this).html())">
+                    Is video playing
+                </b>
+            </li>
+        </ul>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.playPause(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.playPause(), $(this).html())">
+            Play / Pause
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.stop(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.stop(), $(this).html())">
+            Stop
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.skipPrevious(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.skipPrevious(), $(this).html())">
+            Previous
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.skipNext(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.skipNext(), $(this).html())">
+            Next
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.bigSkipForward(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipForward(), $(this).html())">
+            Big skip forward
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.bigSkipBackward(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.bigSkipBackward(), $(this).html())">
+            Big skip backward
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.smallSkipForward(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipForward(), $(this).html())">
+            Small skip foward
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.smallSkipBackward(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.smallSkipBackward(), $(this).html())">
+            Small skip backward
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.rewind(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.rewind(), $(this).html())">
+            Rewind
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.forward(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.forward(), $(this).html())">
+            Forward
+        </b>
+    </li>
+    <li tooltip="(Int) Xbmc.Player.getTime(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getTime(), $(this).html())">
+            Get Time (seconds)
+        </b>
+    </li>
+    <li tooltip="(Int) Xbmc.Player.getTimeMs(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getTimeMs(), $(this).html())">
+            Get Time (miliseconds)
+        </b>
+    </li>
+    <li tooltip="(Float) Xbmc.Player.getPercentage(s_media)">
+        <b onclick="Application.MessageBox.show(Xbmc.Player.getPercentage(), $(this).html())">
+            Get Percentage of playing time
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Player.setSeekTime(i_seconds, s_media)">
+        <b onclick="Application.Controls.setSeekTime()">
+            Set seek time
+        </b>
+    </li>
+</ul>

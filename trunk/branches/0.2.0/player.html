@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>
+            XbmcWeb Player
+        </title>
+
+        <!-- START include style sheets -->
+        <link rel="stylesheet" type="text/css" href="style/application/player/default.css" />
+        <link rel="stylesheet" type="text/css" href="style/third_party/jquery-ui/xbmc/jquery-ui-1.8.xbmc.css" />
+        <!-- END include style sheets -->
+
+        <!-- START include jquery library -->
+        <script type="text/javascript" src="library/third_party/jquery/jquery-1.4.2.min.js"></script>
+        <!-- END include jquery library -->
+
+        <!-- START include jquery plugins -->
+        <script type="text/javascript" src="library/third_party/jquery/jquery-ui-1.8.xbmc.min.js"></script>
+        <!-- END include jquery plugins -->
+
+        <!-- START include helper libraries -->
+        <script type="text/javascript" src="library/third_party/php.default.min.js"></script>
+        <!-- END include helper libraries -->
+
+        <!-- START include XBMC library -->
+        <script type="text/javascript" src="library/xbmc/lib/json.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/helper.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/jsonrpc.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/system.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/files.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.picture.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/playlist.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/playlist.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/playlist.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/library.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/library.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/library.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/xbmc.js"></script>
+        <!--<script type="text/javascript" src="library/xbmc/minified/json-xbmc.0.1.0.min.js"></script>-->
+        <!-- END include XBMC library -->
+
+        <!-- START include Application library -->
+        <script type="text/javascript" src="library/application/api_demo/application.class.js"></script>
+        <!-- END include Application library -->
+
+        <script type="text/javascript" src="config/player/config.js"></script>
+    </head>
+<body>
+
+    <table id="player_container" width="100%" height="100%">
+        <tr>
+            <td id="now_playing_container" colspan="2">
+
+            </td>
+        </tr>
+        <tr>
+            <td id="media_browser_container">
+
+            </td>
+            <td id="media_details_container">
+                
+            </td>
+        </tr>
+        <tr>
+            <td id="controls_container" colspan="2"></td>
+        </tr>
+        <tr>
+            <td id="status_container" colspan="2"></td>
+        </tr>
+    </table>
+    
+</body>
+</html>
