@@ -124,7 +124,7 @@ legend
 {
     text-align:                 center;
     vertical-align:             middle;
-    padding:                    10px;
+    padding:                    2px;
 }
 
 #control_progess_slider
@@ -132,12 +132,41 @@ legend
     width:                      100%;
 }
 
+#control_volume_slider_container
+{
+    vertical-align:             middle;
+}
+
+#control_volume_value_container
+{
+    vertical-align:             middle;
+    text-align:                 center;
+    width:                      50px;
+    font-size:                  12px;
+    font-weight:                bold;
+    color:                      #666;
+}
+
+#control_volume_slider
+{
+    width:                      100%;
+}
+
+#control_progess_value_container
+{
+    vertical-align:             middle;
+    text-align:                 center;
+    width:                      100px;
+    font-size:                  12px;
+    font-weight:                bold;
+    color:                      #666;
+}
+
 #volume_slider_container
 {
-    width:                      200px;
+    width:                      180px;
     text-align:                 center;
     vertical-align:             middle;
-    padding:                    10px;
 }
 
 #status_container
@@ -148,6 +177,12 @@ legend
     text-align:                 right;
     vertical-align:             middle;
     padding:                    4px;
+}
+
+#media_browser_tabs
+{
+    width:                      100%;
+    height:                     inherit;
 }
 
 
