@@ -5,30 +5,26 @@ var b_volumeSliderGrab          = false;
 
 function updateControls ()
 {
-    var b_mediaPlaying      = Xbmc.Player.isMediaPlaying();
-    var b_audioPlaying      = Xbmc.Player.isAudioPlaying();
-    var b_pictureShowing    = Xbmc.Player.isPictureShowing();
-
     //Set play button image
-    if (b_mediaPlaying)
-        $('#control_play').attr('src', 'style/application/player/images/icons/play.png');
+    if (Xbmc.Status.isMediaPlaying)
+        $('#control_play').attr('src', 'style/application/player/images/icons/classy-icons-set/32x32/pause.png');
     else
-        $('#control_play').attr('src', 'style/application/player/images/icons/play.png');
+        $('#control_play').attr('src', 'style/application/player/images/icons/classy-icons-set/32x32/play.png');
 
     //Hide or show record button
-    if (b_audioPlaying)
-        $('#control_record').show();
+    if (Xbmc.Status.isAudioPlaying)
+        $('#control_record').fadeIn('normal');
     else
-        $('#control_record').hide();
+        $('#control_record').fadeOut('normal');
 
     //Hide or show stop button
-    if (!b_mediaPlaying && !b_pictureShowing)
-        $('#control_stop').hide();
+    if (!Xbmc.Status.isMediaPlaying && !Xbmc.Status.isPictureShowing)
+        $('#control_stop').fadeOut('normal');
     else
-        $('#control_stop').show();
+        $('#control_stop').fadeIn('normal');
 
     //Bind play button event
-    if (!b_mediaPlaying)
+    if (!Xbmc.Status.isMediaPlaying)
     {
         $('#control_play').unbind('click');
         $('#control_play').bind
@@ -55,12 +51,21 @@ function updateControls ()
     }
 
     //Update progress slider
-    if (b_mediaPlaying && !b_progressSliderGrab)
-        $("#control_progess_slider").slider({value: Math.round(Xbmc.Player.getPercentage())});
+    if (Xbmc.Status.isMediaPlaying)
+    {
+        if (!b_progressSliderGrab)
+        {
+            $('#control_progess_value_container').html(Xbmc.Status.playingTime+' / '+Xbmc.Status.playingTimeTotal);
+            $("#control_progess_slider").slider({value: Xbmc.Status.playingPercentage});
+        }
+    }
 
     //Update volume slider
     if (!b_volumeSliderGrab)
-        $("#control_volume_slider").slider({value: Xbmc.getVolume()});
+    {
+        $('#control_volume_value_container').html(Xbmc.Status.volume+'%');
+        $("#control_volume_slider").slider({value: Xbmc.Status.volume});
+    }
 }
 
 $(document).ready(function()
@@ -70,7 +75,7 @@ $(document).ready(function()
         'click',
         function ()
         {
-            if (Xbmc.Player.isMediaPlaying() || Xbmc.Player.isPictureShowing())
+            if (Xbmc.Status.isMediaPlaying || Xbmc.Status.isPictureShowing)
                 Xbmc.Player.skipPrevious();
         }
     );
@@ -80,7 +85,7 @@ $(document).ready(function()
         'click',
         function ()
         {
-            if (Xbmc.Player.isMediaPlaying())
+            if (Xbmc.Status.isMediaPlaying)
                 Xbmc.Player.rewind();
         }
     );
@@ -99,7 +104,7 @@ $(document).ready(function()
         'click',
         function ()
         {
-            if (Xbmc.Player.isMediaPlaying() || Xbmc.Player.isPictureShowing())
+            if (Xbmc.Status.isMediaPlaying || Xbmc.Status.isPictureShowing)
                 Xbmc.Player.stop();
         }
     );
@@ -109,7 +114,7 @@ $(document).ready(function()
         'click',
         function ()
         {
-            if (Xbmc.Player.isAudioPlaying())
+            if (Xbmc.Status.isAudioPlaying)
             {
                 if (!Xbmc.Player.Audio.record())
                     alert('Could not start recording!');
@@ -122,7 +127,7 @@ $(document).ready(function()
         'click',
         function ()
         {
-            if (Xbmc.Player.isMediaPlaying())
+            if (Xbmc.Status.isMediaPlaying)
                 Xbmc.Player.forward();
         }
     );
@@ -132,49 +137,45 @@ $(document).ready(function()
         'click',
         function ()
         {
-            if (Xbmc.Player.isMediaPlaying() || Xbmc.Player.isPictureShowing())
+            if (Xbmc.Status.isMediaPlaying || Xbmc.Status.isPictureShowing)
                 Xbmc.Player.skipNext();
         }
     );
 
-    var i_currentPrecentage = Xbmc.Player.getPercentage();
-
     $("#control_progess_slider").slider(
     {
         range:      "min",
-        value:      i_currentPrecentage,
+        value:      Xbmc.Status.playingPercentage,
         min:        0,
         max:        100,
         animate:    true,
         stop:       function(event, ui)
         {
-            var o_currentTime = Xbmc.Player.getTime();
+            var i_partTime  = Math.round(Xbmc.Status.playingSecondsTotal/100);
+            var i_setTime   = (i_partTime*ui.value);
 
-            if (o_currentTime && o_currentTime.total != undefined)
-            {
-                var i_partTime  = Math.round(o_currentTime.total/100);
-                var i_setTime   = (i_partTime*ui.value);
-
-                Xbmc.Player.seekTime(i_setTime);
-            }
+            Xbmc.Player.seekTime(i_setTime);
+        },
+        slide:      function (event, ui)
+        {
+            $('#control_progess_value_container').html(ui.value+'%');
         }
     });
 
     $("#control_progess_slider").bind('mousedown', function(){b_progressSliderGrab = true;});
     $("#control_progess_slider").bind('mouseup', function(){b_progressSliderGrab = false;});
 
-    var i_currentVolume = Xbmc.getVolume();
-
     $("#control_volume_slider").slider(
     {
         range:      "min",
-        value:      i_currentVolume,
+        value:      Xbmc.Status.volume,
         min:        0,
         max:        100,
         animate:    true,
-        stop:       function(event, ui)
+        slide:       function(event, ui)
         {
             Xbmc.setVolume(ui.value);
+            $('#control_volume_value_container').html(ui.value+'%');
         }
     });
 
@@ -183,26 +184,43 @@ $(document).ready(function()
     
 
     updateControls();
-    o_updateControlsInterval = setInterval("updateControls()", 3000);
+    o_updateControlsInterval = setInterval("updateControls()", 1000);
 });
 </script>
 
 <table cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td id="buttons_container">
-            <img src="style/application/player/images/icons/skip_backward.png" id="control_skip_backward" />
-            <img src="style/application/player/images/icons/rewind.png" id="control_rewind" />
-            <img src="style/application/player/images/icons/play.png" id="control_play" />
-            <img src="style/application/player/images/icons/record.png" id="control_record" />
-            <img src="style/application/player/images/icons/stop.png" id="control_stop" />
-            <img src="style/application/player/images/icons/fast_forward.png" id="control_fast_forward" />
-            <img src="style/application/player/images/icons/skip_forward.png" id="control_skip_forward" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/skip_backward.png" id="control_skip_backward" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/rewind.png" id="control_rewind" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/play.png" id="control_play" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/record.png" id="control_record" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/stop.png" id="control_stop" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/fast_forward.png" id="control_fast_forward" />
+            <img src="style/application/player/images/icons/classy-icons-set/32x32/skip_forward.png" id="control_skip_forward" />
         </td>
         <td id="progress_slider_container">
-            <div id="control_progess_slider"></div>
+
+            <table width="100%" height="100%">
+                <tr>
+                    <td id="control_progress_slider_container">
+                        <div id="control_progess_slider"></div>
+                    </td>
+                    <td id="control_progess_value_container"></td>
+                </tr>
+            </table>
+
         </td>
         <td id="volume_slider_container">
-            <div id="control_volume_slider"></div>
+
+            <table width="100%" height="100%">
+                <tr>
+                    <td id="control_volume_slider_container">
+                        <div id="control_volume_slider"></div>
+                    </td>
+                    <td id ="control_volume_value_container"></td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>

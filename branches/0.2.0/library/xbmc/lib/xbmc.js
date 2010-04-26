@@ -11,6 +11,7 @@ function Xbmc (config)
     this.Helper         = new Helper();
     this.JsonRpc 	= new JsonRpc(this);
     this.System		= new System(this);
+    this.Status         = new Status(this);
     this.Files          = new Files(this);
     this.Player         = new Player(this);
     this.Playlist	= new Playlist(this);

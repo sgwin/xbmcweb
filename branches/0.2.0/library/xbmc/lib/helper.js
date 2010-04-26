@@ -18,6 +18,24 @@ function Helper ()
         return '{"jsonrpc": "2.0", "method": "' +s_namespace+ '.' +s_method+ '"' +s_parameters+ ', "id": ' +i_id+ '}';
     }
 
+    this.milliSecondsToTime = function (i_milliSeconds)
+    {
+        var o_date      = new Date(i_milliSeconds);
+        var i_hours     = o_date.getUTCHours();
+        i_hours         = (i_hours > 0 && i_hours < 10)? "0" +i_hours : i_hours ;
+        var i_minutes   = o_date.getUTCMinutes();
+        i_minutes       = (i_minutes > 0 && i_minutes < 10)? "0" +i_minutes : i_minutes ;
+        var i_seconds   = o_date.getUTCSeconds();
+        i_seconds       = (i_seconds > 0 && i_seconds < 10)? "0" +i_seconds : i_seconds ;
+
+        var s_time      = "";
+        s_time          += (i_hours > 0)? i_hours+ ":" : "" ;
+        s_time          += (i_minutes > 0)? i_minutes+ ":" : "00:" ;
+        s_time          += (i_seconds > 0)? i_seconds : "00" ;
+
+        return s_time;
+    }
+
     this.is_int = function (i_value)
     {
         return (i_value.toString().search(/^-?[0-9]+$/) == 0);

@@ -1,117 +1,75 @@
 <script type="text/javascript">
 var nowPlayingDataInterval  = null;
-var s_filePlaying           = null;
+var s_filePlaying           = undefined;
+var s_thumbShowing          = undefined;
 
-function updateNowPlayingAudioData ()
+function updateNowPlayingAudio ()
 {
     //Set variables
-    var o_currentPlaylist = Xbmc.Playlist.Audio.getCurrentPlaylist();
 
-    if (!o_currentPlaylist || o_currentPlaylist.current == undefined || !o_currentPlaylist.items)
+    if (!Xbmc.Status.isMediaPlaying)
         return false;
 
-    var o_currentAudio              = o_currentPlaylist.items[o_currentPlaylist.current];
-    var o_nextAudio                 = ((o_currentPlaylist.current) < (o_currentPlaylist.items.length-1))? o_currentPlaylist.items[o_currentPlaylist.current+1] : false ;
-    var s_currentThumbnailPath      = (o_currentAudio.thumbnail)? 'thumb/' +o_currentAudio.thumbnail+ '.jpg' : config['app']['style_path'] + 'images/DefaultAlbumCover.png' ;
-    var s_currentFile               = (o_currentAudio.file)? o_currentAudio.file : false ;
-    var s_currentLabel              = (o_currentAudio.label)? o_currentAudio.label : 'No title specified' ;
-    var s_currentArtist             = (o_currentAudio.artist)? o_currentAudio.artist : 'No artist specified' ;
-    var s_currentAlbum              = (o_currentAudio.album)? o_currentAudio.album : 'No album specified' ;
-    var s_currentYear               = (o_currentAudio.year)? o_currentAudio.year : 'No year specified' ;
-
-    if (o_nextAudio)
-    {
-        $('#playing_next_details').fadeIn('slow');
-        
-        var s_nextLabel             = (o_nextAudio.label)? o_nextAudio.label : 'No title specified' ;
-        var s_nextArtist            = (o_nextAudio.artist)? o_nextAudio.artist : 'No artist specified' ;
-        var s_nextAlbum             = (o_nextAudio.album)? o_nextAudio.album : 'No album specified' ;
-        var s_nextYear              = (o_nextAudio.year)? o_nextAudio.year : 'No year specified' ;
-        var s_nextTime              = (o_nextAudio.time)? o_nextAudio.time : 'No time specified' ;
-    }
-    else
-        $('#playing_next_details').fadeOut('slow');
-
     //Update data if new media is playing
-    if (s_filePlaying == null || s_filePlaying != s_currentFile)
+    if (!s_filePlaying || s_filePlaying != Xbmc.Status.playingFile)
     {
-        s_filePlaying = s_currentFile;
-        
-        if ($('#now_playing_audio_thumb').attr('src') == "")
-            $('#now_playing_audio_thumb').attr('src', s_currentThumbnailPath);
-        else
+        s_filePlaying = Xbmc.Status.playingFile;
+
+        var s_playingThumb = (Xbmc.Status.playingThumbnail)? Xbmc.Status.playingThumbnail : "style/application/player/images/DefaultAlbumCover.png" ;
+
+        if (s_playingThumb != s_thumbShowing)
         {
             $('#now_playing_audio_thumb').fadeOut
             (
-                'fast',
+                'normal',
                 function ()
                 {
-                    $('#now_playing_audio_thumb').attr('src', s_currentThumbnailPath);
-                    $('#now_playing_audio_thumb').fadeIn('fast');
+                    $('#now_playing_audio_thumb').attr('src', s_playingThumb);
+                    $('#now_playing_audio_thumb').fadeIn('slow');
                 }
             );
+
+            s_thumbShowing = s_playingThumb;
         }
 
-        $('#now_playing_audio_label').html(s_currentLabel);
-        $('#now_playing_audio_artist').html(s_currentArtist);
-        $('#now_playing_audio_album').html(s_currentAlbum);
-        $('#now_playing_audio_year').html(s_currentYear);
+        $('#now_playing_audio_label').html(Xbmc.Status.playingLabel);
+        $('#now_playing_audio_artist').html(Xbmc.Status.playingArtist);
+        $('#now_playing_audio_album').html(Xbmc.Status.playingAlbum);
+        $('#now_playing_audio_year').html(Xbmc.Status.playingYear);
 
-        if (o_nextAudio)
+        if (Xbmc.Status.nextItem)
         {
+            $('#next_audio_label').html(Xbmc.Status.nextLabel);
+            $('#next_audio_artist').html(Xbmc.Status.nextArtist);
+            $('#next_audio_album').html(Xbmc.Status.nextAlbum);
+            $('#next_audio_year').html(Xbmc.Status.nextYear);
+            $('#next_audio_time').html(Xbmc.Status.nextTime);
             $('#playing_next_details').fadeIn('slow');
-            
-            $('#next_audio_label').html(s_nextLabel);
-            $('#next_audio_artist').html(s_nextArtist);
-            $('#next_audio_album').html(s_nextAlbum);
-            $('#next_audio_year').html(s_nextYear);
-            $('#next_audio_time').html(s_nextTime);
         }
         else
             $('#playing_next_details').fadeOut('slow');
+
+        $('#now_playing_audio_totalTime').fadeOut
+        (
+            'normal',
+            function ()
+            {
+                $('#now_playing_audio_totalTime').html(Xbmc.Status.playingTimeTotal);
+                $('#now_playing_audio_totalTime').fadeIn('slow');
+            }
+        );
     }
 
     //Update time
-    var o_progress = Xbmc.Player.Audio.getTimeMs();
+    $('#now_playing_audio_currentTime').html(Xbmc.Status.playingTime);
 
-    if (o_progress.time)
-    {
-        var o_currentTime       = new Date(o_progress.time)
-        var i_currentHours      = o_currentTime.getUTCHours();
-        i_currentHours          = (i_currentHours > 0 && i_currentHours < 10)? "0" +i_currentHours : i_currentHours ;
-        var i_currentMinutes    = o_currentTime.getUTCMinutes();
-        i_currentMinutes        = (i_currentMinutes > 0 && i_currentMinutes < 10)? "0" +i_currentMinutes : i_currentMinutes ;
-        var i_currentSeconds    = o_currentTime.getUTCSeconds();
-        i_currentSeconds        = (i_currentSeconds > 0 && i_currentSeconds < 10)? "0" +i_currentSeconds : i_currentSeconds ;
-
-        var s_currentTime   = "";
-        s_currentTime       += (i_currentHours > 0)? i_currentHours+ ":" : "" ;
-        s_currentTime       += (i_currentMinutes > 0)? i_currentMinutes+ ":" : "00:" ;
-        s_currentTime       += (i_currentSeconds > 0)? i_currentSeconds : "00" ;
-        
-        $('#now_playing_audio_currentTime').html(s_currentTime);
-
-        var o_totalTime         = new Date(o_progress.total)
-        var i_totalHours        = o_totalTime.getUTCHours();
-        i_totalHours            = (i_totalHours > 0 && i_totalHours < 10)? "0" +i_totalHours : i_totalHours ;
-        var i_totalMinutes      = o_totalTime.getUTCMinutes();
-        i_totalMinutes          = (i_totalMinutes > 0 && i_totalMinutes < 10)? "0" +i_totalMinutes : i_totalMinutes ;
-        var i_totalSeconds    = o_totalTime.getUTCSeconds();
-        i_totalSeconds        = (i_totalSeconds > 0 && i_totalSeconds < 10)? "0" +i_totalSeconds : i_totalSeconds ;
-
-        var s_totalTime     = "";
-        s_totalTime       += (i_totalHours > 0)? i_totalHours+ ":" : "" ;
-        s_totalTime       += (i_totalMinutes > 0)? i_totalMinutes+ ":" : "00:" ;
-        s_totalTime       += (i_totalSeconds > 0)? i_totalSeconds : "00" ;
-
-        $('#now_playing_audio_totalTime').html(s_totalTime);
-    }
+    return true;
 }
 
 $(document).ready(function()
 {
-    updateNowPlayingAudioData();
-    nowPlayingDataInterval = setInterval("updateNowPlayingAudioData()", 1000);
+    updateNowPlayingAudio();
+    nowPlayingDataInterval = setInterval("updateNowPlayingAudio()", 1000);
 });
 </script>
 
@@ -120,12 +78,12 @@ $(document).ready(function()
     <table cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td class="thumbnail">
-                <img id="now_playing_audio_thumb" src="" />
+                <img id="now_playing_audio_thumb" src="style/application/player/images/DefaultAlbumCover.png" />
             </td>
             <td class="details">
 
                 <div style="float:left; width:50%;">
-                    <fieldset>
+                    <fieldset id="now_playing_details">
                         <legend>
                             Playing
                         </legend>
@@ -138,6 +96,7 @@ $(document).ready(function()
                         year: <span id="now_playing_audio_year"></span>
                     </fieldset>
                 </div>
+                
                 <div style="float:right; width:50%;">
                     <fieldset id="playing_next_details">
                         <legend>
