@@ -172,9 +172,12 @@ $(document).ready(function()
         min:        0,
         max:        100,
         animate:    true,
-        slide:       function(event, ui)
+        stop:       function(event, ui)
         {
             Xbmc.setVolume(ui.value);
+        },
+        slide:       function(event, ui)
+        {
             $('#control_volume_value_container').html(ui.value+'%');
         }
     });
