@@ -1,0 +1,76 @@
+<script type="text/javascript">
+    var o_playlistGrid;
+    var o_playlistUpdateInterval;
+    var i_playlistUpdateInterval    = 1000;
+    var a_playlistData              = new Array();
+    var a_activeItem                = new Array();
+    var s_nowPlayingFile            = undefined;
+
+    function updatePlaylist ()
+    {
+        if (s_nowPlayingFile != Xbmc.Status.playingFile)
+        {
+            s_nowPlayingFile    = Xbmc.Status.playingFile;
+            var a_playlistData  = Xbmc.Playlist.Audio.getItems();
+
+            for (var i=0; i < a_playlistData.length; i++)
+            {
+                a_playlistData[i]["index"]      = i+1;
+                a_playlistData[i]["thumbnail"]  = (a_playlistData[i]["thumbnail"])? 'thumb/' +a_playlistData[i]["thumbnail"]+ '.jpg' : 'style/application/player/images/DefaultAlbumCover.png' ;
+                a_playlistData[i]["thumbnail"]  = '<img src="' +a_playlistData[i]["thumbnail"]+ '" style="width:100%;" />';
+            }
+
+            o_playlistGrid.setData(a_playlistData);
+            a_activeItem = (Xbmc.Status.playingItemIndex == -1)? [] : [Xbmc.Status.playingItemIndex] ;
+            o_playlistGrid.setSelectedRows(a_activeItem);
+            o_playlistGrid.render();
+        }
+    }
+
+    $(document).ready(function()
+    {
+        var o_columns =
+        [
+            {
+                id:         "index",
+                name:       "",
+                field:      "index",
+                width:      24,
+                cssClass:   "cell-title",
+                resizable:  false
+            },{
+                id:         "thumb",
+                name:       "",
+                field:      "thumbnail",
+                width:      40,
+                cssClass:   "cell-title",
+                resizable:  false
+            },{
+                id:         "label",
+                name:       "Label",
+                field:      "label",
+                width:      500,
+                cssClass:   "cell-title",
+                resizable:  true
+            }
+        ];
+
+        var o_options =
+        {
+            editable:               false,
+            enableAddRow:           false,
+            enableCellNavigation:   true,
+            asyncEditorLoading:     false,
+            enableRowReordering:    true,
+            forceFitColumns:        false,
+            rowHeight:              40
+        };
+
+        o_playlistGrid              = new Slick.Grid($("#playlistGrid"), a_playlistData, o_columns, o_options);
+        o_playlistUpdateInterval    = setInterval("updatePlaylist()", i_playlistUpdateInterval);
+        updatePlaylist();
+    });
+</script>
+
+
+<div id="playlistGrid" style="width:100%; height:95%;"></div>
