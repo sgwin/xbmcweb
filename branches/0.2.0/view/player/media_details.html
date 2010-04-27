@@ -1,16 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
-    $("#media_details_tabs").tabs(
-    {
-        ajaxOptions:
-        {
-            error: function(xhr, status, index, anchor)
-            {
-                //$(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible. If this wouldn't be a demo.");
-            }
-        }
-    });
+    $("#media_details_tabs").tabs();
 });
 </script>
 
@@ -21,10 +12,10 @@ $(document).ready(function()
             <a href="view/player/media_details/details.html">Details</a>
         </li>
         <li>
-            <a href="view/player/media_details/files.html">Files</a>
+            <a href="view/player/media_details/playlist.html">Playlist</a>
         </li>
         <li>
-            <a href="view/player/media_details/playlist.html">Playlist</a>
+            <a href="view/player/media_details/files.html">Files</a>
         </li>
     </ul>
 </div>

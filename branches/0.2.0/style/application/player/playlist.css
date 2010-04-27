@@ -1,0 +1,61 @@
+#playlistContextMenu
+{
+    background:         #efefef;
+    border:             1px solid #aaa;
+    padding:            2px;
+    display:            inline-block;
+    min-width:          140px;
+    -moz-box-shadow:    2px 2px 2px silver;
+    -webkit-box-shadow: 2px 2px 2px silver;
+    z-index:            99999;
+    display:            none;
+    position:           absolute;
+    color:              #39476D;
+}
+
+#playlistContextMenu li
+{
+    padding:            4px;
+    list-style:         none;
+    cursor:             pointer;
+    background:         url("../images/arrow_right_peppermint.png") no-repeat center left;
+
+}
+
+#playlistContextMenu li:hover
+{
+    background-color:   white;
+}
+
+.item_index
+{
+    text-align:         center;
+    color:              #39476D;
+}
+
+.item_title
+{
+    font-weight:        normal;
+    color:              #39476D;
+}
+
+.ui-state-active
+{
+    color: red;
+}
+
+.item_playing
+{
+    text-align:         center;
+    vertical-align:     middle;
+}
+
+.item_playing img
+{
+     margin:            10px 5px;
+}
+
+.context_menu_spacer
+{
+    border-top:         2px groove #fff;
+}

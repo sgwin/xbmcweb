@@ -6,12 +6,14 @@ function Playlist (Xbmc)
 
     //Namespace configuration
     var a_namespace         = new Array();
+    a_namespace['playlist'] = 'Playlist';
     a_namespace['video']    = 'VideoPlaylist';
     a_namespace['audio']    = 'AudioPlaylist';
     
     var a_media             = new Array();
     a_media[0]              = 'audio';
     a_media[1]              = 'video';
+    a_media[2]              = 'playlist';
 
     //supporting methods
     this.isAllowedMedia = function (s_media)
@@ -35,11 +37,12 @@ function Playlist (Xbmc)
     }
 
     //XBMC method implementations
-    this.play = function (s_media)
+    this.play = function (i_item, s_media)
     {
         var o_post              = new Object();
         o_post.media            = s_media;
         o_post.method           = 'Play';
+        o_post.parameter        = (i_item)? i_item : 0 ;
         o_post.boolResponse     = true;
 
         return this.getResponse(o_post);
@@ -173,7 +176,7 @@ function Playlist (Xbmc)
         o_parameters.playlist   = s_media;
         o_parameters.item       = i_item;
         var o_post              = new Object();
-        o_post.media            = s_media;
+        o_post.media            = 'playlist';
         o_post.method           = 'Remove';
         o_post.boolResponse     = true;
         o_post.parameter        = o_parameters;
@@ -188,7 +191,7 @@ function Playlist (Xbmc)
         o_parameters.item1      = i_item1;
         o_parameters.item2      = i_item2;
         var o_post              = new Object();
-        o_post.media            = s_media;
+        o_post.media            = 'playlist';
         o_post.method           = 'Swap';
         o_post.boolResponse     = true;
         o_post.parameter        = o_parameters;

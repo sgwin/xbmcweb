@@ -3,6 +3,7 @@ function Xbmc (config)
     this.s_apiPath      = "";
     this.s_username     = "";
     this.s_password     = "";
+    this.a_errorLog     = new Array();
     this.b_debug        = false;
     this.o_httpRequest  = new XMLHttpRequest();
     var s_namespace     = 'XBMC';
@@ -51,14 +52,34 @@ function Xbmc (config)
     this.post = function (s_namespace, s_method, a_parameters, i_id)
     {
         if (s_namespace == undefined || s_method == undefined)
+        {
+            this.a_errorLog[this.a_errorLog.length].code    = 0;
+            this.a_errorLog[this.a_errorLog.length].message = 'No namespace or method specified';
+
             return false;
+        }
         else
         {
+            //alert(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
+
             this.o_httpRequest.open("POST", this.s_apiPath, false);
             this.o_httpRequest.send(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
             var o_response = JSON.parse(this.o_httpRequest.responseText);
 
-            return (o_response == undefined || o_response.error)? false : o_response.result ;
+            if (o_response == undefined || o_response.error)
+            {
+                if (o_response.error)
+                    this.a_errorLog[this.a_errorLog.length] = o_response.error;
+                else
+                {
+                    this.a_errorLog[this.a_errorLog.length].code    = 1;
+                    this.a_errorLog[this.a_errorLog.length].message = 'No response from server';
+                }
+                
+                return false;
+            }
+            else
+                return o_response.result;
         }
     }
 
@@ -95,6 +116,32 @@ function Xbmc (config)
         o_post.parameter        = i_parameter;
 
         return this.getResponse(o_post);
+    }
+
+    this.getErrors = function ()
+    {
+        return this.a_errorLog;
+    }
+
+    this.getLastError = function ()
+    {
+        return this.a_errorLog[this.a_errorLog.length-1];
+    }
+
+    this.getLastErrorCode = function ()
+    {
+        if (this.a_errorLog[this.a_errorLog.length-1])
+            return this.a_errorLog[this.a_errorLog.length-1].code;
+        else
+            return "No errors found";
+    }
+
+    this.getLastErrorMessage = function ()
+    {
+        if (this.a_errorLog[this.a_errorLog.length-1])
+            return this.a_errorLog[this.a_errorLog.length-1].message;
+        else
+            return "No errors found";
     }
 
     this.init(config);
