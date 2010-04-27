@@ -54,4 +54,29 @@ function Files (Xbmc)
         
         return this.getResponse(o_post);
     }
+
+    this.getShares = function (s_media)
+    {
+        if (!s_media)
+            return false;
+
+        var o_parameters        = new Object();
+        o_parameters.type       = s_media;
+        var o_post              = new Object();
+        o_post.method           = 'GetShares';
+        o_post.boolResponse     = false;
+        o_post.parameter        = o_parameters;
+        
+        return this.getResponse(o_post);
+    }
+
+    this.getVideoShares = function ()
+    {
+        return this.getShares('video');
+    }
+
+    this.getMusicShares = function ()
+    {
+        return this.getShares('music');
+    }
 }

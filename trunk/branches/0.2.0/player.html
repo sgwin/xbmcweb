@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="style/application/player/default.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/third_party/jquery-ui/xbmc/jquery-ui-1.8.xbmc.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/application/player/layout.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/playlist.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/third_party/jquery/slickgrid/slick.grid.css" media="screen" charset="utf-8" />
 
         <!-- END include style sheets -->
@@ -57,6 +58,25 @@
         <script type="text/javascript" src="config/player/config.js"></script>
     </head>
 <body>
+
+    
+    <ul id="playlistContextMenu">
+        <li data="play">
+            Play
+        </li>
+        <li data="remove">
+            Remove
+        </li>
+        <li data="move_up">
+            Move up
+        </li>
+        <li data="move_down">
+            Move down
+        </li>
+        <li data="refresh" class="context_menu_spacer">
+            Refresh
+        </li>
+    </ul>
 
     <div id="now_playing_container" class="ui-layout-north"></div>
     <div id="media_browser_container" class="ui-layout-west" style="padding:0px; border-right:1px solid #aaa; overflow:hidden;"></div>

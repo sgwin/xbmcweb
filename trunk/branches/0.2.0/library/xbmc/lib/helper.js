@@ -8,14 +8,14 @@ function Helper ()
         if (a_parameters != undefined)
         {
             if (a_parameters.constructor == Object)
-                s_parameters = ', "params": ' +JSON.stringify(a_parameters);
+                s_parameters = ',"params":' +JSON.stringify(a_parameters);
             else if (this.is_int(a_parameters))
-                s_parameters = ', "params": ' +a_parameters ;
+                s_parameters = ',"params":' +a_parameters ;
             else
-                s_parameters = ', "params": "' +a_parameters+ '"' ;
+                s_parameters = ',"params":"' +a_parameters+ '"' ;
         }
 
-        return '{"jsonrpc": "2.0", "method": "' +s_namespace+ '.' +s_method+ '"' +s_parameters+ ', "id": ' +i_id+ '}';
+        return '{"jsonrpc":"2.0","method":"' +s_namespace+ '.' +s_method+ '"' +s_parameters+ ',"id":' +i_id+ '}';
     }
 
     this.milliSecondsToTime = function (i_milliSeconds)

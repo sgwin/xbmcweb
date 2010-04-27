@@ -4,9 +4,9 @@ function AudioPlaylist (Playlist)
     var s_media = 'audio';
 
     //XBMC method implementations
-    this.play = function ()
+    this.play = function (i_item)
     {
-        return Playlist.play(s_media);
+        return Playlist.play(i_item, s_media);
     }
 
     this.skipPrevious = function ()
@@ -76,11 +76,11 @@ function AudioPlaylist (Playlist)
 
     this.remove = function (i_item)
     {
-        return Playlist.remove(i_item, s_media);
+        return Playlist.remove(i_item, 'music');
     }
 
     this.swap = function (i_item1, i_item2)
     {
-        return Playlist.swap(i_item1, i_item2, s_media);
+        return Playlist.swap(i_item1, i_item2, 'music');
     }
 }
