@@ -1,0 +1,129 @@
+<script type="text/javascript">
+
+    function toggleDir (o_elm)
+    {
+        var obj = o_elm.parent();
+
+        if (obj.is('.closed'))
+        {
+            var a_directoryContent = Xbmc.Files.getDirectoryContent($(obj).find('span').attr('path'));
+
+            $('#audio_source_tree i').removeClass('selected');
+            $('i', obj).addClass('selected');
+
+            if (a_directoryContent && a_directoryContent.length > 0)
+            {
+                obj.append('<ul>');
+                obj.append('</ul>');
+                obj.find('ul').hide();
+
+                for (var j=0; j<a_directoryContent.length; j++)
+                {
+                    if (a_directoryContent[j].file.charAt(a_directoryContent[j].file.length-1) == "/" || a_directoryContent[j].file.charAt(a_directoryContent[j].file.length-1) == "\\")
+                    {
+                        var s_dir = '<li class="directory closed"><span path="' +a_directoryContent[j].file+ '"><i>' +a_directoryContent[j].label+ '</i></span></li>';
+                        obj.find('ul').append(s_dir);
+                    }
+                }
+              
+                applyClickAction(obj.find('ul'));
+                applyContextMenu(obj.find('ul'));
+                obj.find('ul').slideDown('fast');
+            }
+
+            obj.removeClass('closed').addClass('open');
+        }
+        else
+        {
+            obj.find('ul').slideUp
+            (
+                'fast',
+                function()
+                {
+                    obj.find('ul').remove()
+                }
+            );
+                
+            obj.removeClass('open').addClass('closed');
+        }
+    }
+
+    function applyClickAction (o_element)
+    {
+        $('span', o_element).each(function (index, domElm)
+        {
+            $(this).unbind('click');
+            $(this).bind
+            (
+                'click',
+                function ()
+                {
+                    toggleDir($(this));
+                }
+            );
+        });
+
+        $('span i', o_element).each(function (index, domElm)
+        {
+            $(this).unbind('click');
+            $(this).bind
+            (
+                'click',
+                function ()
+                {
+                    selectTab('files', $(this).parent(), 'music');
+                    showFiles();
+                }
+            );
+        });
+    }
+
+    function applyContextMenu (o_element)
+    {
+        $('li span', o_element).contextMenu
+        (
+            {
+                menu: 'contextMenu_shares_audio'
+            },
+            function(action, el, pos)
+            {
+                var s_dirPath = el.attr('path');
+                var a_dirContent;
+
+                if (action == 'play')
+                {
+                    a_dirContent = Xbmc.Files.getDirectoryContent(s_dirPath);
+                    if (a_dirContent)
+                        Xbmc.Playlist.Audio.recursivePlay(a_dirContent);
+                    selectTab('playlist');
+                }
+                else if (action == 'enque')
+                {
+                    a_dirContent = Xbmc.Files.getDirectoryContent(s_dirPath);
+                    if (a_dirContent)
+                        Xbmc.Playlist.Audio.recursiveAdd(a_dirContent);
+                    selectTab('playlist');
+                }
+            }
+        );
+    }
+
+    $(document).ready(function()
+    {
+        var a_audioShares = Xbmc.Files.Audio.getShares();
+
+        if (a_audioShares)
+        {
+            for (var i=0; i<a_audioShares.length; i++)
+            {
+                var s_share = '<li class="directory closed"><span path="' +a_audioShares[i].file+ '"><i>' +a_audioShares[i].label+ '</i></span></li>';
+                $('#audio_source_tree').append(s_share);
+                applyClickAction('li.directory');
+            }
+        }
+
+        applyContextMenu($('#audio_source_tree'));
+    });
+</script>
+
+<ul id="audio_source_tree"></ul>

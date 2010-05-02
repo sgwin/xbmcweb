@@ -59,6 +59,26 @@ function VideoPlaylist (Playlist)
         return Playlist.add(s_file, s_media);
     }
 
+    this.recursiveAdd = function (a_directories)
+    {
+        for (var x=0; x<a_directories.length; x++)
+        {
+            var a_dirContent = Xbmc.Files.getDirectories(a_directories[x].file);
+
+            if (a_dirContent)
+                this.recursiveAdd(a_dirContent, s_media);
+            else
+                this.add(a_directories[x].file);
+        }
+    }
+
+    this.recursivePlay = function (a_directories)
+    {
+        this.clear();
+        this.recursiveAdd(a_directories);
+        this.play(0);
+    }
+
     this.clear = function ()
     {
         return Playlist.clear(s_media);

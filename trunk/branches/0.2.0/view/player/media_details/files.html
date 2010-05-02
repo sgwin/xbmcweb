@@ -1,14 +1,50 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    TODO write content
-  </body>
-</html>
+<script type="text/javascript">
+    function applyContextMenu (o_element)
+    {
+        $('li', o_element).contextMenu
+        (
+            {
+                menu: 'contextMenu_files'
+            },
+            function(action, el, pos)
+            {
+                var s_filePath = el.attr('path');
+            }
+        );
+    }
+
+    function showFiles ()
+    {
+        if (o_elementClicked)
+        {
+            var a_files = Xbmc.Files.getDirectoryContent(o_elementClicked.attr('path'), s_mediaClicked);
+            
+            if (a_files)
+            {
+                $('#files_tree li').remove();
+
+                for (var i=0; i<a_files.length; i++)
+                {
+                    if (a_files[i].file.charAt(a_files[i].file.length-1) != "/" && a_files[i].file.charAt(a_files[i].file.length-1) != "\\")
+                    {
+                        var s_file = '<li class="file ' +s_mediaClicked+ '" path="' +a_files[i].file+ '">' +a_files[i].label+ '</li>';
+                        $('#files_tree').append(s_file);
+                    }
+                }
+
+                applyClickAction('li', s_mediaClicked);
+            }
+
+            applyContextMenu($('#files_tree'));
+        }
+    }
+
+    $(document).ready(function()
+    {
+        //showFiles();
+    });
+</script>
+
+<div id="files_tree_container">
+    <ul id="files_tree"></ul>
+</div>

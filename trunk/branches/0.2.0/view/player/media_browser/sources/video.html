@@ -1,0 +1,109 @@
+<script type="text/javascript">
+
+    function toggleDir (o_elm)
+    {
+        var obj = o_elm.parent();
+
+        if (obj.is('.closed'))
+        {
+            var a_directoryContent = Xbmc.Files.getDirectoryContent($(obj).find('span').attr('path'));
+
+            if (a_directoryContent && a_directoryContent.length > 0)
+            {
+                obj.append('<ul>');
+                obj.append('</ul>');
+                obj.find('ul').hide();
+
+                for (var j=0; j<a_directoryContent.length; j++)
+                {
+                    var s_dir = '<li class="directory closed"><span path="' +a_directoryContent[j].file+ '">' +a_directoryContent[j].label+ '</span></li>';
+                    obj.find('ul').append(s_dir);
+                }
+
+                applyClickAction(obj.find('ul'));
+                applyContextMenu(obj.find('ul'));
+                obj.find('ul').slideDown('fast');
+            }
+
+            obj.removeClass('closed').addClass('open');
+        }
+        else
+        {
+            obj.find('ul').slideUp
+            (
+                'fast',
+                function()
+                {
+                    obj.find('ul').remove()
+                }
+            );
+
+            obj.removeClass('open').addClass('closed');
+        }
+    }
+
+    function applyClickAction (o_element)
+    {
+        $('span', o_element).each(function (index, domElm)
+        {
+            $(this).unbind('click');
+            $(this).bind
+            (
+                'click',
+                function ()
+                {
+                    toggleDir($(this));
+                }
+            );
+        });
+    }
+
+    function applyContextMenu (o_element)
+    {
+        $('li span', o_element).contextMenu
+        (
+            {
+                menu: 'contextMenu_shares_video'
+            },
+            function(action, el, pos)
+            {
+                var s_dirPath = el.attr('path');
+                var a_dirContent;
+
+                if (action == 'play')
+                {
+                    a_dirContent = Xbmc.Files.getDirectoryContent(s_dirPath);
+                    if (a_dirContent)
+                        Xbmc.Playlist.Video.recursivePlay(a_dirContent);
+                    selectTab('playlist');
+                }
+                else if (action == 'enque')
+                {
+                    a_dirContent = Xbmc.Files.getDirectoryContent(s_dirPath);
+                    if (a_dirContent)
+                        Xbmc.Playlist.Video.recursiveAdd(a_dirContent);
+                    selectTab('playlist');
+                }
+            }
+        );
+    }
+
+    $(document).ready(function()
+    {
+        var a_videoShares = Xbmc.Files.Video.getShares();
+
+        if (a_videoShares)
+        {
+            for (var i=0; i<a_videoShares.length; i++)
+            {
+                var s_share = '<li class="directory closed"><span path="' +a_videoShares[i].file+ '">' +a_videoShares[i].label+ '</span></li>';
+                $('#video_source_tree').append(s_share);
+                applyClickAction('li.directory');
+            }
+        }
+
+        applyContextMenu($('#video_source_tree'));
+    });
+</script>
+
+<ul id="video_source_tree"></ul>

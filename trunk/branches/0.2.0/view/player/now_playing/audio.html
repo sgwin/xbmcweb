@@ -15,7 +15,7 @@ function updateNowPlayingAudio ()
     {
         s_filePlaying = Xbmc.Status.playingFile;
 
-        var s_playingThumb = (Xbmc.Status.playingThumbnail)? Xbmc.Status.playingThumbnail : "style/application/player/images/DefaultAlbumCover.png" ;
+        var s_playingThumb = (!Xbmc.Status.playingThumbnail)? Xbmc.Status.playingThumbnail : "style/application/player/images/DefaultAlbumCover.png" ;
 
         if (s_playingThumb != s_thumbShowing)
         {

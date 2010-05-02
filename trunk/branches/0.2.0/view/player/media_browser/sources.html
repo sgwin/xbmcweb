@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    var a_sourcePaths           = new Array();
+    a_sourcePaths['audio']      = 'view/player/media_browser/sources/audio.html';
+    a_sourcePaths['video']      = 'view/player/media_browser/sources/video.html';
+    a_sourcePaths['pictures']   = 'view/player/media_browser/sources/pictures.html';
+
+    $(document).ready(function()
+    {
+        $('#source_select').bind
+        (
+            'change',
+            function ()
+            {
+                $('#shares_tree_container').load(a_sourcePaths[$('#source_select').val()]);
+            }
+        );
+
+        $('#shares_tree_container').load(a_sourcePaths['audio']);
+    });
+
+    
+</script>
+
+<select name="source_select" id="source_select">
+    <option value="audio">
+        Music
+    </option>
+    <option value="video">
+        Videos
+    </option>
+    <option value="pictures">
+        Pictures
+    </option>
+</select>
+
+<div id="shares_tree_container" class="tree_container"></div>

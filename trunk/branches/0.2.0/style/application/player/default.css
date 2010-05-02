@@ -18,6 +18,11 @@ table
     font-size:                  12px;
 }
 
+.selected
+{
+    font-weight:                bold;
+}
+
 td
 {
     vertical-align:             top;

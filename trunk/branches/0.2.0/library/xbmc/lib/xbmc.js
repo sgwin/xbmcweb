@@ -1,22 +1,23 @@
 function Xbmc (config)
 {
-    this.s_apiPath      = "";
-    this.s_username     = "";
-    this.s_password     = "";
-    this.a_errorLog     = new Array();
-    this.b_debug        = false;
-    this.o_httpRequest  = new XMLHttpRequest();
-    var s_namespace     = 'XBMC';
+    this.s_apiPath          = "";
+    this.s_username         = "";
+    this.s_password         = "";
+    this.a_errorLog         = new Array();
+    this.a_errorLog.length  = 0;
+    this.b_debug            = false;
+    this.o_httpRequest      = new XMLHttpRequest();
+    var s_namespace         = 'XBMC';
 
     //Initialize objects
-    this.Helper         = new Helper();
-    this.JsonRpc 	= new JsonRpc(this);
-    this.System		= new System(this);
-    this.Status         = new Status(this);
-    this.Files          = new Files(this);
-    this.Player         = new Player(this);
-    this.Playlist	= new Playlist(this);
-    this.Library	= new Library(this);
+    this.Helper             = new Helper();
+    this.JsonRpc            = new JsonRpc(this);
+    this.System             = new System(this);
+    this.Status             = new Status(this);
+    this.Files              = new Files(this);
+    this.Player             = new Player(this);
+    this.Playlist           = new Playlist(this);
+    this.Library            = new Library(this);
 
     this.init = function (a_config)
     {
@@ -60,8 +61,6 @@ function Xbmc (config)
         }
         else
         {
-            //alert(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
-
             this.o_httpRequest.open("POST", this.s_apiPath, false);
             this.o_httpRequest.send(this.Helper.getJson(s_namespace, s_method, a_parameters, i_id));
             var o_response = JSON.parse(this.o_httpRequest.responseText);

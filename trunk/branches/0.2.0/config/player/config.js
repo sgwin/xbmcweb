@@ -9,7 +9,7 @@ config['xbmc']['password']      = "xbmc";
 config['xbmc']['debug']         = false;
 
 config['app']['name']           = 'player';
-config['app']['upate_interval'] = 4; //seconds
+config['app']['upate_interval'] = 5; //seconds
 config['app']['style_path']     = 'style/application/' +config['app']['name']+ '/';
 
 

@@ -36,6 +36,28 @@ function Helper ()
         return s_time;
     }
 
+    this.sort_by = function(field, reverse, primer)
+    {
+       reverse = (reverse) ? -1 : 1;
+
+       return function(a, b)
+       {
+           a = a[field];
+           b = b[field];
+
+           if (primer != undefined)
+           {
+               a = primer(a);
+               b = primer(b);
+           }
+
+           if (a<b) return reverse * -1;
+           if (a>b) return reverse * 1;
+           return 0;
+       }
+    }
+
+
     this.is_int = function (i_value)
     {
         return (i_value.toString().search(/^-?[0-9]+$/) == 0);

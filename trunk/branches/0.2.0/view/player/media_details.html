@@ -1,4 +1,19 @@
 <script type="text/javascript">
+var a_tabIndexes = new Array();
+a_tabIndexes['details']     = 0;
+a_tabIndexes['files']       = 1;
+a_tabIndexes['playlist']    = 2;
+
+var o_elementClicked    = undefined;
+var s_mediaClicked      = undefined;
+
+function selectTab (s_tabName, o_element, s_media)
+{
+    $("#media_details_tabs").tabs('select', a_tabIndexes[s_tabName]);
+    o_elementClicked    = o_element;
+    s_mediaClicked      = s_media;
+}
+
 $(document).ready(function()
 {
     $("#media_details_tabs").tabs();
@@ -12,10 +27,10 @@ $(document).ready(function()
             <a href="view/player/media_details/details.html">Details</a>
         </li>
         <li>
-            <a href="view/player/media_details/playlist.html">Playlist</a>
+            <a href="view/player/media_details/files.html">Files</a>
         </li>
         <li>
-            <a href="view/player/media_details/files.html">Files</a>
+            <a href="view/player/media_details/playlist.html">Playlist</a>
         </li>
     </ul>
 </div>

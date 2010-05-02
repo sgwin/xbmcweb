@@ -22,6 +22,8 @@ function Library (Xbmc)
 
     this.getResponse = function (o_post)
     {
+        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
+
         if (!this.isAllowedMedia(o_post.media) || !o_post.method)
             return false;
 
