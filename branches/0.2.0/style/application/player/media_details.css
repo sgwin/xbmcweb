@@ -1,0 +1,13 @@
+#files_tree_container
+{
+    height:             90%;
+    width:              100%;
+    overflow:           auto;
+    border:             3px inset #fff;
+    padding:            0px;
+}
+
+#files_tree_container
+{
+    margin:             0px;
+}

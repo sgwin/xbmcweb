@@ -19,8 +19,9 @@
             {
                 a_playlistData[i]["playing"]    = (Xbmc.Status.playingItemIndex == i)? '<img src="style/application/player/images/icons/play_16.gif" />' : '' ;
                 a_playlistData[i]["index"]      = i+1;
-                a_playlistData[i]["thumbnail"]  = (a_playlistData[i]["thumbnail"])? 'thumb/' +a_playlistData[i]["thumbnail"]+ '.jpg' : 'style/application/player/images/DefaultAlbumCover.png' ;
+                a_playlistData[i]["thumbnail"]  = (!a_playlistData[i]["thumbnail"] || a_playlistData[i]["thumbnail"] == 'DefaultAlbumCover.png')? 'style/application/player/images/DefaultAlbumCover.png' : 'thumb/' +a_playlistData[i]["thumbnail"]+ '.jpg' ;
                 a_playlistData[i]["thumbnail"]  = '<img src="' +a_playlistData[i]["thumbnail"]+ '" style="width:100%;" />';
+                a_playlistData[i]["label"]      = (!a_playlistData[i]["label"] || a_playlistData[i]["label"] == "")? a_playlistData[i]["file"].split('\\').pop().split('/').pop().replace(/\.[^.]*$/, '') : a_playlistData[i]["label"] ;
 
                 i_rowCount++;
             }

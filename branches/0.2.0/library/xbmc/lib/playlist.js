@@ -23,7 +23,7 @@ function Playlist (Xbmc)
 
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Player.getActivePlayer() : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
 
         if (!this.isAllowedMedia(o_post.media) || !o_post.method)
             return false;
@@ -136,6 +136,28 @@ function Playlist (Xbmc)
         return this.getResponse(o_post);
     }
 
+    this.recursiveAdd = function (a_directories, s_media)
+    {
+        for (var x=0; x<a_directories.length; x++)
+        {
+            var a_dirContent = Xbmc.Files.getDirectories(a_directories[x].file);
+            
+            if (a_dirContent)
+                this.recursiveAdd(a_dirContent, s_media);
+            else
+                this.add(a_directories[x].file);
+        }
+
+        return true;
+    }
+
+    this.recursivePlay = function (a_directories, s_media)
+    {
+        this.clear(s_media);
+        this.recursiveAdd(a_directories, s_media);
+        this.play(0, s_media);
+    }
+
     this.clear = function (s_media)
     {
         var o_post              = new Object();
@@ -172,14 +194,11 @@ function Playlist (Xbmc)
 
     this.remove = function (i_item, s_media)
     {
-        var o_parameters        = new Object();
-        o_parameters.playlist   = s_media;
-        o_parameters.item       = i_item;
         var o_post              = new Object();
-        o_post.media            = 'playlist';
+        o_post.media            = s_media;
         o_post.method           = 'Remove';
         o_post.boolResponse     = true;
-        o_post.parameter        = o_parameters;
+        o_post.parameter        = i_item;
 
         return this.getResponse(o_post);
     }
@@ -187,11 +206,10 @@ function Playlist (Xbmc)
     this.swap = function (i_item1, i_item2, s_media)
     {
         var o_parameters        = new Object();
-        o_parameters.playlist   = (s_media)? s_media : undefined ;
         o_parameters.item1      = i_item1;
         o_parameters.item2      = i_item2;
         var o_post              = new Object();
-        o_post.media            = 'playlist';
+        o_post.media            = s_media;
         o_post.method           = 'Swap';
         o_post.boolResponse     = true;
         o_post.parameter        = o_parameters;

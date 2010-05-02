@@ -1,0 +1,52 @@
+#source_select
+{
+    margin:             10px;
+    width:              95%;
+    border:             1px solid #ddd;
+    background-color:   #fff;
+    color:              #39476D;
+}
+
+.tree_container
+{
+    margin:             0px;
+    padding:            0px;
+    padding-top:        5px;
+    height:             80%;
+    overflow:           auto;
+    position:           relative;
+}
+
+.tree_container ul
+{
+    list-style-type:    none;
+    padding:            0px 0px 0px 5px;
+    margin:             0px;
+    color:              #39476D;
+}
+
+.tree_container ul li span
+{
+    cursor:             pointer;
+    padding:            2px 2px 2px 37px;
+    overflow:           hidden;
+}
+
+.tree_container ul li.closed
+{
+    background:         #fff url(images/icons/folder_closed.gif) no-repeat top left;
+    padding:            0px;
+    margin-left:        10px;
+}
+
+.tree_container ul li.open
+{
+    background:         #fff url(images/icons/folder_open.gif) no-repeat top left;
+    padding:            0px;
+    margin-left:        10px;
+}
+
+.tree_container ul li span:hover
+{
+    text-decoration:    underline;
+}

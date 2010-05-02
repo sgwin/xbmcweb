@@ -26,7 +26,7 @@ function Player (Xbmc)
 
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Player.getActivePlayer() : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
 
         if (!this.isAllowedType(o_post.media) || !o_post.method)
             return false;

@@ -34,16 +34,8 @@ function Status (Xbmc)
 
     this.setActivePlaylist = function ()
     {
-        if (!this.activeMediaPlayer)
-        {
-            this.activePlaylist = undefined;
-            return false;
-        }
-        else
-        {
-            this.activePlaylist = Xbmc.Playlist.getCurrentPlaylist(this.activeMediaPlayer);
-            return true;
-        }
+        this.activePlaylist = (!this.activeMediaPlayer)? undefined : Xbmc.Playlist.getCurrentPlaylist(this.activeMediaPlayer) ;
+        return (!this.activeMediaPlayer)? false : true ;
     }
 
     this.setPlayingItem = function ()

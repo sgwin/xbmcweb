@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        var a_pictureShares = Xbmc.Files.Pictures.getShares();
+
+        if (a_pictureShares)
+        {
+            for (var i=0; i<a_pictureShares.length; i++)
+            {
+                $('#picture_source_tree').append('<li value="' +a_pictureShares[i].file+ '">' +a_pictureShares[i].label+ '</li>');
+            }
+        }
+    });
+</script>
+
+<ul id="picture_source_tree"></ul>
