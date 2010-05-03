@@ -22,9 +22,4 @@ function VideoFiles (Files)
         {
             return Files.getFiles(s_directoryPath, 'video');
         }
-
-    this.getDirectoryContent = function (s_directoryPath)
-    {
-        return Files.getDirectory(s_directoryPath);
-    }
 }

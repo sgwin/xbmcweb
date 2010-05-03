@@ -8,8 +8,10 @@ function Shares (o_parent)
         o_container = $('#'+s_containerId);
     }
 
-    this.show = function (a_items, s_media)
+    this.show = function (s_media)
     {
+        var a_items = o_parent.Xbmc.Files.getShares(s_media);
+
         if (a_items)
         {
             var s_list = '<ul id="shares_list">';
@@ -36,7 +38,7 @@ function Shares (o_parent)
 
         if (o_selectedElement.is('.closed'))
         {
-            var a_items = o_parent.Xbmc.Files.getDirectoryContent($(o_selectedElement).find('span').attr('path'));
+            var a_items = o_parent.Xbmc.Files.getDirectories($(o_selectedElement).find('span').attr('path'));
             $('i', o_container).removeClass('selected');
             $('i', o_selectedElement).addClass('selected');
 
@@ -45,10 +47,7 @@ function Shares (o_parent)
                 var s_list = '';
 
                 for (var j=0; j<a_items.length; j++)
-                {
-                    if (a_items[j].file.charAt(a_items[j].file.length-1) == "/" || a_items[j].file.charAt(a_items[j].file.length-1) == "\\")
-                        s_list += '<li class="directory closed"><span path="' +a_items[j].file+ '" media="' +s_media+ '"><i>' +a_items[j].label+ '</i></span></li>';
-                }
+                    s_list += '<li class="directory closed"><span path="' +a_items[j].file+ '" media="' +s_media+ '"><i>' +a_items[j].label+ '</i></span></li>';
 
                 o_selectedElement.append('<ul></ul>');
                 o_selectedElement.find('ul').hide();
@@ -108,14 +107,14 @@ function Shares (o_parent)
 
                 if (action == 'play')
                 {
-                    a_dirContent = o_parent.Xbmc.Files.getDirectoryContent(s_dirPath);
+                    a_dirContent = o_parent.Xbmc.Files.getDirectories(s_dirPath);
                     if (a_dirContent)
                         o_parent.Xbmc.Playlist.Audio.recursivePlay(a_dirContent);
                     o_parent.MediaDetails.selectTab(2);
                 }
                 else if (action == 'enque')
                 {
-                    a_dirContent = o_parent.Xbmc.Files.getDirectoryContent(s_dirPath);
+                    a_dirContent = o_parent.Xbmc.Files.getDirectories(s_dirPath);
                     if (a_dirContent)
                         o_parent.Xbmc.Playlist.Audio.recursiveAdd(a_dirContent);
                     o_parent.MediaDetails.selectTab(2);

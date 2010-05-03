@@ -1,7 +1,7 @@
 <script type="text/javascript">
 function showSharesList ()
 {
-    Application.Shares.show(Xbmc.Files.getShares($('#source_select').val()), $('#source_select').val());
+    Application.Shares.show($('#source_select').val());
 }
 
 $(document).ready(function()

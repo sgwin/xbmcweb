@@ -1,13 +1,61 @@
-#files_tree_container
+#file_list_container
 {
     height:             90%;
     width:              100%;
     overflow:           auto;
-    border:             3px inset #fff;
-    padding:            0px;
+    padding:            10px;
 }
 
-#files_tree_container
+#file_list_container
 {
     margin:             0px;
+}
+
+#file_list_container ul
+{
+    list-style-type:    none;
+    padding:            0px 0px 0px 5px;
+    margin:             0px;
+    color:              #39476D;
+}
+
+#file_list_container ul li
+{
+    cursor:             pointer;
+    padding:            2px 2px 2px 20px;
+}
+
+#file_list_container ul li:hover
+{
+    text-decoration:   underline;
+}
+
+#file_list_container ul li.music
+{
+    background:         url(images/icons/music.png) no-repeat top left;
+}
+
+#file_list_container ul li.video
+{
+    background:         url(images/icons/video.png) no-repeat top left;
+}
+
+#file_list_container ul li.pictures
+{
+    background:         url(images/icons/picture.png) no-repeat top left;
+}
+
+#files_filter
+{
+    width:              95%;
+    margin:             10px;
+    margin-bottom:      0px;
+    padding-left:       20px;
+    border:             1px solid #aaa;
+    background:         url(images/icons/search.png) no-repeat top left;
+}
+
+#files_filter:hover, #files_filter:focus
+{
+    border:             1px solid #39476D;
 }

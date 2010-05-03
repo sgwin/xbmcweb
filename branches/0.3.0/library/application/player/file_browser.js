@@ -9,28 +9,28 @@ function FileBrowser (o_parent)
 
     this.show = function(s_path, s_media)
     {
-        var a_items = o_parent.Xbmc.Files.getDirectoryContent(s_path, s_media);
+        var a_items = o_parent.Xbmc.Files.getFiles(s_path, s_media);
 
         if (a_items)
         {
-            var s_list = '<ul id="file_list">';
-
-            if ($('ul', o_container))
-                $('ul', o_container).remove();
+            o_container.find('ul').remove();
+            o_container.append('<ul></ul>');
 
             for (var i=0; i<a_items.length; i++)
-            {
-                if (a_items[i].file.charAt(a_items[i].file.length-1) != "/" && a_items[i].file.charAt(a_items[i].file.length-1) != "\\")
-                    s_list += '<li class="file ' +s_media+ '" path="' +a_items[i].file+ '">' +a_items[i].label+ '</li>';
-            }
+                o_container.find('ul').append('<li class="file '+s_media+ '" path="' +a_items[i].file+ '" title="click to play">' +a_items[i].label+ '</li>');
 
-            s_list += '</ul>';
-
-            o_container.append(s_list);
+            o_container.find('li').bind
+            (
+                'click',
+                function(e)
+                {
+                    s_media = (s_media == 'music')? 'audio' : s_media ;
+                    o_parent.Xbmc.Playlist.clear(s_media);
+                    o_parent.Xbmc.Playlist.add($(this).attr('path'), s_media);
+                    o_parent.Xbmc.Playlist.play(0, s_media);
+                }
+            )
         }
-        else
-            alert('The ' +s_media+ ' could not be loaded.');
-        
     }
 }
 
