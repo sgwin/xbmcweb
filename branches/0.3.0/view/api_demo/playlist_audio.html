@@ -1,0 +1,82 @@
+<h2>
+    Xbmc.Playlist.Audio
+</h2>
+<ul>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.play()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.play(), $(this).html())">
+            Play
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.skipPrevious()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.skipPrevious(), $(this).html())">
+            Skip previous
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.skipNext()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.skipNext(), $(this).html())">
+            Skip next
+        </b>
+    </li>
+    <li tooltip="(Object) Xbmc.Playlist.Audio.getCurrentPlaylist()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.getCurrentPlaylist(), $(this).html())">
+            Get current playlist
+        </b>
+        <ul>
+            <li tooltip="(Array.Object) Xbmc.Playlist.Audio.getItems()">
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.getItems(), $(this).html())">
+                    Get items
+                </b>
+            </li>
+            <li tooltip="(Int) Xbmc.Playlist.Audio.getCurrentItem()">
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.getCurrentItem(), $(this).html())">
+                    Get current item
+                </b>
+            </li>
+            <li tooltip="(Int) Xbmc.Playlist.Audio.getItemCount()">
+                <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.getItemCount(), $(this).html())">
+                    Get item count
+                </b>
+            </li>
+        </ul>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.shuffle()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.shuffle(), $(this).html())">
+            Enable shuffle
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.unShuffle()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.unShuffle(), $(this).html())">
+            Disable shuffle
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.add(s_filePath)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.add('/an/existing/filepath'), $(this).html())">
+            Add file
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.clear()">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.clear(), $(this).html())">
+            Clear
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.create(s_playlistPath)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.create('/path/to/playlist.file'), $(this).html())">
+            Create
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.destroy(?)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.destroy('?'), $(this).html())">
+            Destroy
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.remove(i_itemIndex)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.remove(1), $(this).html())">
+            Remove item
+        </b>
+    </li>
+    <li tooltip="(Bool) Xbmc.Playlist.Audio.remove(i_itemIndex_1, i_itemIndex_2)">
+        <b onclick="Application.MessageBox.show(Xbmc.Playlist.Audio.swap(1, 5), $(this).html())">
+            Swap items
+        </b>
+    </li>
+</ul>

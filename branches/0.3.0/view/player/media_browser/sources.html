@@ -1,0 +1,38 @@
+<script type="text/javascript">
+function showSharesList ()
+{
+    Application.Shares.show(Xbmc.Files.getShares($('#source_select').val()), $('#source_select').val());
+}
+
+$(document).ready(function()
+{
+    $('#source_select').bind
+    (
+        'change',
+        function ()
+        {
+            showSharesList();
+        }
+    );
+
+    $(document).ready(function()
+    {
+        Application.Shares.init('shares_tree_container');
+        showSharesList();
+    });
+});
+</script>
+
+<select name="source_select" id="source_select">
+    <option value="music" SELECTED>
+        Music
+    </option>
+    <option value="video">
+        Videos
+    </option>
+    <option value="pictures">
+        Pictures
+    </option>
+</select>
+
+<div id="shares_tree_container" class="tree_container"></div>
