@@ -65,12 +65,10 @@ function Files (Xbmc)
             return (o_response.path.indexOf('vfs/') == 0)? o_response.path.replace('vfs/', '') : o_response.path ;
     }
 
-    this.getDirectory = function (s_directoryPath, s_type)
+    this.getDirectory = function (s_directoryPath, s_media)
     {
-        s_type = (s_type == undefined)? 'files' : s_type ;
-
         var o_parameters        = new Object();
-        o_parameters.type       = s_type;
+        o_parameters.type       = s_media;
         o_parameters.directory  = s_directoryPath;
         var o_post              = new Object();
         o_post.method           = 'GetDirectory';
@@ -80,14 +78,15 @@ function Files (Xbmc)
         return this.getResponse(o_post);
     }
 
-        this.getFiles = function (s_directoryPath, s_type)
-        {
-            return this.getDirectory(s_directoryPath, s_type);
-        }
-
-        this.getDirectoryContent = function (s_directoryPath, s_media)
+        this.getFiles = function (s_directoryPath, s_media)
         {
             var o_response = this.getDirectory(s_directoryPath, s_media);
+            return (o_response.files)? o_response.files.sort(Xbmc.Helper.sort_by('label', false)) : false ;
+        }
+
+        this.getDirectories = function (s_directoryPath)
+        {
+            var o_response = this.getDirectory(s_directoryPath);
             return (o_response.directories)? o_response.directories.sort(Xbmc.Helper.sort_by('label', false)) : false ;
         }
 }
