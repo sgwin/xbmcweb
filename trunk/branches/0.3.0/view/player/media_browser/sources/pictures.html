@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        Application.Shares.init('shares_tree_container');
+        Application.Shares.show(Xbmc.Files.Pictures.getShares(), 'pictures');
+    });
+</script>
+
+<div id="shares_tree_container"></div>

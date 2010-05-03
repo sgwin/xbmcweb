@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>
+            XbmcWeb Player
+        </title>
+
+        <!-- START include style sheets -->
+        <link rel="stylesheet" type="text/css" href="style/application/player/default.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/third_party/jquery-ui/xbmc/jquery-ui-1.8.xbmc.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/layout.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/playlist.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/media_browser.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/media_details.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/third_party/jquery/contextMenu/jquery.contextMenu.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/context_menu.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/third_party/jquery/slickgrid/slick.grid.css" media="screen" charset="utf-8" />
+
+        <!-- END include style sheets -->
+
+        <!-- START include jquery library -->
+        <script type="text/javascript" src="library/third_party/jquery/jquery-1.4.2.min.js"></script>
+        <!-- END include jquery library -->
+
+        <!-- START include jquery plugins -->
+        <script type="text/javascript" src="library/third_party/jquery/plugins/slickgrid/lib/firebugx.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/jquery-ui-1.8.xbmc.min.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/plugins/jquery.layout-1.3.0.rc28.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/plugins/slickgrid/lib/jquery.rule-1.0.1.1-min.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/plugins/slickgrid/lib/jquery.event.drag.custom.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/plugins/slickgrid/slick.grid.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/plugins/jquery.contextMenu.js"></script>
+        <script type="text/javascript" src="library/third_party/jquery/plugins/slickgrid/slick.model.js"></script>
+        <!-- END include jquery plugins -->
+
+        <!-- START include helper libraries -->
+        <script type="text/javascript" src="library/third_party/php.default.min.js"></script>
+        <!-- END include helper libraries -->
+
+        <!-- START include XBMC library -->
+        <script type="text/javascript" src="library/xbmc/lib/json.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/helper.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/jsonrpc.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/system.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/files.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/files.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/files.picture.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/files.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/status.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/player.picture.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/playlist.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/playlist.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/playlist.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/library.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/library.video.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/library.audio.js"></script>
+        <script type="text/javascript" src="library/xbmc/lib/xbmc.js"></script>
+        <!--<script type="text/javascript" src="library/xbmc/minified/json-xbmc.0.1.0.min.js"></script>-->
+        <!-- END include XBMC library -->
+
+        <!-- START include Application library -->
+        <script type="text/javascript" src="library/application/player/shares.js"></script>
+        <script type="text/javascript" src="library/application/player/file_browser.js"></script>
+        <script type="text/javascript" src="library/application/player/media_details.js"></script>
+        <script type="text/javascript" src="library/application/player/application.js"></script>
+        <!-- END include Application library -->
+
+        <script type="text/javascript" src="config/player/config.js"></script>
+    </head>
+<body>
+
+    <ul id="context_menu_shares" class="contextMenu">
+        <li class="play">
+            <a href="#play">Play</a>
+        </li>
+        <li class="enque">
+            <a href="#enque">Enque</a>
+        </li>
+    </ul>
+
+    <ul id="contextMenu_files" class="contextMenu">
+        <li class="play">
+            <a href="#play">Play</a>
+        </li>
+        <li class="enque">
+            <a href="#enque">Enque</a>
+        </li>
+    </ul>
+
+    
+    <ul id="playlistContextMenu">
+        <li data="play">
+            Play
+        </li>
+        <li data="remove">
+            Remove
+        </li>
+        <li data="move_up">
+            Move up
+        </li>
+        <li data="move_down">
+            Move down
+        </li>
+        <li data="refresh" class="context_menu_spacer">
+            Refresh
+        </li>
+    </ul>
+
+    <div id="now_playing_container" class="ui-layout-north"></div>
+    <div id="media_browser_container" class="ui-layout-west" style="padding:0px; border-right:1px solid #aaa; overflow:hidden;"></div>
+    <div id="media_details_container" class="ui-layout-center" style="padding:0px; border-left:1px solid #aaa; overflow:hidden;"></div>
+    <div id="controls_container" class="ui-layout-south"></div>
+    <!--<div id="status_container"></div>-->
+    
+</body>
+</html>

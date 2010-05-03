@@ -1,0 +1,17 @@
+<script type="text/javascript">
+var o_statusInterval = null;
+
+function showConnectionInfo ()
+{
+    var s_connected = (Xbmc.JsonRpc.ping())? "Connected" : "Disconnected" ;
+    $('#connection_info').html(s_connected);
+}
+
+$(document).ready(function()
+{
+    showConnectionInfo();
+    o_statusInterval = setInterval("showConnectionInfo()", 10000);
+});
+</script>
+
+<span id="connection_info"></span>
