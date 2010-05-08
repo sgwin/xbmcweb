@@ -39,7 +39,7 @@ $(document).ready(function ()
     {
         $('#'+a_modules[x]).load
         (
-            'view/'+a_modules[x]+'.html',
+            'view/api_demo/'+a_modules[x]+'.html',
             function ()
             {
                 Application.Tooltip.init();
