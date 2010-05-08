@@ -1,0 +1,152 @@
+<script type="text/javascript">
+    var o_playlistGrid;
+    var o_playlistUpdateInterval;
+    var i_playlistUpdateInterval    = 1000;
+    var a_playlistData              = new Array();
+    var a_activeItem                = new Array();
+    var s_nowPlayingFile            = undefined;
+    var i_rowCount                  = 0;
+
+    function updatePlaylist ()
+    {
+        if (s_nowPlayingFile != Xbmc.Status.playingFile)
+        {
+            s_nowPlayingFile    = Xbmc.Status.playingFile;
+            var a_playlistData  = Xbmc.Playlist.Audio.getItems();
+            i_rowCount          = 0;
+
+            for (var i=0; i < a_playlistData.length; i++)
+            {
+                a_playlistData[i]["playing"]    = (Xbmc.Status.playingItemIndex == i)? '<img src="style/application/player/images/icons/play_16.gif" />' : '' ;
+                a_playlistData[i]["index"]      = i+1;
+                a_playlistData[i]["thumbnail"]  = (!a_playlistData[i]["thumbnail"] || a_playlistData[i]["thumbnail"] == 'DefaultAlbumCover.png')? 'style/application/player/images/DefaultAlbumCover.png' : 'thumb/' +a_playlistData[i]["thumbnail"]+ '.jpg' ;
+                a_playlistData[i]["thumbnail"]  = '<img src="' +a_playlistData[i]["thumbnail"]+ '" style="width:100%;" />';
+                a_playlistData[i]["label"]      = (!a_playlistData[i]["label"] || a_playlistData[i]["label"] == "")? a_playlistData[i]["file"].split('\\').pop().split('/').pop().replace(/\.[^.]*$/, '') : a_playlistData[i]["label"] ;
+
+                i_rowCount++;
+            }
+
+            o_playlistGrid.setData(a_playlistData);
+            a_activeItem = (Xbmc.Status.playingItemIndex == -1)? [] : [Xbmc.Status.playingItemIndex] ;
+            o_playlistGrid.setSelectedRows(a_activeItem);
+            o_playlistGrid.render();
+        }
+    }
+
+    $(document).ready(function()
+    {
+        var o_columns =
+        [
+            {
+                id:         "playing",
+                name:       "",
+                field:      "playing",
+                width:      32,
+                cssClass:   "item_playing",
+                resizable:  false
+            },{
+                id:         "index",
+                name:       "#",
+                field:      "index",
+                width:      24,
+                cssClass:   "item_index",
+                resizable:  false
+            },{
+                id:         "thumb",
+                name:       "",
+                field:      "thumbnail",
+                width:      40,
+                cssClass:   "cell-title",
+                resizable:  false
+            },{
+                id:         "label",
+                name:       "Label",
+                field:      "label",
+                width:      500,
+                cssClass:   "item_title",
+                resizable:  true
+            }
+        ];
+
+        var o_options =
+        {
+            editable:               false,
+            enableAddRow:           false,
+            enableCellNavigation:   true,
+            asyncEditorLoading:     false,
+            enableRowReordering:    true,
+            forceFitColumns:        true,
+            rowHeight:              40
+        };
+
+        o_playlistGrid = new Slick.Grid($("#playlistGrid"), a_playlistData, o_columns, o_options);
+
+
+        o_playlistGrid.onContextMenu = function (e, row, cell)
+        {
+            $("#playlistContextMenu")
+                .data("row", row)
+                .css("top", e.pageY)
+                .css("left", e.pageX)
+                .show();
+
+            $("body").one("click", function()
+            {
+                $("#playlistContextMenu").hide();
+            });
+
+            return true;
+        };
+
+        o_playlistGrid.onDblClick = function (e, row, cell)
+        {
+            if (!Xbmc.Playlist.Audio.play(row))
+                alert('Error: ' +Xbmc.getLastErrorMessage()+ '\nCode: ' +Xbmc.getLastErrorCode());
+        }
+
+        $("#playlistContextMenu").click(function (e)
+        {
+            var i_row   = $(this).data('row');
+            var s_data  = $(e.target).attr("data");
+
+            if (!$(e.target).is("li"))
+                return;
+            
+            if (s_data == 'remove')
+            {
+                if (!Xbmc.Playlist.Audio.remove(i_row))
+                    alert('Error: ' +Xbmc.getLastErrorMessage()+ '\nCode: ' +Xbmc.getLastErrorCode());
+            }
+            else if (s_data == 'play')
+            {
+                if (!Xbmc.Playlist.Audio.play(i_row))
+                    alert('Error: ' +Xbmc.getLastErrorMessage()+ '\nCode: ' +Xbmc.getLastErrorCode());
+            }
+            else if (s_data == 'move_up')
+            {
+                if ((i_row-1) >= 0)
+                {
+                     if (!Xbmc.Playlist.Audio.swap(i_row, (i_row-1)))
+                        alert('Error: ' +Xbmc.getLastErrorMessage()+ '\nCode: ' +Xbmc.getLastErrorCode());
+                }
+            }
+            else if (s_data == 'move_down')
+            {
+                if ((i_row+1) < i_rowCount)
+                {
+                     if (!Xbmc.Playlist.Audio.swap(i_row, (i_row+1)))
+                        alert('Error: ' +Xbmc.getLastErrorMessage()+ '\nCode: ' +Xbmc.getLastErrorCode());
+                }
+            }
+            else if (s_data == 'refresh')
+            {
+                updatePlaylist();
+            }
+        });
+
+        o_playlistUpdateInterval = setInterval("updatePlaylist()", i_playlistUpdateInterval);
+        updatePlaylist();
+    });
+</script>
+
+<div id="playlistGrid" style="width:100%; height:95%;"></div>

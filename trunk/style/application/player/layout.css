@@ -1,0 +1,18 @@
+.ui-layout-pane
+{
+    background: #FFF;
+    border: 0px;
+    padding: 10px;
+    overflow: auto;
+}
+
+.ui-layout-resizer
+{
+    background: #efefef;
+}
+
+.ui-layout-toggler
+{
+    background: #DDD;
+}
+
