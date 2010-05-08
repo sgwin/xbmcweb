@@ -29,7 +29,7 @@ function FileBrowser (o_parent)
                     o_parent.Xbmc.Playlist.add($(this).attr('path'), s_media);
                     o_parent.Xbmc.Playlist.play(0, s_media);
                 }
-            )
+            );
         }
     }
 }

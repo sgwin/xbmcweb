@@ -20,32 +20,24 @@ var Application = new Application(Xbmc);
 var a_modules   = new Array();
 var o_statusUpdateInterval;
 
-a_modules[0]        = 'now_playing';
-a_modules[1]        = 'media_browser';
-a_modules[2]        = 'media_details';
-a_modules[3]        = 'controls';
-a_modules[4]        = 'status';
+a_modules[0]                    = new Array();
+a_modules[0]['content']         = 'now_playing';
+a_modules[0]['region']          = 'north';
+
+a_modules[1]                    = new Array();
+a_modules[1]['content']         = 'media_browser';
+a_modules[1]['region']          = 'east';
+
+a_modules[2]                    = new Array();
+a_modules[2]['content']         = 'media_details';
+a_modules[2]['region']          = 'west';
+
+a_modules[3]                    = new Array();
+a_modules[3]['content']         = 'controls';
+a_modules[3]['region']          = 'south';
 
 $(document).ready(function ()
 {
-    $('body').layout(
-    { 
-        west__closable:         true,
-        west__resizable:        true,
-        west__size:		400,
-        north__closable:        false,
-        north__resizable:       false,
-        north__size:            140,
-        north__spacing_open:    0,
-        center__closable:       false,
-        center__resizable:      true,
-        south__closable:        false,
-        south__resizable:       false,
-        south__size:            65,
-        south__spacing_open:    0
-    });
-
-
     clearInterval(o_statusUpdateInterval);
     Xbmc.Status.update();
 
@@ -54,7 +46,7 @@ $(document).ready(function ()
     else
     {
         for (var x=0; x<a_modules.length; x++)
-            $('#' +a_modules[x]+ '_container').load('view/' +config['app']['name']+ '/'+a_modules[x]+'.html');
+            $('#' +a_modules[x]['region']).load('view/' +config['app']['name']+ '/'+a_modules[x]['content']+'.html');
 
         o_statusUpdateInterval = setInterval
         (
