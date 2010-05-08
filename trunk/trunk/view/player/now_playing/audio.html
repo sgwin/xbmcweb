@@ -1,0 +1,125 @@
+<script type="text/javascript">
+var nowPlayingDataInterval  = null;
+var s_filePlaying           = undefined;
+var s_thumbShowing          = undefined;
+
+function updateNowPlayingAudio ()
+{
+    //Set variables
+
+    if (!Xbmc.Status.isMediaPlaying)
+        return false;
+
+    //Update data if new media is playing
+    if (!s_filePlaying || s_filePlaying != Xbmc.Status.playingFile)
+    {
+        s_filePlaying = Xbmc.Status.playingFile;
+
+        var s_playingThumb = (!Xbmc.Status.playingThumbnail)? Xbmc.Status.playingThumbnail : "style/application/player/images/DefaultAlbumCover.png" ;
+
+        if (s_playingThumb != s_thumbShowing)
+        {
+            $('#now_playing_audio_thumb').fadeOut
+            (
+                'normal',
+                function ()
+                {
+                    $('#now_playing_audio_thumb').attr('src', s_playingThumb);
+                    $('#now_playing_audio_thumb').fadeIn('slow');
+                }
+            );
+
+            s_thumbShowing = s_playingThumb;
+        }
+
+        $('#now_playing_audio_label').html(Xbmc.Status.playingLabel);
+        $('#now_playing_audio_artist').html(Xbmc.Status.playingArtist);
+        $('#now_playing_audio_album').html(Xbmc.Status.playingAlbum);
+        $('#now_playing_audio_year').html(Xbmc.Status.playingYear);
+
+        if (Xbmc.Status.nextItem)
+        {
+            $('#next_audio_label').html(Xbmc.Status.nextLabel);
+            $('#next_audio_artist').html(Xbmc.Status.nextArtist);
+            $('#next_audio_album').html(Xbmc.Status.nextAlbum);
+            $('#next_audio_year').html(Xbmc.Status.nextYear);
+            $('#next_audio_time').html(Xbmc.Status.nextTime);
+            $('#playing_next_details').fadeIn('slow');
+        }
+        else
+            $('#playing_next_details').fadeOut('slow');
+
+        $('#now_playing_audio_totalTime').fadeOut
+        (
+            'normal',
+            function ()
+            {
+                $('#now_playing_audio_totalTime').html(Xbmc.Status.playingTimeTotal);
+                $('#now_playing_audio_totalTime').fadeIn('slow');
+            }
+        );
+    }
+
+    //Update time
+    $('#now_playing_audio_currentTime').html(Xbmc.Status.playingTime);
+
+    return true;
+}
+
+$(document).ready(function()
+{
+    updateNowPlayingAudio();
+    nowPlayingDataInterval = setInterval("updateNowPlayingAudio()", 1000);
+});
+</script>
+
+<div id="now_playing_audio">
+
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td class="thumbnail">
+                <img id="now_playing_audio_thumb" src="style/application/player/images/DefaultAlbumCover.png" />
+            </td>
+            <td class="details">
+
+                <div style="float:left; width:50%;">
+                    <fieldset id="now_playing_details">
+                        <legend>
+                            Playing
+                        </legend>
+                        title: <span id="now_playing_audio_label" style="font-weight:bold; cursor:pointer;"></span>
+                        <br />
+                        artist: <span id="now_playing_audio_artist"></span>
+                        <br />
+                        album: <span id="now_playing_audio_album"></span>
+                        <br />
+                        year: <span id="now_playing_audio_year"></span>
+                    </fieldset>
+                </div>
+                
+                <div style="float:right; width:50%;">
+                    <fieldset id="playing_next_details">
+                        <legend>
+                            Next
+                        </legend>
+                        title: <span id="next_audio_label" style="font-weight:bold;"></span>
+                        <br />
+                        artist: <span id="next_audio_artist"></span>
+                        <br />
+                        album: <span id="next_audio_album"></span>
+                        <br />
+                        year: <span id="next_audio_year"></span>
+                        <br />
+                        time: <span id="next_audio_time"></span>
+                    </fieldset>
+                </div>
+                
+            </td>
+            <td class="time">
+                <span id="now_playing_audio_currentTime"></span>
+                <span id="now_playing_audio_totalTime"></span>
+            </td>
+        </tr>
+    </table>
+
+</div>
