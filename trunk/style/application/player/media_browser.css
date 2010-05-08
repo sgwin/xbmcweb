@@ -10,11 +10,17 @@
 .tree_container
 {
     margin:             0px;
-    padding:            0px;
-    padding-top:        5px;
-    height:             80%;
+    padding:            5px;
     overflow:           auto;
-    position:           relative;
+}
+
+#shares_tree_container
+{
+    position:           absolute;
+    left:               0px;
+    top:                35px;
+    bottom:             0px;
+    right:              0px;
 }
 
 .tree_container ul

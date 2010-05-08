@@ -1,18 +1,60 @@
-.ui-layout-pane
+#container
 {
-    background: #FFF;
-    border: 0px;
-    padding: 10px;
-    overflow: auto;
+    position:           absolute;
+    top:                0px;
+    left:               0px;
+    right:              0px;
+    bottom:             0px;
+    padding:            0px;
 }
 
-.ui-layout-resizer
+#north
 {
-    background: #efefef;
+    border-bottom:      1px solid #aaa;
+    height:             120px;
+    background-color:   #ddd;
+    padding:            5px;
+    position:           absolute;
+    top:                0px;
+    left:               0px;
+    right:              0px;
+    padding:            0px;
 }
 
-.ui-layout-toggler
+#east
 {
-    background: #DDD;
+    width:              30%;
+    position:           absolute;
+    top:                120px;
+    bottom:             50px;
+    left:               0px;
+    padding:            0px;
+    overflow:           hidden;
+    background-color:   #efefef;
+}
+
+#west
+{
+    width:              70%;
+    position:           absolute;
+    top:                120px;
+    bottom:             50px;
+    right:              0px;
+    border-left:        1px solid #aaa;
+    padding:            0px;
+    overflow:           hidden;
+    background-color:   #efefef;
+}
+
+#south
+{
+    border-top:         1px solid #aaa;
+    background-color:   #ddd;
+    height:             50px;
+    padding:            0px;
+    position:           fixed;
+    bottom:             0px;
+    left:               0px;
+    right:              0px;
 }
 
