@@ -1,0 +1,30 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var s_playlistContainer = "#playlist_container";
+    var s_playlistSelect    = "#playlist_select";
+
+    $(s_playlistSelect).bind
+    (
+        'change',
+        function ()
+        {
+            Application.Media.Playlist.show($(this).val());
+        }
+    );
+
+    Application.Media.Playlist.init(s_playlistContainer);
+    $(s_playlistSelect).trigger('change');
+});
+</script>
+
+<select name="playlist_select" id="playlist_select">
+    <option value="audio" SELECTED>
+        Music
+    </option>
+    <option value="video">
+        Video
+    </option>
+</select>
+
+<div id="playlist_container"></div>

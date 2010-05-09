@@ -1,0 +1,27 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $('#mediaDetails_tab_info').load('view/player/media/info.html');
+    $('#mediaDetails_tab_files').load('view/player/media/files.html');
+    $('#mediaDetails_tab_playlist').load('view/player/media/playlist.html');
+
+    Application.Media.init('#mediaDetails_tabs');
+});
+</script>
+
+<div id="mediaDetails_tabs">
+    <ul>
+        <li>
+            <a href="#mediaDetails_tab_info">Info</a>
+        </li>
+        <li>
+            <a href="#mediaDetails_tab_files">Files</a>
+        </li>
+        <li>
+            <a href="#mediaDetails_tab_playlist">Playlist</a>
+        </li>
+    </ul>
+    <div id="mediaDetails_tab_info"></div>
+    <div id="mediaDetails_tab_files"></div>
+    <div id="mediaDetails_tab_playlist"></div>
+</div>

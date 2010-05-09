@@ -6,7 +6,7 @@ function JsonRpc (Xbmc)
     //Supporting methods
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Player.getActivePlayer() : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activePlayer : o_post.media ;
 
         if (!o_post.method)
             return false;

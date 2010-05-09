@@ -11,7 +11,7 @@ function Files (Xbmc)
     //Supporting methods
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activePlayer : o_post.media ;
 
         if (!o_post.method)
             return false;
@@ -30,7 +30,7 @@ function Files (Xbmc)
     this.getSources = function (s_media)
     {
         var o_parameters        = new Object();
-        o_parameters.type       = (s_media)? s_media : undefined ;
+        o_parameters.media      = (s_media)? s_media : undefined ;
         var o_post              = new Object();
         o_post.method           = 'GetSources';
         o_post.boolResponse     = false;
@@ -68,7 +68,7 @@ function Files (Xbmc)
     this.getDirectory = function (s_directoryPath, s_media)
     {
         var o_parameters        = new Object();
-        o_parameters.type       = s_media;
+        o_parameters.media      = s_media;
         o_parameters.directory  = s_directoryPath;
         var o_post              = new Object();
         o_post.method           = 'GetDirectory';

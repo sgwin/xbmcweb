@@ -26,7 +26,7 @@ function Player (Xbmc)
 
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activePlayer : o_post.media ;
 
         if (!this.isAllowedType(o_post.media) || !o_post.method)
             return false;
@@ -50,37 +50,7 @@ function Player (Xbmc)
         o_post.boolResponse     = false;
         var o_response          = this.getResponse(o_post);
 
-        return (o_response.length && o_response.length > 0)? o_response : false ;
-    }
-
-    this.getActivePlayer = function ()
-    {
-        var o_activePlayers = this.getActivePlayers();
-        return (!o_activePlayers)? false : o_activePlayers[0] ;
-    }
-
-    this.isMediaPlaying = function ()
-    {
-        var a_activePlayers = this.getActivePlayers();
-        return (a_activePlayers[0] == 'audio' || a_activePlayers[0] == 'video');
-    }
-
-    this.isAudioPlaying = function ()
-    {
-        var a_activePlayers = this.getActivePlayers();
-        return (a_activePlayers && a_activePlayers[0] == 'audio');
-    }
-
-    this.isVideoPlaying = function ()
-    {
-        var a_activePlayers = this.getActivePlayers();
-        return (a_activePlayers && a_activePlayers[0] == 'video');
-    }
-
-    this.isPictureShowing = function ()
-    {
-        var a_activePlayers = this.getActivePlayers();
-        return Xbmc.Helper.in_array('picture', a_activePlayers);
+        return (o_response)? o_response : false ;
     }
 
     //returns true if playing

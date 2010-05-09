@@ -1,61 +1,38 @@
-#playlistContextMenu
+#playlist_select
 {
-    background:         #efefef;
-    border:             1px solid #aaa;
-    padding:            2px;
-    display:            inline-block;
-    min-width:          140px;
-    -moz-box-shadow:    2px 2px 2px silver;
-    -webkit-box-shadow: 2px 2px 2px silver;
-    z-index:            99999;
-    display:            none;
+    margin:             10px;
+    width:              95%;
+    border:             1px solid #ddd;
+    background-color:   #fff;
+    color:              #39476D;
+}
+
+#playlist_container
+{
     position:           absolute;
+    left:               0px;
+    top:                65px;
+    bottom:             0px;
+    right:              0px;
+    overflow:           auto;
+    padding:            5px;
+}
+
+#playlist_container ul
+{
+    list-style-type:    none;
+    padding:            0px 0px 0px 5px;
+    margin:             0px;
     color:              #39476D;
 }
 
-#playlistContextMenu li
+#playlist_container ul li
 {
-    padding:            4px;
-    list-style:         none;
     cursor:             pointer;
-    background:         url("../images/arrow_right_peppermint.png") no-repeat center left;
-
+    padding:            2px 2px 2px 20px;
 }
 
-#playlistContextMenu li:hover
+#playlist_container ul li span:hover
 {
-    background-color:   white;
-}
-
-.item_index
-{
-    text-align:         center;
-    color:              #39476D;
-}
-
-.item_title
-{
-    font-weight:        normal;
-    color:              #39476D;
-}
-
-.ui-state-active
-{
-    color: red;
-}
-
-.item_playing
-{
-    text-align:         center;
-    vertical-align:     middle;
-}
-
-.item_playing img
-{
-     margin:            10px 5px;
-}
-
-.context_menu_spacer
-{
-    border-top:         2px groove #fff;
+    text-decoration:    underline;
 }

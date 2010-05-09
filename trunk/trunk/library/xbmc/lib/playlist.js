@@ -23,7 +23,7 @@ function Playlist (Xbmc)
 
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activePlayer : o_post.media ;
 
         if (!this.isAllowedMedia(o_post.media) || !o_post.method)
             return false;
@@ -37,7 +37,7 @@ function Playlist (Xbmc)
     }
 
     //XBMC method implementations
-    this.play = function (i_item, s_media)
+    this.play = function (i_item, s_media, b_recursive)
     {
         var o_post              = new Object();
         o_post.media            = s_media;
@@ -122,10 +122,10 @@ function Playlist (Xbmc)
         return this.getResponse(o_post);
     }
 
-    this.add = function (s_file, s_media)
+    this.addFile = function (s_file, s_media)
     {
         var o_parameters        = new Object();
-        o_parameters.playlist   = s_media;
+        o_parameters.media      = s_media;
         o_parameters.file       = s_file;
         var o_post              = new Object();
         o_post.media            = s_media;
@@ -136,26 +136,19 @@ function Playlist (Xbmc)
         return this.getResponse(o_post);
     }
 
-    this.recursiveAdd = function (a_directories, s_media)
+    this.addDirectory = function (s_directory, s_media, b_recursive)
     {
-        for (var x=0; x<a_directories.length; x++)
-        {
-            var a_dirContent = Xbmc.Files.getDirectoryContent(a_directories[x].file);
-            
-            if (a_dirContent)
-                this.recursiveAdd(a_dirContent, s_media);
-            else
-                this.add(a_directories[x].file);
-        }
+        var o_parameters        = new Object();
+        o_parameters.media      = s_media;
+        o_parameters.directory  = s_directory;
+        o_parameters.recursive  = (b_recursive)? true : false ;
+        var o_post              = new Object();
+        o_post.media            = s_media;
+        o_post.method           = 'Add';
+        o_post.boolResponse     = true;
+        o_post.parameter        = o_parameters;
 
-        return true;
-    }
-
-    this.recursivePlay = function (a_directories, s_media)
-    {
-        this.clear(s_media);
-        this.recursiveAdd(a_directories, s_media);
-        this.play(0, s_media);
+        return this.getResponse(o_post);
     }
 
     this.clear = function (s_media)

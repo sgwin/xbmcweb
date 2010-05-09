@@ -10,8 +10,9 @@
         <link rel="stylesheet" type="text/css" href="style/application/player/slider.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/application/player/layout.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/application/player/playlist.css" media="screen" charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="style/application/player/media_browser.css" media="screen" charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="style/application/player/media_details.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/sources.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/application/player/media.css" media="screen" charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/third_party/jquery-ui/xbmc/jquery-ui-1.8.xbmc.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/third_party/jquery/contextMenu/jquery.contextMenu.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/application/player/context_menu.css" media="screen" charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style/third_party/jquery/slickgrid/slick.grid.css" media="screen" charset="utf-8" />
@@ -24,7 +25,7 @@
 
         <!-- START include jquery plugins -->
         <script type="text/javascript" src="library/third_party/jquery/plugins/jquery.contextMenu.js"></script>
-        <script type="text/javascript" src="library/third_party/jquery/jquery.tools.min.js?select=full"></script>
+        <script type="text/javascript" src="library/third_party/jquery/jquery-ui-1.8.xbmc.min.js"></script>
         <!-- END include jquery plugins -->
 
         <!-- START include helper libraries -->
@@ -55,9 +56,11 @@
         <!-- END include XBMC library -->
 
         <!-- START include Application library -->
-        <script type="text/javascript" src="library/application/player/shares.js"></script>
-        <script type="text/javascript" src="library/application/player/file_browser.js"></script>
-        <script type="text/javascript" src="library/application/player/media_details.js"></script>
+        <script type="text/javascript" src="library/application/player/sources.js"></script>
+        <script type="text/javascript" src="library/application/player/sources.shares.js"></script>
+        <script type="text/javascript" src="library/application/player/media.js"></script>
+        <script type="text/javascript" src="library/application/player/media.files.js"></script>
+        <script type="text/javascript" src="library/application/player/media.playlist.js"></script>
         <script type="text/javascript" src="library/application/player/application.js"></script>
         <!-- END include Application library -->
 
@@ -67,8 +70,10 @@
 
     <div id="container">
         <div id="north"></div>
-        <div id="east"></div>
-        <div id="west"></div>
+        <div id="center">
+            <div id="east"></div>
+            <div id="west"></div>
+        </div>
         <div id="south"></div>
     </div>
 
@@ -87,24 +92,6 @@
         </li>
         <li class="enque">
             <a href="#enque">Enque</a>
-        </li>
-    </ul>
-
-    <ul id="playlistContextMenu">
-        <li data="play">
-            Play
-        </li>
-        <li data="remove">
-            Remove
-        </li>
-        <li data="move_up">
-            Move up
-        </li>
-        <li data="move_down">
-            Move down
-        </li>
-        <li data="refresh" class="context_menu_spacer">
-            Refresh
         </li>
     </ul>
 

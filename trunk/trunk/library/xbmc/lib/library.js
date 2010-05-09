@@ -8,7 +8,7 @@ function Library (Xbmc)
     //Namespace configuration
     var a_namespace         = new Array();
     a_namespace['video']    = 'VideoLibrary';
-    a_namespace['audio']    = 'MusicLibrary';
+    a_namespace['audio']    = 'AudioLibrary';
 
     var a_media             = new Array();
     a_media[0]              = 'audio';
@@ -22,7 +22,7 @@ function Library (Xbmc)
 
     this.getResponse = function (o_post)
     {
-        o_post.media = (!o_post.media)? Xbmc.Status.activeMediaPlayer : o_post.media ;
+        o_post.media = (!o_post.media)? Xbmc.Status.activePlayer : o_post.media ;
 
         if (!this.isAllowedMedia(o_post.media) || !o_post.method)
             return false;

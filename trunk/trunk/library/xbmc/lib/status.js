@@ -24,7 +24,7 @@ function Status (Xbmc)
     this.isVideoPlaying     = false;
     this.isAudioPlaying     = false;
     this.isPictureShowing   = false;
-    this.activeMediaPlayer  = undefined;
+    this.activePlayer  = undefined;
 
     //Volume
     this.volume             = 0;
@@ -34,8 +34,8 @@ function Status (Xbmc)
 
     this.setActivePlaylist = function ()
     {
-        this.activePlaylist = (!this.activeMediaPlayer)? undefined : Xbmc.Playlist.getCurrentPlaylist(this.activeMediaPlayer) ;
-        return (!this.activeMediaPlayer)? false : true ;
+        this.activePlaylist = (!this.activePlayer)? undefined : Xbmc.Playlist.getCurrentPlaylist(this.activePlayer) ;
+        return (!this.activePlayer)? false : true ;
     }
 
     this.setPlayingItem = function ()
@@ -114,33 +114,23 @@ function Status (Xbmc)
 
     this.setPlayingMedia = function ()
     {
-        var a_player = Xbmc.Player.getActivePlayers();
+        var a_playerStatus = Xbmc.Player.getActivePlayers();
 
-        if (!a_player || a_player.length < 1)
-        {
-            this.isMediaPlaying     = false;
-            this.isVideoPlaying     = false;
-            this.isAudioPlaying     = false;
-            this.isPictureShowing   = false;
+        this.isMediaPlaying     = (a_playerStatus['audio'] || a_playerStatus['video']);
+        this.isVideoPlaying     = (a_playerStatus['video']);
+        this.isAudioPlaying     = (a_playerStatus['audio']);
+        this.isPictureShowing   = (a_playerStatus['picture']);
 
-            return false;
-        }
+        if (this.isVideoPlaying)
+            this.activePlayer = 'video';
+        else if (this.isAudioPlaying)
+            this.activePlayer = 'audio';
+        else if(this.isPictureShowing)
+            this.activePlayer = 'picture';
         else
-        {
-            this.isMediaPlaying     = (Xbmc.Helper.in_array('video', a_player) || Xbmc.Helper.in_array('audio', a_player));
-            this.isVideoPlaying     = Xbmc.Helper.in_array('video', a_player);
-            this.isAudioPlaying     = Xbmc.Helper.in_array('audio', a_player);
-            this.isPictureShowing   = Xbmc.Helper.in_array('picture', a_player);
+            this.activePlayer = undefined;
 
-            if (this.isVideoPlaying)
-                this.activeMediaPlayer = 'video';
-            else if (this.isAudioPlaying)
-                this.activeMediaPlayer = 'audio';
-            else
-                this.activeMediaPlayer = undefined;
-
-            return true;
-        }
+        return true;
     }
 
     this.setVolume = function ()

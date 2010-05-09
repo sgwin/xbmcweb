@@ -54,28 +54,20 @@ function AudioPlaylist (Playlist)
         return Playlist.unShuffle(s_media);
     }
 
-    this.add = function (s_file)
+    this.addFile = function (s_file)
     {
-        return Playlist.add(s_file, s_media);
+        return Playlist.addFile(s_file, s_media);
     }
 
-    this.recursiveAdd = function (a_directories)
+    this.addDirectory = function (s_directory, b_recursive)
     {
-        for (var x=0; x<a_directories.length; x++)
-        {
-            var a_dirContent = Xbmc.Files.getDirectoryContent(a_directories[x].file);
-
-            if (a_dirContent)
-                this.recursiveAdd(a_dirContent, s_media);
-            else
-                this.add(a_directories[x].file);
-        }
+        return Playlist.addDirectory(s_directory, s_media, b_recursive);
     }
 
-    this.recursivePlay = function (a_directories)
+    this.playDirectory = function (s_directory, b_recursive)
     {
         this.clear();
-        this.recursiveAdd(a_directories);
+        this.addDirectory(s_directory, b_recursive);
         this.play(0);
     }
 

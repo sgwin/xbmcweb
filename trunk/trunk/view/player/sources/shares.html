@@ -1,0 +1,33 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var s_sourceSelect      = "#shares_select";
+    var s_sourceContainer   = "#shares_container";
+
+    $(s_sourceSelect).bind
+    (
+        'change',
+        function ()
+        {
+            Application.Sources.Shares.show($(this).val())
+        }
+    );
+
+    Application.Sources.Shares.init(s_sourceContainer);
+    $(s_sourceSelect).trigger('change');
+});
+</script>
+
+<select name="shares_select" id="shares_select">
+    <option value="music" SELECTED>
+        Music
+    </option>
+    <option value="video">
+        Videos
+    </option>
+    <option value="pictures">
+        Pictures
+    </option>
+</select>
+
+<div id="shares_container" class="tree_container"></div>

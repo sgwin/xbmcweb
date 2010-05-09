@@ -21,36 +21,44 @@
     padding:            0px;
 }
 
-#east
+#center
 {
-    width:              30%;
     position:           absolute;
     top:                120px;
-    bottom:             50px;
+    bottom:             60px;
     left:               0px;
+    right:              0px;
     padding:            0px;
     overflow:           hidden;
-    background-color:   #efefef;
+}
+
+#east
+{
+    position:           absolute;
+    top:                0px;
+    left:               0px;
+    bottom:             0px;
+    margin:             0px;
+    padding:            0px;
+    width:              400px;
 }
 
 #west
 {
-    width:              70%;
     position:           absolute;
-    top:                120px;
-    bottom:             50px;
+    top:                0px;
+    left:               400px;
     right:              0px;
-    border-left:        1px solid #aaa;
+    bottom:             0px;
+    margin:             0px;
     padding:            0px;
-    overflow:           hidden;
-    background-color:   #efefef;
 }
 
 #south
 {
     border-top:         1px solid #aaa;
     background-color:   #ddd;
-    height:             50px;
+    height:             60px;
     padding:            0px;
     position:           fixed;
     bottom:             0px;
@@ -58,3 +66,35 @@
     right:              0px;
 }
 
+#mediaDetails_tabs
+{
+    position:           absolute;
+    top:                0px;
+    left:               0px;
+    right:              0px;
+    bottom:             0px;
+    margin:             0px;
+    padding:            0px;
+}
+
+#sources_tabs
+{
+    position:           absolute;
+    top:                0px;
+    left:               0px;
+    right:              0px;
+    bottom:             0px;
+    margin:             0px;
+    padding:            0px;
+}
+
+#nowPlaying_container
+{
+    position:           absolute;
+    top:                0px;
+    left:               0px;
+    right:              0px;
+    bottom:             0px;
+    margin:             0px;
+    padding:            0px;
+}

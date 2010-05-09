@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    function applyFilesContextMenu (o_element)
+    {
+        $('li', o_element).contextMenu
+        (
+            {
+                menu: 'contextMenu_files'
+            },
+            function(action, el, pos)
+            {
+                var s_filePath = el.attr('path');
+            }
+        );
+    }
+
+    function showFiles (o_selectedElement)
+    {
+        if (o_selectedElement)
+        {
+            var a_files = Xbmc.Files.getDirectoryContent(o_selectedElement.attr('path'), o_selectedElement.attr('media'));
+
+            if (a_files)
+            {
+                $('#files_tree li').remove();
+
+                for (var i=0; i<a_files.length; i++)
+                {
+                    if (a_files[i].file.charAt(a_files[i].file.length-1) != "/" && a_files[i].file.charAt(a_files[i].file.length-1) != "\\")
+                    {
+                        var s_file = '<li class="file ' +o_selectedElement.attr('media')+ '" path="' +a_files[i].file+ '">' +a_files[i].label+ '</li>';
+                        $('#files_tree').append(s_file);
+                    }
+                }
+
+                applyClickAction('li', o_selectedElement.attr('media'));
+            }
+
+            applyFilesContextMenu($('#files_tree'));
+        }
+    }
+
+    $(document).ready(function()
+    {
+        Application.Media.Files.init('#files_container');
+
+        $('#files_filter').bind
+        (
+            'keyup',
+            function (e)
+            {
+                var filter = $(this).val();
+
+                $("#files_container ul li").each(function ()
+                {
+                    if ($(this).text().search(new RegExp(filter, "i")) < 0)
+                        $(this).addClass("hidden");
+                    else
+                        $(this).removeClass("hidden");
+                });
+            }
+        );
+    });
+</script>
+
+<input type="text" name="files_filter" id="files_filter" value="" />
+
+<div id="files_container"></div>
