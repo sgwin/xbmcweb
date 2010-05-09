@@ -1,0 +1,32 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $('#sources_tab_shares').load('view/player/sources/shares.html');
+    $('#sources_tab_music').load('view/player/sources/music.html');
+    $('#sources_tab_movies').load('view/player/sources/movies.html');
+    $('#sources_tab_tvshows').load('view/player/sources/tvshows.html');
+
+    Application.Sources.init('#sources_tabs');
+});
+</script>
+
+<div id="sources_tabs">
+    <ul>
+        <li>
+            <a href="#sources_tab_shares">Shares</a>
+        </li>
+        <li>
+            <a href="#sources_tab_music">Music</a>
+        </li>
+        <li>
+            <a href="#sources_tab_movies">Movies</a>
+        </li>
+        <li>
+            <a href="#sources_tab_tvshows">TV Shows</a>
+        </li>
+    </ul>
+    <div id="sources_tab_shares" style="height:100%;"></div>
+    <div id="sources_tab_music"></div>
+    <div id="sources_tab_movies"></div>
+    <div id="sources_tab_tvshows"></div>
+</div>

@@ -3,17 +3,19 @@ $(document).ready(function()
 {
     var s_activePlayer  = 'view/player/now_playing/';
 
-    if (Xbmc.Player.isPictureShowing())
+    if (Xbmc.Status.isPictureShowing)
         s_activePlayer += 'picture';
-    else if (Xbmc.Player.isAudioPlaying())
+    else if (Xbmc.Status.isAudioPlaying)
         s_activePlayer += 'audio';
-    else if (Xbmc.Player.isVideoPlaying())
+    else if (Xbmc.Status.isVideoPlaying)
         s_activePlayer += 'video';
     else
         s_activePlayer += 'nothing';
 
     s_activePlayer += '.html';
 
-    $('#now_playing_container').load(s_activePlayer);
+    $('#nowPlaying_container').load(s_activePlayer);
 });
 </script>
+
+<div id="nowPlaying_container"></div>

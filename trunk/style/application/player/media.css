@@ -1,0 +1,59 @@
+#files_container
+{
+    position:           absolute;
+    left:               0px;
+    top:                65px;
+    bottom:             0px;
+    right:              0px;
+    overflow:           auto;
+    padding:            5px;
+}
+
+#files_container ul
+{
+    list-style-type:    none;
+    padding:            0px 0px 0px 5px;
+    margin:             0px;
+    color:              #39476D;
+}
+
+#files_container ul li
+{
+    cursor:             pointer;
+    padding:            2px 2px 2px 20px;
+}
+
+#files_container ul li:hover
+{
+    text-decoration:    underline;
+}
+
+#files_container ul li.music
+{
+    background:         url(images/icons/music.png) no-repeat top left;
+}
+
+#files_container ul li.video
+{
+    background:         url(images/icons/video.png) no-repeat top left;
+}
+
+#files_container ul li.pictures
+{
+    background:         url(images/icons/picture.png) no-repeat top left;
+}
+
+#files_filter
+{
+    width:              95%;
+    margin:             10px;
+    margin-bottom:      0px;
+    padding-left:       20px;
+    border:             1px solid #aaa;
+    background:         url(images/icons/search.png) no-repeat top left;
+}
+
+#files_filter:hover, #files_filter:focus
+{
+    border:             1px solid #39476D;
+}

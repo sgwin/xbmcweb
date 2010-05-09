@@ -1,13 +1,16 @@
 function Xbmc (config)
 {
-    this.s_apiPath          = "";
-    this.s_username         = "";
-    this.s_password         = "";
-    this.a_errorLog         = new Array();
-    this.a_errorLog.length  = 0;
-    this.b_debug            = false;
-    this.o_httpRequest      = new XMLHttpRequest();
-    var s_namespace         = 'XBMC';
+    this.s_apiPath              = "";
+    this.s_username             = "";
+    this.s_password             = "";
+    this.a_errorLog             = new Array();
+    this.a_errorLog.length      = 0;
+    this.b_debug                = false;
+    this.o_httpRequest          = new XMLHttpRequest();
+    this.i_statusUpdateTimer    = undefined;
+    this.i_statusUpdateInterval = 1000;
+    var s_namespace             = 'XBMC';
+    var o_xbmc                  = this;
 
     //Initialize objects
     this.Helper             = new Helper();
@@ -21,10 +24,24 @@ function Xbmc (config)
 
     this.init = function (a_config)
     {
-        this.s_apiPath      = "http://" +a_config['address']+ ":" +a_config['port']+ "/jsonrpc";
-        this.s_username     = (a_config['username'] != undefined)? a_config['username'] : "" ;
-        this.s_password     = (a_config['password'] != undefined)? a_config['password'] : "" ;
-        this.b_debug        = (a_config['debug'] != undefined)? a_config['debug'] : false;
+        this.s_apiPath                  = "http://" +a_config['address']+ ":" +a_config['port']+ "/jsonrpc";
+        this.s_username                 = (a_config['username'])? a_config['username'] : "" ;
+        this.s_password                 = (a_config['password'])? a_config['password'] : "" ;
+        this.b_debug                    = (a_config['debug'])? a_config['debug'] : false;
+        this.i_statusUpdateInterval     = (a_config['upate_interval'])? a_config['upate_interval'] : this.i_statusUpdateInterval ;
+
+        clearInterval(this.i_statusUpdateTimer);
+
+        this.i_statusUpdateTimer = setInterval
+        (
+            function ()
+            {
+                o_xbmc.Status.update();
+            },
+            this.i_statusUpdateInterval
+        );
+
+        this.Status.update();
     }
 
     this.getApiPath = function ()

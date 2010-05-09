@@ -2,7 +2,6 @@
 var o_updateControlsInterval    = null;
 var b_progressSliderGrab        = false;
 var b_volumeSliderGrab          = false;
-var o_progressSlider, o_volumeSlider;
 
 function updateControls ()
 {
@@ -55,12 +54,14 @@ function updateControls ()
     if (Xbmc.Status.isMediaPlaying)
     {
         if (!b_progressSliderGrab)
-            o_progressSlider.setValue(Xbmc.Status.playingPercentage);
+            $("#progress_slider").slider('option', 'value', Xbmc.Status.playingPercentage);
     }
+    else
+        $("#volume_slider").slider('option', 'value', 0);
 
     //Update volume slider
     if (!b_volumeSliderGrab)
-        o_volumeSlider.setValue(Xbmc.Status.volume);
+        $("#volume_slider").slider('option', 'value', Xbmc.Status.volume);
 }
 
 $(document).ready(function()
@@ -137,27 +138,41 @@ $(document).ready(function()
         }
     );
 
-    o_progressSlider = $('#progress_slider').rangeinput(
+    $("#progress_slider").slider(
     {
-        progress:   true,
-        value:      Xbmc.Status.playingPercentage,
-        change:     function(event, value)
+        range:  "min",
+        value:  Xbmc.Status.playingPercentage,
+        min:    0,
+        max:    100,
+        start:  function (event, ui)
         {
-            var i_partTime  = Math.round(Xbmc.Status.playingSecondsTotal/100);
-            var i_setTime   = (i_partTime*value);
+            b_progressSliderGrab = true;
+        },
+        stop:  function(event, ui)
+        {
+            var i_partTime          = Math.round(Xbmc.Status.playingSecondsTotal/100);
+            var i_setTime           = (i_partTime*ui.value);
             Xbmc.Player.seekTime(i_setTime);
+            b_progressSliderGrab    = false;
         }
-    }).data('rangeinput');
-    
-    o_volumeSlider = $('#volume_slider').rangeinput(
+    });
+
+    $("#volume_slider").slider(
     {
-        progress:   true,
-        value:      Xbmc.Status.volume,
-        change:     function (event, value)
+        range:  "min",
+        value:  Xbmc.Status.volume,
+        min:    0,
+        max:    100,
+        start:  function (event, ui)
         {
-            Xbmc.setVolume(value);
+            b_volumeSliderGrab = true;
+        },
+        stop:  function(event, ui)
+        {
+            Xbmc.setVolume(ui.value);
+            b_volumeSliderGrab = false;
         }
-    }).data('rangeinput');
+    });
 
     updateControls();
     o_updateControlsInterval = setInterval("updateControls()", 1000);
@@ -176,10 +191,10 @@ $(document).ready(function()
             <img src="style/application/player/images/icons/classy-icons-set/32x32/skip_forward.png" id="control_skip_forward" />
         </td>
         <td id="progress_slider_container">
-            <input type="range" name="progress_slider" id="progress_slider" min="0" max="100" value="0" />
+            <div id="progress_slider"></div>
         </td>
         <td id="volume_slider_container">
-            <input type="range" name="volume_slider" id="volume_slider" min="0" max="100" value="0" />
+            <div id="volume_slider"></div>
         </td>
     </tr>
 </table>
